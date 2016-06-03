@@ -36,6 +36,17 @@ angular.module('Autotek', ['ionic','starter.controllers'])
       url:"/main",
       controller:'LoginCtrl'
     })
+    
+    .state('about',{
+      templateUrl:"templates/about.html",
+      url:"/about"
+    })
+    
+    .state('contact',{
+      templateUrl:"templates/contact.html",
+      url:"/contact"
+    })
+
 
     $urlRouterProvider.otherwise('/home');
   });
