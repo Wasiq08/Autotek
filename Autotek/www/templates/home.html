@@ -1,19 +1,27 @@
-       <ion-content>
-          <div class="list">
-            <label class="item item-input">
+       <ion-content class="ak-bg">
+          <div>
+            <div class="logo-header ak-mt-50"></div>
+            <div>
+              <img src="../img/password_icon.png" class="lg-icons"/>
+                  <div>
+                   <input type="text" ng-model="user.username"/>
+                  </div>
+              <span class=input-label ak-ml-10>Password</span>
+               <img src="../img/profile_small_icon.png" class="lg-icons"/>
+              <input type="password" ng-model="user.password">     
+            </div>
+            
+            <!--<label class="item item-input">
               <span class="input-label">Username</span>
               <input type="text" ng-model="user.username">
             </label>
 
             <label class="item item-input">
-              <span class="input-label">Password</span>
-              <input type="password" ng-model="user.password">
-            </label>
-          </div>
+              </label>
+          </div>-->
           <div class="padding">
-            <button class="button button-block button-positive" ng-click="login(user)">
-              Sign-In
-            </button>
-            <h1>{{user}}</h1>
-            <p>{{list}}</p>
+            <button class="button button-block button-positive" ng-click="login(user)"> LOGIN </button>
+            <button class="button button-block button-positive"> SIGN UP </button>
+            <!--<h1>{{user}}</h1>
+            <p>{{list}}</p>-->
         </ion-content>
