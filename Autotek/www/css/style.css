@@ -1,1 +1,185 @@
-/* Empty. Add your own CSS if you like */
+/* Autotek Hybrid App CSS */
+
+
+/* Position & Placement */
+.ak-fixed { position: fixed; }
+.ak-relative { position: relative; }
+.ak-absolute { position: absolute; }
+.ak-l-float { float: left; }
+.ak-r-float { float: right; }
+.ak-no-float { float: none; }
+.ak-clearfix { clear: both; }
+/* End of Position & Placement */
+
+/* Alignments */
+.ak-l-align { text-align: left; }
+.ak-r-align { text-align: right; }
+.ak-m-align { text-align: center; }
+/* End of Alignments */
+
+/* Font Sizes */
+.ft-8 { font-size: 8px; }
+.ft-10 { font-size: 10px; }
+.ft-12 { font-size: 12px; }
+.ft-14 { font-size: 14px; }
+.ft-16 { font-size: 16px; }
+.ft-18 { font-size: 18px; }
+.ft-20 { font-size: 20px; }
+.ft-24 { font-size: 24px; }
+.ft-32 { font-size: 32px; }
+.ft-40 { font-size: 40px; }
+/* End of Font sizes */
+ 
+/* Margins */
+.ak-m-5 { margin: 5px; }
+.ak-m-10 { margin: 10px; }
+.ak-m-15 { margin: 15px; }
+.ak-m-20 { margin: 20px; }
+.ak-m-25 { margin: 25px; }
+.ak-m-30 { margin: 30px; }
+.ak-m-35 { margin: 35px; }
+.ak-m-40 { margin: 40px; }
+.ak-m-45 { margin: 45px; }
+.ak-m-50 { margin: 50px; }
+/* Margin Top */
+.ak-mt-5 { margin: 5px; }
+.ak-mt-10 { margin: 10px; }
+.ak-mt-15 { margin: 15px; }
+.ak-mt-20 { margin: 20px; }
+.ak-mt-25 { margin: 25px; }
+.ak-mt-30 { margin: 30px; }
+.ak-mt-35 { margin: 35px; }
+.ak-mt-40 { margin: 40px; }
+.ak-mt-45 { margin: 45px; }
+.ak-mt-50 { margin: 50px; }
+/* Margin Right */
+.ak-mr-5 { margin: 5px; }
+.ak-mr-10 { margin: 10px; }
+.ak-mr-15 { margin: 15px; }
+.ak-mr-20 { margin: 20px; }
+.ak-mr-25 { margin: 25px; }
+.ak-mr-30 { margin: 30px; }
+.ak-mr-35 { margin: 35px; }
+.ak-mr-40 { margin: 40px; }
+.ak-mr-45 { margin: 45px; }
+.ak-mr-50 { margin: 50px; }
+/* Margin Bottom */
+.ak-mb-5 { margin: 5px; }
+.ak-mb-10 { margin: 10px; }
+.ak-mb-15 { margin: 15px; }
+.ak-mb-20 { margin: 20px; }
+.ak-mb-25 { margin: 25px; }
+.ak-mb-30 { margin: 30px; }
+.ak-mb-35 { margin: 35px; }
+.ak-mb-40 { margin: 40px; }
+.ak-mb-45 { margin: 45px; }
+.ak-mb-50 { margin: 50px; }
+/* Margin Left */
+.ak-ml-5 { margin: 5px; }
+.ak-ml-10 { margin: 10px; }
+.ak-ml-15 { margin: 15px; }
+.ak-ml-20 { margin: 20px; }
+.ak-ml-25 { margin: 25px; }
+.ak-ml-30 { margin: 30px; }
+.ak-ml-35 { margin: 35px; }
+.ak-ml-40 { margin: 40px; }
+.ak-ml-45 { margin: 45px; }
+.ak-ml-50 { margin: 50px; }
+/* End of Margins */
+
+/* Padding */
+.ak-p-5 { margin: 5px; }
+.ak-p-10 { margin: 10px; }
+.ak-p-15 { margin: 15px; }
+.ak-p-20 { margin: 20px; }
+.ak-p-25 { margin: 25px; }
+.ak-p-30 { margin: 30px; }
+.ak-p-35 { margin: 35px; }
+.ak-p-40 { margin: 40px; }
+.ak-p-45 { margin: 45px; }
+.ak-p-50 { margin: 50px; }
+
+/* Padding Top */
+.ak-pt-5 { margin: 5px; }
+.ak-pt-10 { margin: 10px; }
+.ak-pt-15 { margin: 15px; }
+.ak-pt-20 { margin: 20px; }
+.ak-pt-25 { margin: 25px; }
+.ak-pt-30 { margin: 30px; }
+.ak-pt-35 { margin: 35px; }
+.ak-pt-40 { margin: 40px; }
+.ak-pt-45 { margin: 45px; }
+.ak-pt-50 { margin: 50px; }
+/* Padding Right */
+.ak-pr-5 { margin: 5px; }
+.ak-pr-10 { margin: 10px; }
+.ak-pr-15 { margin: 15px; }
+.ak-pr-20 { margin: 20px; }
+.ak-pr-25 { margin: 25px; }
+.ak-pr-30 { margin: 30px; }
+.ak-pr-35 { margin: 35px; }
+.ak-pr-40 { margin: 40px; }
+.ak-pr-45 { margin: 45px; }
+.ak-pr-50 { margin: 50px; }
+
+/* Padding Bottom */
+.ak-pb-5 { margin: 5px; }
+.ak-pb-10 { margin: 10px; }
+.ak-pb-15 { margin: 15px; }
+.ak-pb-20 { margin: 20px; }
+.ak-pb-25 { margin: 25px; }
+.ak-pb-30 { margin: 30px; }
+.ak-pb-35 { margin: 35px; }
+.ak-pb-40 { margin: 40px; }
+.ak-pb-45 { margin: 45px; }
+.ak-pb-50 { margin: 50px; }
+
+/* Padding Left */
+.ak-pl-5 { margin: 5px; }
+.ak-pl-10 { margin: 10px; }
+.ak-pl-15 { margin: 15px; }
+.ak-pl-20 { margin: 20px; }
+.ak-pl-25 { margin: 25px; }
+.ak-pl-30 { margin: 30px; }
+.ak-pl-35 { margin: 35px; }
+.ak-pl-40 { margin: 40px; }
+.ak-pl-45 { margin: 45px; }
+.ak-pl-50 { margin: 50px; }
+/* End of Padding */
+.logo-header {
+  width: 70%;
+    height: 50px;
+    background-image: url('../img/autotek_logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 100px;
+    margin-top: 50px;
+  
+}
+.ak-bg{
+    background-image: url('../img/background2.png');
+    background-size: contain 
+}
+
+.lg-icons{
+  width:15%;
+  margin-left: 50px;  
+}
+
+.abt-p{
+    margin: 21px 14px 16px;
+    color: whitesmoke;
+}
+
+.border{
+  width: 600px;
+  height: 800px;
+     
+}
+
+.div1 {
+    width: 95%;
+    height: 620px;
+    border: 3px solid whitesmoke;
+    margin-left: 11px;
+}
