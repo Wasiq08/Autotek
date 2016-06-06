@@ -3,22 +3,69 @@ Create tabs with an icon and label, using the tabs-positive style.
 Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
-<ion-tabs class="tabs-icon-top tabs-color-active-positive">
-
-  <!-- Dashboard Tab -->
-  <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/dash">
+<!-- <ion-tabs class="tabs-icon-top tabs-color-active-positive"> -->
+<!-- Dashboard Tab -->
+<!--   <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/dash">
     <ion-view name="tab-dash"></ion-view>
-  </ion-tab>
-
-  <!-- Chats Tab -->
-  <ion-tab title="Chats" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/tab/chats">
+  </ion-tab> -->
+<!-- Chats Tab -->
+<!--   <ion-tab title="Chats" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/tab/chats">
     <ion-nav-view name="tab-chats"></ion-nav-view>
-  </ion-tab>
-
-  <!-- Account Tab -->
-  <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account">
+  </ion-tab> -->
+<!-- Account Tab -->
+<!--   <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account">
     <ion-nav-view name="tab-account"></ion-nav-view>
-  </ion-tab>
+  </ion-tab> -->
+<!-- 
+</ion-tabs> -->
+<style type="text/css">
+.lg-icon-notification:before {
+    content: "\e93e";
+}
+</style>
+<ion-view hide-nav-bar="true">
+    <ion-header>
+        <div class="bar bar-header" style="background: transparent;">
+            <button class="button icon ion-ios-bell"></button>
+            <img src="img/autotek_logo.png" style="width: 20%; margin-left: 30%;">
+            <!--  <h1>ABC</h1> -->
+            <button class="button icon ion-gear-a" style="margin-left:30%;"></button>
+        </div>
+    </ion-header>
+    <ion-content class="ak-bg">
+        <div class="list card" style="width: 100%; margin-top: 0; margin-left: 0; margin-bottom: 0;">
+            <!--             <div class="item item-avatar" >
+                <img src="img/autotek_logo.png">
+                <h2>Marty McFly</h2>
+                <p>November 05, 1955</p>
+            </div> -->
+            <div class="maincard" style="background-image: url( img/background.png ); position: relative;">
+                <img class="full-image" src="img/background.png">
+                <div class="item-avatar" style="position: absolute; top: 25%; left: 35%; background:transparent;">
+                    <img src="img/settings_car_white.png" style="max-width: 120%;max-height: 110%;">
+                </div>
+                <div style="position: absolute; top: 75%; left: 25%;">
+                    <h1 style="color: white; font-size: 25px;">SAAD AHMED<h1>
+                </div>
+            </div>
+        </div>
+                <div class="list card" style="width: 50%; margin-top: 0; margin-left: 0; margin-bottom: 0;">
+            <!--             <div class="item item-avatar" >
+                <img src="img/autotek_logo.png">
+                <h2>Marty McFly</h2>
+                <p>November 05, 1955</p>
+            </div> -->
+            <div class="maincard" style="background-image: url( img/background.png ); position: relative;">
+                <img class="full-image" src="img/background.png">
+<!--                 <div class="item-avatar" style="position: absolute; top: 25%; left: 35%; background:transparent;">
+                    <img src="img/settings_car_white.png" style="max-width: 120%;max-height: 110%;">
+                </div>
+                <div style="position: absolute; top: 75%; left: 25%;">
+                    <h1 style="color: white; font-size: 25px;">SAAD AHMED<h1>
+                </div> -->
+            </div>
+        </div>
 
 
-</ion-tabs>
+    </ion-content>
+</ion-view>

@@ -5643,6 +5643,98 @@ ion-tabs.tabs-color-active-dark .tab-item {
  * Items
  * --------------------------------------------------
  */
+
+.maincard {
+  border-color: #ddd;
+  background-color: #fff;
+  color: #444;
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin: -1px;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 16px; }
+  .item h2 {
+    margin: 0 0 2px 0;
+    font-size: 16px;
+    font-weight: normal; }
+  .item h3 {
+    margin: 0 0 4px 0;
+    font-size: 14px; }
+  .item h4 {
+    margin: 0 0 4px 0;
+    font-size: 12px; }
+  .item h5, .item h6 {
+    margin: 0 0 3px 0;
+    font-size: 10px; }
+  .item p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 2px; }
+  .item h1:last-child,
+  .item h2:last-child,
+  .item h3:last-child,
+  .item h4:last-child,
+  .item h5:last-child,
+  .item h6:last-child,
+  .item p:last-child {
+    margin-bottom: 0; }
+  .item .badge {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    top: 16px;
+    right: 32px; }
+  .item.item-button-right .badge {
+    right: 67px; }
+  .item.item-divider .badge {
+    top: 8px; }
+  .item .badge + .badge {
+    margin-right: 5px; }
+  .item.item-light {
+    border-color: #ddd;
+    background-color: #fff;
+    color: #444; }
+  .item.item-stable {
+    border-color: #b2b2b2;
+    background-color: #f8f8f8;
+    color: #444; }
+  .item.item-positive {
+    border-color: #0c60ee;
+    background-color: #387ef5;
+    color: #fff; }
+  .item.item-calm {
+    border-color: #0a9dc7;
+    background-color: #11c1f3;
+    color: #fff; }
+  .item.item-assertive {
+    border-color: #e42112;
+    background-color: #ef473a;
+    color: #fff; }
+  .item.item-balanced {
+    border-color: #28a54c;
+    background-color: #33cd5f;
+    color: #fff; }
+  .item.item-energized {
+    border-color: #e6b500;
+    background-color: #ffc900;
+    color: #fff; }
+  .item.item-royal {
+    border-color: #6b46e5;
+    background-color: #886aea;
+    color: #fff; }
+  .item.item-dark {
+    border-color: #111;
+    background-color: #444;
+    color: #fff; }
+  .item[ng-click]:hover {
+    cursor: pointer; }
+
 .item {
   border-color: #ddd;
   background-color: #fff;
@@ -8514,10 +8606,14 @@ progress {
  * Buttons
  * --------------------------------------------------
  */
+ .custombutton {
+  background-color: transparent;
+  color: #fff;
+ }
 .button {
   border-color: transparent;
-  background-color: #f8f8f8;
-  color: #444;
+  background-color: transparent;
+  color: #fff;
   position: relative;
   display: inline-block;
   margin: 0;
