@@ -158,7 +158,8 @@
 }
 .ak-bg{
     background-image: url('../img/background2.png');
-    background-size: contain 
+    background-size: contain ;
+    background-repeat: repeat-y;
 }
 
 .lg-icons{
@@ -170,6 +171,16 @@
     margin: 21px 14px 16px;
     color: whitesmoke;
 }
+
+
+.ak-content{
+    margin: 21px 14px 16px;
+    color: whitesmoke;
+    line-height: 1px;
+}
+
+
+
 
 .border{
   width: 600px;
@@ -183,3 +194,22 @@
     border: 3px solid whitesmoke;
     margin-left: 11px;
 }
+
+
+.blk-content{
+    width: 95%;
+    height: 300px;
+    position: relative;
+    margin-left: 5px;
+}
+    
+
+
+.ak-promotion-content{
+    margin: 0 0 10px;
+    color: white;
+    text-indent: inherit;
+    text-align: center;
+}
+
+
