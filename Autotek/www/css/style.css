@@ -147,39 +147,59 @@
 .ak-pl-50 { margin: 50px; }
 /* End of Padding */
 .logo-header {
-  width: 70%;
-    height: 50px;
-    background-image: url('../img/autotek_logo.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin-left: 100px;
-    margin-top: 50px;
+   width: 50%;
+   height: 64px;
+   background-image: url('../img/autotek_logo.png');    
+   background-size: contain;
+   background-repeat: no-repeat;
+    margin: 120px 0px 5px 0px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+}
   
+   
 }
 .ak-bg{
-    background-image: url('../img/background2.png');
-    background-size: contain 
+   
+    background-color: black;
+    background-size: contain; 
 }
 
 .lg-icons{
-  width:15%;
-  margin-left: 50px;  
+
+   width:15%;
+   float:left;
+   margin-left:10px;
+   margin-right:10px;
 }
 
-.abt-p{
-    margin: 21px 14px 16px;
-    color: whitesmoke;
+.button-transparent{
+	color: #fff;
+	background: transparent;
+	border: 1px solid #fff ;
 }
 
-.border{
-  width: 600px;
-  height: 800px;
-     
+
+
+input[type="text"]
+{
+
+	background:transparent;
+	border-bottom: 1px solid white;
+}
+input[type="password"]
+{
+	background:transparent;
+	border-bottom: 1px solid white;
 }
 
-.div1 {
-    width: 95%;
-    height: 620px;
-    border: 3px solid whitesmoke;
-    margin-left: 11px;
+.ak-input{
+
+	width:100%;
+	float:left; 
+	padding-bottom:20px; 
+	margin-left:auto; 
+	margin-right:auto;
 }
