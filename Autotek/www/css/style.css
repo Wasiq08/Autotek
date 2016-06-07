@@ -147,29 +147,73 @@
 .ak-pl-50 { margin: 50px; }
 /* End of Padding */
 .logo-header {
-  width: 70%;
-    height: 50px;
-    background-image: url('../img/autotek_logo.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin-left: 100px;
-    margin-top: 50px;
-  
+   width: 50%;
+   height: 64px;
+   background-image: url('../img/autotek_logo.png');    
+   background-size: contain;
+   background-repeat: no-repeat;
+    margin: 120px 0px 5px 0px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 50px;
+    padding-right: 50px;
 }
+  
+   
+
 .ak-bg{
+
     background-image: url('../img/background2.png');
-    background-size: contain 
+    background-size: contain ;
+    background-repeat: repeat-y;
+
 }
 
 .lg-icons{
-  width:15%;
-  margin-left: 50px;  
+
+   width:15%;
+   float:left;
+   margin-left:10px;
+   margin-right:10px;
 }
 
-.abt-p{
+.button-transparent{
+	color: #fff;
+	background: transparent;
+	border: 1px solid #fff ;
+}
+
+
+
+input[type="text"]
+{
+
+	background:transparent;
+	border-bottom: 1px solid white;
+}
+input[type="password"]
+{
+	background:transparent;
+	border-bottom: 1px solid white;
+}
+
+.ak-input{
+
+	width:100%;
+	float:left; 
+	padding-bottom:20px; 
+	margin-left:auto; 
+	margin-right:auto;
+}
+
+.ak-content{
     margin: 21px 14px 16px;
     color: whitesmoke;
+    line-height: 1px;
 }
+
+
+
 
 .border{
   width: 600px;
@@ -182,4 +226,27 @@
     height: 620px;
     border: 3px solid whitesmoke;
     margin-left: 11px;
+}
+
+
+.blk-content{
+    width: 95%;
+    height: 300px;
+    position: relative;
+    margin-left: 5px;
+}
+    
+
+
+.ak-promotion-content{
+    margin: 0 0 10px;
+    color: white;
+    text-indent: inherit;
+    text-align: center;
+}
+
+
+.abt-p{
+    margin: 21px 14px 16px;
+    color: whitesmoke;
 }
