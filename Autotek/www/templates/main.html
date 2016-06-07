@@ -19,8 +19,132 @@ navigation history that also transitions its views in and out.
 <!-- 
 </ion-tabs> -->
 <style type="text/css">
-.lg-icon-notification:before {
-    content: "\e93e";
+#container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#innerContainer {
+    width: 100%;
+    height: 32%;
+    position: absolute;
+    margin-top: 0;
+    margin-left: 0;
+}
+
+#sidecontainer1 {
+    width: 49%;
+    height: 16.5%;
+    background: #66f;
+    position: absolute;
+    top: 32%;
+    left: 0.5%;
+}
+
+#leftcontainer1 {
+    width: 49%;
+    height: 16.5%;
+    background: #66f;
+    position: absolute;
+    top: 32%;
+    left: 50.5%;
+}
+
+#sidecontainer2 {
+    width: 49%;
+    height: 16.5%;
+    background: #66f;
+    position: absolute;
+    top: 49%;
+    left: 0.5%;
+}
+
+#leftcontainer2 {
+    width: 49%;
+    height: 16.5%;
+    background: #66f;
+    position: absolute;
+    top: 49%;
+    left: 50.5%;
+}
+
+#sidecontainer3 {
+    width: 49%;
+    height: 16.5%;
+    background: #66f;
+    position: absolute;
+    top: 66%;
+    left: 0.5%;
+}
+
+#leftcontainer3 {
+    width: 49%;
+    height: 16.5%;
+    background: #66f;
+    position: absolute;
+    top: 66%;
+    left: 50.5%;
+}
+
+#sidecontainer4 {
+    width: 49%;
+    height: 16.5%;
+    background: #66f;
+    position: absolute;
+    top: 83%;
+    left: 0.5%;
+}
+
+#leftcontainer4 {
+    width: 49%;
+    height: 16.5%;
+    background: #66f;
+    position: absolute;
+    top: 83%;
+    left: 50.5%;
+}
+
+#text {
+    z-index: 100;
+    position: absolute;
+    color: black;
+    font-size: 16px;
+    left: 15%;
+    text-align: center;
+    top: 80%;
+}
+
+#text2 {
+    z-index: 100;
+    position: absolute;
+    color: white;
+    font-size: 25px;
+    left: 25%;
+    text-align: center;
+    top: 80%;
+}
+
+
+#text1 {
+    z-index: 100;
+    position: absolute;
+    color: black;
+    font-size: 14px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 8em;
+    top: 80%;
+}
+
+p {
+    margin-left: auto;
+    margin-right: auto;
+    width: 8em;
+}
+
+.ava {
+    border-width: 0px;
 }
 </style>
 <ion-view hide-nav-bar="true">
@@ -33,39 +157,64 @@ navigation history that also transitions its views in and out.
         </div>
     </ion-header>
     <ion-content class="ak-bg">
-        <div class="list card" style="width: 100%; margin-top: 0; margin-left: 0; margin-bottom: 0;">
-            <!--             <div class="item item-avatar" >
-                <img src="img/autotek_logo.png">
-                <h2>Marty McFly</h2>
-                <p>November 05, 1955</p>
-            </div> -->
-            <div class="maincard" style="background-image: url( img/background.png ); position: relative;">
-                <img class="full-image" src="img/background.png">
-                <div class="item-avatar" style="position: absolute; top: 25%; left: 35%; background:transparent;">
-                    <img src="img/settings_car_white.png" style="max-width: 120%;max-height: 110%;">
+        <div id="container" class="ak-bg">
+            <div id="innerContainer">
+                <img src="img/background.png" style="width: 100%; max-height: 100%;">
+                <div class="item item-avatar ava" style="background:transparent; width: 100%; position: absolute; top: 30%; ">
+                    <img src="img/profileicon.png" style="left: 40%; max-height: 80%; max-width: 15%;">
                 </div>
-                <div style="position: absolute; top: 75%; left: 25%;">
-                    <h1 style="color: white; font-size: 25px;">SAAD AHMED<h1>
-                </div>
+                <p id="text2">
+                SAAD AHMED
+                </p>
+            </div>
+            <div id="sidecontainer1">
+                <img src="img/appointment2.png" style="width: 100%; height: 100%;">
+                <p id="text">
+                    APPOINTMENT
+                </p>
+            </div>
+            <div id="leftcontainer1">
+                <img src="img/promotions2.png" style="width: 100%; height: 100%;">
+                <p id="text">
+                    PROMOTION
+                </p>
+            </div>
+            <div id="sidecontainer2">
+                <img src="img/location2.png" style="width: 100%; height: 100%;">
+                <p id="text">
+                    OUR LOCATION
+                </p>
+            </div>
+            <div id="leftcontainer2">
+                <img src="img/freeservice2.png" style="width: 100%; height: 100%;">
+                <p id="text">
+                    FREE SERVICES
+                </p>
+            </div>
+            <div id="sidecontainer3">
+                <img src="img/services2.png" style="width: 100%; height: 100%;">
+                <p id="text">
+                    SERVICES
+                </p>
+            </div>
+            <div id="leftcontainer3">
+                <img src="img/history2.png" style="width: 100%; height: 100%;">
+                <p id="text">
+                    HISTORY
+                </p>
+            </div>
+            <div id="sidecontainer4">
+                <img src="img/aboutus2.png" style="width: 100%; height: 100%;">
+                <p id="text">
+                    ABOUT US
+                </p>
+            </div>
+            <div id="leftcontainer4">
+                <img src="img/contactus2.png" style="width: 100%; height: 100%;">
+                <p id="text">
+                    CONTACT
+                </p>
             </div>
         </div>
-                <div class="list card" style="width: 50%; margin-top: 0; margin-left: 0; margin-bottom: 0;">
-            <!--             <div class="item item-avatar" >
-                <img src="img/autotek_logo.png">
-                <h2>Marty McFly</h2>
-                <p>November 05, 1955</p>
-            </div> -->
-            <div class="maincard" style="background-image: url( img/background.png ); position: relative;">
-                <img class="full-image" src="img/background.png">
-<!--                 <div class="item-avatar" style="position: absolute; top: 25%; left: 35%; background:transparent;">
-                    <img src="img/settings_car_white.png" style="max-width: 120%;max-height: 110%;">
-                </div>
-                <div style="position: absolute; top: 75%; left: 25%;">
-                    <h1 style="color: white; font-size: 25px;">SAAD AHMED<h1>
-                </div> -->
-            </div>
-        </div>
-
-
     </ion-content>
 </ion-view>
