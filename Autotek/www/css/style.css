@@ -300,3 +300,40 @@ select#soflow {
     margin: 0 0 10px;
     color: white;
 }
+
+.btn-share{
+    background: transparent;
+    width: 60%;
+    color: white;
+    height: 40px;
+    margin-left: 20%;
+    
+}
+
+
+.ak-promotion-share{
+margin: 14px 0 10px;
+    color: white;
+    text-indent: inherit;
+    text-align: left;
+    margin-left: 1em;
+}
+
+.btn-save{
+background: transparent;
+    color: white;
+    height: 40px;    
+    
+}
+
+
+.social-icons{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    display: inline-block;
+    margin-left: 3em;
+}
