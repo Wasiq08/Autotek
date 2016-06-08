@@ -56,11 +56,19 @@ angular.module('Autotek', ['ionic','starter.controllers'])
       templateUrl:"templates/promo_service.html",
       url:"/promotions"
     })
+
     .state('location',{
         templateUrl:"templates/location.html",
         url:"/location",
         controller:'MapController'
       })
+
+
+    .state('booking', {
+      templateUrl: "templates/booking.html",
+      url: "/booking"
+    })
+
 
     $urlRouterProvider.otherwise('/home');
   });

@@ -160,13 +160,11 @@
 }
   
    
-
+}
 .ak-bg{
 
     background-image: url('../img/background2.png');
-    background-size: contain ;
-    background-repeat: repeat-y;
-
+    background-size: cover ;
 }
 
 .lg-icons{
@@ -223,7 +221,7 @@ input[type="password"]
 
 .div1 {
     width: 95%;
-    height: 620px;
+    
     border: 3px solid whitesmoke;
     margin-left: 11px;
 }
@@ -231,7 +229,7 @@ input[type="password"]
 
 .blk-content{
     width: 95%;
-    height: 300px;
+    
     position: relative;
     margin-left: 5px;
 }
@@ -244,12 +242,17 @@ input[type="password"]
     text-indent: inherit;
     text-align: center;
 }
-
-
-.abt-p{
-    margin: 21px 14px 16px;
-    color: whitesmoke;
+.c{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 80%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: cornflowerblue;
+    position: absolute;
+   
 }
+
 
 
 
@@ -279,3 +282,4 @@ select#soflow {
     width: 100%;
     height: 100%;
 }
+
