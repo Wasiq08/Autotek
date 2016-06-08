@@ -283,3 +283,7 @@ select#soflow {
     height: 100%;
 }
 
+.abt-p {
+    margin: 0 0 10px;
+    color: white;
+}
