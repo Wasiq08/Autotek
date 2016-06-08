@@ -248,9 +248,22 @@ input[type="password"]
     height: 80%;
     border-style: solid;
     border-width: 2px;
-    border-color: cornflowerblue;
+    border-color: #fff;
     position: absolute;
    
+}
+
+.d{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 80%;
+    position: absolute;
+   
+}
+.lg-sv-icons{
+	 width:35%;
+   float:left;
+   margin-right:10px;
 }
 
 
@@ -283,3 +296,7 @@ select#soflow {
     height: 100%;
 }
 
+.abt-p {
+    margin: 0 0 10px;
+    color: white;
+}

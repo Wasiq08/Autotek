@@ -60,7 +60,6 @@ angular.module('Autotek', ['ionic','starter.controllers'])
     .state('location',{
         templateUrl:"templates/location.html",
         url:"/location",
-        controller:'MapController'
       })
 
 
