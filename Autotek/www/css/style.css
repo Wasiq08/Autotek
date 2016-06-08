@@ -164,8 +164,7 @@
 .ak-bg{
 
     background-image: url('../img/background2.png');
-    background-size: contain ;
-    background-repeat: repeat-y;
+    background-size: cover ;
 }
 
 .lg-icons{
