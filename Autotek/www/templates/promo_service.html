@@ -1,25 +1,31 @@
-<ion-content class="ak-bg">
-            <div class="logo-header ak-mt-50"></div>
- 
- <p class="ak-promotion-content"> EARN DISCOUNT </p>
- <p class="ak-promotion-content">Invite your friends and get yourself a discount </p>
- 
- <p class="ak-promotion-content"> Send Your Promo Code </p>
- <p class="ak-promotion-content"> 8892ad-2</p>
- 
- <button class="btn-share"> SHARE PROMO CODE </button>
-    <P class="ak-promotion-share">Were you invited by someone ? if yes enter his promo code to gain discount </p> 
-
-<div style="width:80%; float:left; padding-bottom:20px; margin-left:13px; margin-right:40px; padding-left:20px; padding-right:20px;">
+<ion-view>
+    <ion-header>
+        <div class="bar bar-header bar-dark no-top">
+            <div class="buttons">
+                <button class="button button-icon ion-ios-arrow-back" nav-direction="back" ng-click="$ionicGoBack(); "></button>
+            </div>
+            <h1 class="title">FREE SERVICE</h1>
+        </div>
+    </ion-header>
+    <ion-content class="has-header ak-bg" style="background-color: black;">
+        <div class="logo-header ak-mt-50"></div>
+        <p class="ak-promotion-content"> EARN DISCOUNT </p>
+        <p class="ak-promotion-content">Invite your friends and get yourself a discount </p>
+        <p class="ak-promotion-content"> Send Your Promo Code </p>
+        <p class="ak-promotion-content"> 8892ad-2</p>
+        <button class="btn-share"> SHARE PROMO CODE </button>
+        <P class="ak-promotion-share">Were you invited by someone ? if yes enter his promo code to gain discount </p>
+        <div style="width:80%; float:left; padding-bottom:20px; margin-left:13px; margin-right:40px; padding-left:20px; padding-right:20px;">
             <input type="text" ng-model="user.password" style="color: #fff;  width:50%;float:left ;  margin-left: 57px;" placeholder="Promo">
             <button class="btn-save"> SAVE </button>
-         </div>
-<p class="ak-promotion-content">SHARE ON SOCIAL MEDIA</P>   
-<ul></ul>
-<div class="social-icons" >
-    <a id="fb"> <img src="img/fb_icon.png" style="margin-left: 10px;"></a>
-    <a id="fb"> <img src="img/g_icon.png" style="margin-left: -12px;"></a>
-    <a id="fb"> <img src="img/pi_icon.png" style="margin-left: -12px;"></a>
-    <a id="fb"><img src="img/tw_icon.png" style="margin-left: -12px;"></a>
-</div>      
-</ion-content>
+        </div>
+        <p class="ak-promotion-content">SHARE ON SOCIAL MEDIA</p>
+        <ul></ul>
+        <div class="social-icons">
+            <a id="fb"> <img src="img/fb_icon.png" style="margin-left: 10px;"></a>
+            <a id="fb"> <img src="img/g_icon.png" style="margin-left: -12px;"></a>
+            <a id="fb"> <img src="img/pi_icon.png" style="margin-left: -12px;"></a>
+            <a id="fb"><img src="img/tw_icon.png" style="margin-left: -12px;"></a>
+        </div>
+    </ion-content>
+</ion-view>
