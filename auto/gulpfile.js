@@ -6,12 +6,16 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var less = require('gulp-less');
+var path = require('path');
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  less: ['./less/**/*.less']
 };
 
-gulp.task('default', ['sass']);
+
+gulp.task('default', ['sass', 'less']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -48,4 +52,16 @@ gulp.task('git-check', function(done) {
     process.exit(1);
   }
   done();
+});
+
+gulp.task('less', function () {
+  return gulp.src('./less/**/*.less')
+    .pipe(less({
+      paths: [ path.join(__dirname, 'less', 'includes') ]
+    }))
+    .pipe(gulp.dest('./www/css/'));
+});
+
+gulp.task('watch', function() {
+  gulp.watch(paths.less, ['less']);
 });
