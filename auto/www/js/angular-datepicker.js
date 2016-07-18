@@ -135,7 +135,7 @@
 
       return toReturn.join('');
     }
-    , datepickerDirective = function datepickerDirective($window, $compile, $locale, $filter, $interpolate) {
+    , datepickerDirective = function datepickerDirective($window, $compile, $locale, $filter, $interpolate, Appointment, CityBranchId) {
 
       var linkingFunction = function linkingFunction($scope, element, attr) {
 
@@ -512,6 +512,7 @@
         };
 
         $scope.setDatepickerDay = function setDatepickerDay(day) {
+          console.log(day, $scope.monthNumber, $scope.year);
 
           if ($scope.isSelectableDate($scope.monthNumber, $scope.year, day) &&
               $scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + day) &&
@@ -523,6 +524,28 @@
             if (attr.hasOwnProperty('dateRefocus')) {
               thisInput[0].focus();
             }
+
+            var current_date = new Date()
+            console.log(current_date);
+            current_date.setDate(day);
+            //console.log(date);
+            var getdate = current_date.getDate();
+            var month = current_date.getMonth();
+            var year = current_date.getFullYear();
+            var branchid = CityBranchId.get_branchid();
+
+            Appointment.getAvailableDays(branchid,year,month+1).success(function(res){
+                console.log(res);
+                Appointment.getAvailableSlots(branchid,year,month+1,getdate).success(function(result){
+                    console.log(result)
+                })
+                .error(function(error){
+                    console.log(error)
+                })
+            })
+            .error(function(err) {
+                console.log(err)
+            })
 
             $scope.hideCalendar();
           }
@@ -828,5 +851,5 @@
     };
 
   angular.module('720kb.datepicker', [])
-               .directive('datepicker', ['$window', '$compile', '$locale', '$filter', '$interpolate', datepickerDirective]);
+               .directive('datepicker', ['$window', '$compile', '$locale', '$filter', '$interpolate', 'Appointment', 'CityBranchId', datepickerDirective]);
 }(angular, navigator));

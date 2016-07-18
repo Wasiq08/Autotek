@@ -1,7 +1,9 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope, $state, User, localStorageService, $ionicLoading, $ionicPopup) {
+.controller('LoginCtrl', function($scope, $state, User, localStorageService, $ionicLoading, $ionicPopup, Cities) {
     $scope.user = {};
+
+    Cities.getCities();
 
     var params = {
         'grant_type': 'password',
@@ -64,7 +66,44 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('BookAppointmentCtrl', function($scope, $state, $http) {
+.controller('BookAppointmentCtrl', function($scope, $state, $http, CityBranchId, Appointment, ionicTimePicker) {
+    console.log(CityBranchId.get_cityid());
+    console.log(CityBranchId.get_branchid());
+    var current_date = new Date();
+    //console.log(date);
+    var getdate = current_date.getDate()
+    var month = current_date.getMonth();
+    var year = current_date.getFullYear();
+    var branchid = CityBranchId.get_branchid();
+    Appointment.getAvailableDays(branchid, year, month + 1).success(function(res) {
+            console.log(res);
+            Appointment.getAvailableSlots(branchid, year, month + 1, getdate).success(function(result) {
+                    console.log(result)
+                })
+                .error(function(error) {
+                    console.log(error)
+                })
+        })
+        .error(function(err) {
+            console.log(err)
+        })
+
+    var ipObj1 = {
+        callback: function(val) { //Mandatory
+            if (typeof(val) === 'undefined') {
+                console.log('Time not selected');
+            } else {
+                var selectedTime = new Date(val * 1000);
+                console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), 'H :', selectedTime.getUTCMinutes(), 'M');
+            }
+        },
+        inputTime: 50400, //Optional
+        format: 12, //Optional
+        step: 15, //Optional
+        setLabel: 'Set2' //Optional
+    };
+
+    ionicTimePicker.openTimePicker(ipObj1);
 
 })
 
@@ -73,6 +112,49 @@ angular.module('starter.controllers', [])
     console.log(localStorageService.get("loggedInUser"));
 }])
 
+.controller('AppointmentCtrl', ['$scope', 'Cities', 'Appointment', 'CityBranchId', '$state', function($scope, Cities, Appointment, CityBranchId, $state) {
+    console.log(Cities.cities)
+    $scope.cities = {
+        selectedOption: { CityId: 1, CityName: "Riyadh" },
+        availableOptions: Cities.cities
+    }
+    $scope.branches = {};
+
+    Appointment.getBranches($scope.cities.selectedOption.CityId).success(function(res) {
+            console.log(res);
+            $scope.branches = {
+                selectedOption: { Id: res[0].Id, BranchName: res[0].BranchName },
+                availableOptions: res
+            };
+        })
+        .error(function(err) {
+            console.log(err);
+        })
+
+
+    $scope.hasChanged = function() {
+        console.log($scope.cities.selectedOption)
+        Appointment.getBranches($scope.cities.selectedOption.CityId).success(function(res) {
+                console.log(res);
+                $scope.branches = {
+                    selectedOption: { Id: res[0].Id, BranchName: res[0].BranchName },
+                    availableOptions: res
+                };
+            })
+            .error(function(err) {
+                console.log(err);
+            })
+    }
+
+    $scope.next = function() {
+        CityBranchId.set_cityid($scope.cities.selectedOption.CityId);
+        CityBranchId.set_branchid($scope.branches.selectedOption.Id);
+        $state.go('bookappointment')
+
+        // $scope.cities = Cities.cities;
+    }
+
+}])
 
 .controller('BookingCtrl', ['$scope', 'Appointment', '$ionicLoading', function($scope, Appointment, $ionicLoading) {
         $scope.appointments = [];

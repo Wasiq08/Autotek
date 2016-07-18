@@ -16,7 +16,7 @@ angular.module('CoreApi', ['CoreApiUtilities'])
     appName: 'Autotek',
     appVersion: '1.0.0',
     apiAuthUrl: 'http://autotecauth.azurewebsites.net/',
-    apiUrl : 'http://autotecapi.azurewebsites.net/'
+    apiUrl: 'http://autotecapi.azurewebsites.net/'
 
 })
 
@@ -38,16 +38,34 @@ angular.module('CoreApi', ['CoreApiUtilities'])
 
     this.getUser = function() {
         var config = httpService.Utils.getHeader();
-        var url = httpService.Utils.buildUrl(new Array('api','Customer'));
+        var url = httpService.Utils.buildUrl(new Array('api', 'Customer'));
         return httpService.$http.get(url, config);
     }
 }])
 
 
-.service('Appointment', ['httpService', function (httpService) {
+.service('Appointment', ['httpService', function(httpService) {
     this.get = function() {
         var config = httpService.Utils.getHeader();
-        var url = httpService.Utils.buildUrl(new Array('api','CustomerAppointments','1','4'));
+        var url = httpService.Utils.buildUrl(new Array('api', 'CustomerAppointments', '1', '4'));
+        return httpService.$http.get(url, config);
+    }
+
+    this.getBranches = function(cityId) {
+        var config = httpService.Utils.getHeader();
+        var url = httpService.Utils.buildUrl(new Array('api', 'Branches', cityId));
+        return httpService.$http.get(url, config);
+    }
+
+    this.getAvailableDays = function(branchId,year,month) {
+        var config = httpService.Utils.getHeader();
+        var url = httpService.Utils.buildUrl(new Array('api', 'AvailableAppointmentDays', branchId, year, month));
+        return httpService.$http.get(url, config);
+    }
+
+    this.getAvailableSlots = function(branchId,year,month,day) {
+        var config = httpService.Utils.getHeader();
+        var url = httpService.Utils.buildUrl(new Array('api', 'AvailableAppointmentSlots', branchId, year, month,day));
         return httpService.$http.get(url, config);
     }
 }])
@@ -68,7 +86,7 @@ angular.module('CoreApiUtilities', [])
         if (access_token != null) {
             return config = {
                 headers: {
-                    'Authorization': "Bearer"+ " " + access_token
+                    'Authorization': "Bearer" + " " + access_token
                 }
             };
         } else {
@@ -93,10 +111,9 @@ angular.module('CoreApiUtilities', [])
 
 
         queryStringSet = queryStringSet || false;
-        if (!isAuthUrl){
-            var url = lagConfig.apiUrl;            
-        }
-        else {
+        if (!isAuthUrl) {
+            var url = lagConfig.apiUrl;
+        } else {
             var url = lagConfig.apiAuthUrl;
         }
 
