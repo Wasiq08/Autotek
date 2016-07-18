@@ -13,9 +13,10 @@ var toQueryString = function(obj) {
 angular.module('CoreApi', ['CoreApiUtilities'])
 
 .constant('lagConfig', {
-    appName: 'Linkagoal',
-    appVersion: '2.0.0',
-    apiUrl: 'http://autotek.virtualsoftlab.com/api/',
+    appName: 'Autotek',
+    appVersion: '1.0.0',
+    apiAuthUrl: 'http://autotecauth.azurewebsites.net/',
+    apiUrl : 'http://autotecapi.azurewebsites.net/'
 
 })
 
@@ -27,44 +28,81 @@ angular.module('CoreApi', ['CoreApiUtilities'])
     }
 }])
 
+.service('User', ['httpService', function(httpService) {
+    this.login = function(param) {
+        var params = httpService.Utils.getStringParams(param);
+        var config = httpService.Utils.getHeader();
+        var url = httpService.Utils.buildUrl(new Array('identity', 'connect', 'token'), '', true);
+        return httpService.$http.post(url, params, config);
+    }
+
+    this.getUser = function() {
+        var config = httpService.Utils.getHeader();
+        var url = httpService.Utils.buildUrl(new Array('api','Customer'));
+        return httpService.$http.get(url, config);
+    }
+}])
+
+
+.service('Appointment', ['httpService', function (httpService) {
+    this.get = function() {
+        var config = httpService.Utils.getHeader();
+        var url = httpService.Utils.buildUrl(new Array('api','CustomerAppointments','1','4'));
+        return httpService.$http.get(url, config);
+    }
+}])
+
 angular.module('CoreApiUtilities', [])
 
 .factory('Utils', ['lagConfig', 'localStorageService', function(lagConfig, localStorageService) {
 
     var makeHeader = function() {
-        var sessionUser = localStorageService.get('loggedInUser');
-        if (sessionUser != null) {
+        // var config = {
+        //     headers: {
+        //         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        //     }
+        // }
+
+        // return config;
+        var access_token = localStorageService.get('access_token');
+        if (access_token != null) {
             return config = {
                 headers: {
-                    'x-client-id': sessionUser.credentials.client_id,
-                    'token': sessionUser.credentials.token,
-                    'x-api-signature': '',
-                    "x-api-version": "1.0",
+                    'Authorization': "Bearer"+ " " + access_token
                 }
             };
         } else {
             return config = {
-                headers: { "x-api-version": "1.0" }
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
             };
         }
     }
 
+    var makeString = function(queryStringSet) {
+        var param = "";
+        if (queryStringSet !== false) {
+            param += '?' + toQueryString(queryStringSet);
+        }
+        param = param.substr(1);
+        return param;
+    }
+
     var defaultOffsetLimit = { offset: 0, limit: 5 }
 
-    var buildUrl = function(urlSet, queryStringSet, isFileServer) {
-        var isFileServer = isFileServer || false;
-        queryStringSet = queryStringSet || false;
+    var buildUrl = function(urlSet, queryStringSet, isAuthUrl) {
 
-        if (!isFileServer) {
-            var url = lagConfig.apiUrl;
-        } else {
-            var url = lagConfig.fileApi;
+
+        queryStringSet = queryStringSet || false;
+        if (!isAuthUrl){
+            var url = lagConfig.apiUrl;            
+        }
+        else {
+            var url = lagConfig.apiAuthUrl;
         }
 
         if (Object.prototype.toString.call(urlSet) === '[object Array]') {
             url += urlSet.toURL();
         }
-
         if (queryStringSet !== false) {
             url += '?' + toQueryString(queryStringSet);
         }
@@ -74,6 +112,7 @@ angular.module('CoreApiUtilities', [])
     return {
         getHeader: makeHeader,
         buildUrl: buildUrl,
-        defaultOffsetLimit: defaultOffsetLimit
+        defaultOffsetLimit: defaultOffsetLimit,
+        getStringParams: makeString
     };
 }])

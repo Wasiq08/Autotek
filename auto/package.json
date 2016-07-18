@@ -3,6 +3,7 @@
   "version": "1.1.1",
   "description": "Autotek: An Ionic project",
   "dependencies": {
+    "angular-local-storage": "^0.2.7",
     "angularjs-datepicker": "^2.1.6",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",

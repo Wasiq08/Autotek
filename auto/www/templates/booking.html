@@ -93,22 +93,22 @@
     </ion-header>
     <ion-content class="has-header has-footer ak-bg" style="background-color: black;">
         <div id="bookingcontainer">
-            <div class="listitem" ng-repeat="x in [1, 2, 3 ,4 ,5 ]">
-                <div class="calender" style="margin-top: {{x * 50}}">
+            <div class="listitem" ng-repeat="x in appointments">
+                <div class="calender">
                     <div class="talkbubble">
-                        <p style="text-align: center; color: white;">Monday</p>
+                        <p style="text-align: center; color: white;">{{x.day}}</p>
                     </div>
                     <div class="rectangle">
-                        <p style="text-align: center; font-size: 25px;color: red;margin-top: 8px;">{{x}}</p>
+                        <p style="text-align: center; font-size: 25px;color: red;margin-top: 8px;">{{x.date}}</p>
                     </div>
                     <div class="talkbubble2">
-                        <p style="text-align: center;">April</p>
+                        <p style="text-align: center;">{{x.month}}</p>
                     </div>
                     <div class="timeappointment">
-                        09:30 AM
+                        {{x.startTime}}
                     </div>
                     <div class="locationappointment">
-                        <img src="img/location_icon_red.png" width="15" height="15"> Head Office
+                        <img src="img/location_icon_red.png" width="15" height="15"> {{x.location}}
                     </div>
                 </div>
             </div>
