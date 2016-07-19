@@ -82,7 +82,7 @@ angular.module('Autotek', ['ionic','CoreApi','starter.controllers','starter.dire
 
     .state('bookappointment', {
       templateUrl: "templates/bookappointment.html",
-      url: "/bookappointment",
+      url: "/bookappointment/:branchid",
       controller: 'BookAppointmentCtrl'
     })
     $urlRouterProvider.otherwise('/home');

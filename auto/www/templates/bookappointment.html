@@ -22,6 +22,31 @@
             <datepicker style="top:10%; ">
                 <input ng-model="date" type="text" ng-hide="true" />
             </datepicker>
+            <div style="color: white; font-size: 16px;top: 75%; position: absolute; left: 5%;">
+                SELECT TIME
+            </div>
+            <div ng-click="openTimePicker()" style="left: 5%; top: 80%; height: 8%; width: 90%; position:absolute; border-style: solid; border-color: white; border-width: medium;">
+                <div style="position:absolute; width:33.333%; height: 100%; border-right-style: solid; border-right-color: white; border-right-width: medium; ">
+                    <p style="text-align: center; color: white; font-size: 25px;margin-top: 10%; ">
+                        {{hours}}
+                    </p>
+                </div>
+                <div style="position:absolute; width:33.333%; left:33.333%; height: 100%;  border-right-style: solid; border-right-color: white; border-right-width: medium;">
+                    <p style="text-align: center; color: white; font-size: 25px;margin-top: 10%; ">
+                        {{minutes}}
+                    </p>
+                </div>
+                <div style="position:absolute; width:33.333%; left:66.666%; height: 100%;">
+                    <p style="text-align: center; color: white; font-size: 25px;margin-top: 10%; ">
+                        {{ampm}}
+                    </p>
+                </div>
+            </div>
+            <div style="left: 5%; top: 90%; height: 6%; width: 90%; position:absolute; border-style: solid; border-color: white; border-width: medium;">
+                <p style="text-align: center; color: white; font-size: 15px; margin-top: 2% ">
+                    BOOK
+                </p>
+            </div>
         </div>
     </ion-content>
 </ion-view>

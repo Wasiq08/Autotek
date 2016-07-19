@@ -66,15 +66,19 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('BookAppointmentCtrl', function($scope, $state, $http, CityBranchId, Appointment, ionicTimePicker) {
-    console.log(CityBranchId.get_cityid());
-    console.log(CityBranchId.get_branchid());
+.controller('BookAppointmentCtrl', function($scope, $state, $http, CityBranchId, Appointment, ionicTimePicker, $stateParams) {
+    // console.log(CityBranchId.get_cityid());
+    // console.log(CityBranchId.get_branchid());
     var current_date = new Date();
+    console.log($stateParams.branchid);
+    $scope.hours = 09;
+    $scope.minutes = 30;
+    $scope.ampm = "AM";
     //console.log(date);
     var getdate = current_date.getDate()
     var month = current_date.getMonth();
     var year = current_date.getFullYear();
-    var branchid = CityBranchId.get_branchid();
+    var branchid = $stateParams.branchid;
     Appointment.getAvailableDays(branchid, year, month + 1).success(function(res) {
             console.log(res);
             Appointment.getAvailableSlots(branchid, year, month + 1, getdate).success(function(result) {
@@ -90,20 +94,37 @@ angular.module('starter.controllers', [])
 
     var ipObj1 = {
         callback: function(val) { //Mandatory
+            console.log(val)
             if (typeof(val) === 'undefined') {
                 console.log('Time not selected');
             } else {
                 var selectedTime = new Date(val * 1000);
                 console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), 'H :', selectedTime.getUTCMinutes(), 'M');
+                var hh = selectedTime.getUTCHours();
+                var h = hh;
+                dd = "AM";
+                if (h >= 12) {
+                    h = hh - 12;
+                    dd = "PM";
+                }
+                if (h == 0) {
+                    h = 12;
+                }
+                $scope.hours = h < 10 ? ("0" + h) : h;
+                var mm = selectedTime.getUTCMinutes();
+                $scope.minutes = mm < 10 ? ("0" + mm) : mm;
+                $scope.ampm = dd;
             }
         },
         inputTime: 50400, //Optional
         format: 12, //Optional
-        step: 15, //Optional
-        setLabel: 'Set2' //Optional
+        step: 1, //Optional
+        setLabel: 'Set' //Optional
     };
+    $scope.openTimePicker = function() {
+        ionicTimePicker.openTimePicker(ipObj1);
+    }
 
-    ionicTimePicker.openTimePicker(ipObj1);
 
 })
 
@@ -149,7 +170,7 @@ angular.module('starter.controllers', [])
     $scope.next = function() {
         CityBranchId.set_cityid($scope.cities.selectedOption.CityId);
         CityBranchId.set_branchid($scope.branches.selectedOption.Id);
-        $state.go('bookappointment')
+        $state.go('bookappointment', { branchid: $scope.branches.selectedOption.Id })
 
         // $scope.cities = Cities.cities;
     }
