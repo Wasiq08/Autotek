@@ -526,13 +526,13 @@
             }
 
             var current_date = new Date()
-            console.log(current_date);
+            console.log("current date is",current_date);
             current_date.setDate(day);
             //console.log(date);
             var getdate = current_date.getDate();
             var month = current_date.getMonth();
             var year = current_date.getFullYear();
-            var branchid = CityBranchId.get_branchid();
+            var branchid = CityBranchId.get_branchid().Id;
 
             Appointment.getAvailableDays(branchid,year,month+1).success(function(res){
                 console.log(res);

@@ -66,19 +66,23 @@
     </ion-header>
     <ion-content class="has-header ak-bg" style="background-color: black;">
         <div id="historycontainer">
-            <div class="listitem" ng-repeat="x in [1,2,3,4,5,6,7,8]">
+            <div class="listitem" ng-repeat="x in history">
                 <div class="historycalender">
                     <div class="talkbubble">
-                        <p style="color: white;text-align: left;margin-top: 4px; margin-left: 8px;">April 18, 2016</p>
+                        <p style="color: white;text-align: left;margin-top: 4px; margin-left: 8px;">{{x.month}} {{x.date}}, {{x.year}}</p>
                     </div>
                     <div class="rectangle">
-                        <p style="color: black;text-align: left;margin-top: 12px; margin-left: 8px;">Ref # : 1155-9887-1 </p>
+                        <p style="color: black;text-align: left;margin-top: 12px; margin-left: 8px;">Ref # : {{x.SalesOrderNumber}} </p>
                         <div id="rupees">
-                            500.0 SAR
+                            {{x.TotalAmount}} SAR
                         </div>
                     </div>
+
                 </div>
+
             </div>
+             <ion-infinite-scroll on-infinite="getMoreHistory()" distance="1%" ng-if="noMoreHistory"></ion-infinite-scroll>
+
         </div>
     </ion-content>
 </ion-view>

@@ -41,13 +41,19 @@ angular.module('CoreApi', ['CoreApiUtilities'])
         var url = httpService.Utils.buildUrl(new Array('api', 'Customer'));
         return httpService.$http.get(url, config);
     }
+
+    this.getOrderHistory = function(pageNumber, pageSize) {
+        var config = httpService.Utils.getHeader();
+        var url = httpService.Utils.buildUrl(new Array('api', 'CustomerOrder',pageNumber,pageSize));
+        return httpService.$http.get(url, config);
+    }
 }])
 
 
 .service('Appointment', ['httpService', function(httpService) {
-    this.get = function() {
+    this.get = function(pageNumber,pageSize) {
         var config = httpService.Utils.getHeader();
-        var url = httpService.Utils.buildUrl(new Array('api', 'CustomerAppointments', '1', '4'));
+        var url = httpService.Utils.buildUrl(new Array('api', 'CustomerAppointments', pageNumber, pageSize));
         return httpService.$http.get(url, config);
     }
 

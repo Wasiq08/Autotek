@@ -66,11 +66,13 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('BookAppointmentCtrl', function($scope, $state, $http, CityBranchId, Appointment, ionicTimePicker, $stateParams) {
-    // console.log(CityBranchId.get_cityid());
-    // console.log(CityBranchId.get_branchid());
+.controller('BookAppointmentCtrl', function($scope, $state, $http, CityBranchId, Appointment, ionicTimePicker, $stateParams, AppointmentDetail) {
+    console.log(CityBranchId.get_cityid());
+    console.log(CityBranchId.get_branchid());
     var current_date = new Date();
     console.log($stateParams.branchid);
+    $scope.dateobj = {};
+    $scope.dateobj.date = current_date;
     $scope.hours = 09;
     $scope.minutes = 30;
     $scope.ampm = "AM";
@@ -125,6 +127,19 @@ angular.module('starter.controllers', [])
         ionicTimePicker.openTimePicker(ipObj1);
     }
 
+    $scope.book = function() {
+        console.log("scope.date", $scope.dateobj.date)
+        $state.go('appointmentreview');
+        var date = new Date($scope.dateobj.date);
+        AppointmentDetail.set({
+            startTime: $scope.hours + ":" + $scope.minutes + " " + $scope.ampm,
+            location: CityBranchId.get_branchid().BranchName,
+            day: dayname(date.getDay()),
+            date: date.getDate(),
+            month: monthname(date.getMonth())
+        })
+    }
+
 
 })
 
@@ -133,11 +148,56 @@ angular.module('starter.controllers', [])
     console.log(localStorageService.get("loggedInUser"));
 }])
 
-.controller('AppointmentCtrl', ['$scope', 'Cities', 'Appointment', 'CityBranchId', '$state', function($scope, Cities, Appointment, CityBranchId, $state) {
+.controller('HistoryCtrl', ['$scope', 'User', function($scope, User) {
+    $scope.history = [];
+    var pageNumber = 0;
+    var pageSize = 4;
+
+    $scope.noMoreHistory = true;
+    $scope.getMoreHistory = function(start) {
+        var _start = start || false
+        User.getOrderHistory(pageNumber, pageSize).success(function(res) {
+
+                if (_start) {
+                    $scope.history = [];
+                }
+                if (res.length < pageSize) {
+                    $scope.noMoreHistory = false;
+                }
+                for (var i = 0; i < res.length; i++) {
+                    var date = new Date(res[i].OrderDate);
+                    $scope.history.push({
+                        year: date.getFullYear(),
+                        date: date.getDate(),
+                        month: monthname(date.getMonth()),
+                        SalesOrderNumber: res[i].SalesOrderNumber,
+                        TotalAmount: res[i].TotalAmount,
+                        TotalItems: res[i].TotalItems
+                    })
+
+                }
+                pageNumber = pageNumber + 1;
+                if (_start) {
+                    $scope.$broadcast('scroll.refreshComplete');
+                    //$scope.$apply()
+                } else {
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                }
+
+            })
+            .error(function(err) {
+                console.log(err);
+            })
+    }
+
+}])
+
+.controller('AppointmentCtrl', ['$scope', 'Cities', 'Appointment', 'CityBranchId', '$state', 'localStorageService', function($scope, Cities, Appointment, CityBranchId, $state, localStorageService) {
     console.log(Cities.cities)
+    var cities = localStorageService.get('cities')
     $scope.cities = {
         selectedOption: { CityId: 1, CityName: "Riyadh" },
-        availableOptions: Cities.cities
+        availableOptions: cities
     }
     $scope.branches = {};
 
@@ -169,7 +229,7 @@ angular.module('starter.controllers', [])
 
     $scope.next = function() {
         CityBranchId.set_cityid($scope.cities.selectedOption.CityId);
-        CityBranchId.set_branchid($scope.branches.selectedOption.Id);
+        CityBranchId.set_branchid($scope.branches.selectedOption);
         $state.go('bookappointment', { branchid: $scope.branches.selectedOption.Id })
 
         // $scope.cities = Cities.cities;
@@ -178,29 +238,44 @@ angular.module('starter.controllers', [])
 }])
 
 .controller('BookingCtrl', ['$scope', 'Appointment', '$ionicLoading', function($scope, Appointment, $ionicLoading) {
-        $scope.appointments = [];
-        $ionicLoading.show({
-            content: '',
-            animation: 'fade-in',
-            showBackdrop: true,
-            maxWidth: 200,
-            showDelay: 0
-        });
-        Appointment.get().success(function(res) {
-                console.log(res)
-                var date = new Date(res[0].AppointmentDate);
-                console.log(dayname(date.getDay()))
-                for (var i = 0; i < res.length; i++) {
-                    var date = new Date(res[i].AppointmentDate);
-                    $scope.appointments.push({ startTime: res[i].StartTimeStr, location: res[i].BranchName, day: dayname(date.getDay()), date: date.getDate(), month: monthname(date.getMonth()) })
-                }
+    $scope.appointments = [];
+    var pageNumber = 0;
+    var pageSize = 4;
 
-                console.log($scope.appointments)
-                $ionicLoading.hide()
-            })
-            .error(function(err) {
-                console.log(err)
-            })
+    $scope.noMoreAppointment = true;
+    $scope.getMoreAppointment = function(start) {
+            console.log("hello")
+            var _start = start || false
+            Appointment.get(pageNumber, pageSize).success(function(res) {
+                    console.log(res)
+                    if (_start) {
+                        $scope.appointments = [];
+                    }
+                    if (res.length < pageSize) {
+                        $scope.noMoreAppointment = false;
+                    }
+                    for (var i = 0; i < res.length; i++) {
+                        var date = new Date(res[i].AppointmentDate);
+                        $scope.appointments.push({ startTime: res[i].StartTimeStr, location: res[i].BranchName, day: dayname(date.getDay()), date: date.getDate(), month: monthname(date.getMonth()) })
+                    }
+                    pageNumber = pageNumber + 1;
+                    if (_start) {
+                        $scope.$broadcast('scroll.refreshComplete');
+                        //$scope.$apply()
+                    } else {
+                        $scope.$broadcast('scroll.infiniteScrollComplete');
+                    }
+                })
+                .error(function(err) {
+                    console.log(err)
+                })
+        }
+        // $scope.getMoreAppointment();
+}])
+
+.controller('AppointReviewCtrl', ['$scope', 'AppointmentDetail', function($scope, AppointmentDetail) {
+        console.log(AppointmentDetail.get())
+        $scope.x = AppointmentDetail.get()
     }])
     .controller('MapController', function($scope, $ionicLoading) {
 

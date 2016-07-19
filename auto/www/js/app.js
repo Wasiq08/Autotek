@@ -71,7 +71,8 @@ angular.module('Autotek', ['ionic','CoreApi','starter.controllers','starter.dire
 
     .state('history', {
       templateUrl: "templates/history.html",
-      url: "/history"
+      url: "/history",
+      controller: 'HistoryCtrl'
     })
 
     .state('appointment', {
@@ -85,5 +86,12 @@ angular.module('Autotek', ['ionic','CoreApi','starter.controllers','starter.dire
       url: "/bookappointment/:branchid",
       controller: 'BookAppointmentCtrl'
     })
+
+    .state('appointmentreview', {
+      templateUrl: "templates/appointment_review.html",
+      url: "/appointreview",
+      controller: "AppointReviewCtrl"
+    })
+
     $urlRouterProvider.otherwise('/home');
   });

@@ -16,7 +16,7 @@
 .calender {
     width: 100px;
     height: 80px;
-    margin-top: 20px;
+    top: 15%;
     left: 15px;
     position: absolute;
     background-color: black;
@@ -92,35 +92,28 @@
             <h1 class="title">APPOINTMENTS</h1>
         </div>
     </ion-header>
-    <ion-content class="has-header has-footer ak-bg" style="background-color: black;">
+    <ion-content class="has-header ak-bg" style="background-color: black;">
         <div id="bookingcontainer">
-            <div class="listitem" ng-repeat="x in appointments">
-                <div class="calender">
-                    <div class="talkbubble">
-                        <p style="text-align: center; color: white;">{{x.day}}</p>
-                    </div>
-                    <div class="rectangle">
-                        <p style="text-align: center; font-size: 25px;color: red;margin-top: 8px;">{{x.date}}</p>
-                    </div>
-                    <div class="talkbubble2">
-                        <p style="text-align: center;">{{x.month}}</p>
-                    </div>
-                    <div class="timeappointment">
-                        {{x.startTime}}
-                    </div>
-                    <div class="locationappointment">
-                        <img src="img/location_icon_red.png" width="15" height="15"> {{x.location}}
-                    </div>
+            <div style="position: absolute;color: white; top: 10%; left: 5%; font-size: x-large;">
+                Please Review
+            </div>
+            <div class="calender">
+                <div class="talkbubble">
+                    <p style="text-align: center; color: white;">{{x.day}}</p>
+                </div>
+                <div class="rectangle">
+                    <p style="text-align: center; font-size: 25px;color: red;margin-top: 8px;">{{x.date}}</p>
+                </div>
+                <div class="talkbubble2">
+                    <p style="text-align: center;">{{x.month}}</p>
+                </div>
+                <div class="timeappointment">
+                    {{x.startTime}}
+                </div>
+                <div class="locationappointment">
+                    <img src="img/location_icon_red.png" width="15" height="15"> {{x.location}}
                 </div>
             </div>
-            <ion-infinite-scroll on-infinite="getMoreAppointment()" distance="1%" ng-if="noMoreAppointment"></ion-infinite-scroll>
         </div>
     </ion-content>
-    <ion-footer>
-        <a ui-sref="appointment">
-            <div class="bar bar-footer bar-assertive">
-                <div class="title">BOOK APPOINTMENT</div>
-            </div>
-        </a>
-    </ion-footer>
 </ion-view>

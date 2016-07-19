@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('Cities', ['$http', function ($http) {
+.factory('Cities', ['$http', 'localStorageService', function ($http, localStorageService) {
 	var city = {};
 	city.getCities = function() {
 		var params = "grant_type=client_credentials&client_id=Android01&client_secret=21B5F798-BE55-42BC-8AA8-0025B903DC3B&scope=app1"; 
@@ -18,6 +18,7 @@ angular.module('starter.services', [])
 			}).success(function(result){
 				console.log(result);
 				city.cities = result;
+				localStorageService.set("cities", city.cities);
 			})
 			.error(function(error) {
 				console.log(error)
@@ -46,5 +47,20 @@ angular.module('starter.services', [])
 	final_obj.get_branchid = function() {
 		return final_obj.branchid;
 	}
+	return final_obj;
+}])
+
+.factory('AppointmentDetail', [function () {
+	
+	var final_obj = {}
+
+	final_obj.set = function(obj) {
+		final_obj.values = obj;
+	}
+
+	final_obj.get = function() {
+		return final_obj.values
+	}
+
 	return final_obj;
 }])
