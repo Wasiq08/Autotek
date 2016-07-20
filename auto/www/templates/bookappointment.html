@@ -5,15 +5,11 @@
     position: relative;
 }
 </style>
-<ion-view>
-    <ion-header>
-        <div class="bar bar-header bar-dark no-top">
-            <div class="buttons">
-                <button class="button button-icon ion-ios-arrow-back" nav-direction="back" ng-click="$ionicGoBack(); "></button>
-            </div>
-            <h1 class="title">BOOK APPOINTMENT</h1>
-        </div>
-    </ion-header>
+<ion-view title="APPOINTMENTS">
+
+    <ion-nav-buttons side="right">
+        <button menu-toggle="right" class="button button-icon icon ion-navicon" style="color: white;"></button>
+    </ion-nav-buttons>
     <ion-content class="has-header ak-bg" style="background-color: black;">
         <div id="bookingappointcontainer">
             <div style="color: white; font-size: 16px;top: 5%; position: absolute; left: 5%;">

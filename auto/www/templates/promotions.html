@@ -1,0 +1,161 @@
+<style type="text/css">
+.promocontainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.nextoffer {
+    position: relative;
+    width: 95%;
+    left: 2.5%;
+    /* height: 250px; */
+    top: 10px;
+    background-color: white;
+    padding: 5px 0px 5px 0px;
+    margin-bottom: 5px;
+}
+
+.nextofferheader {
+    position: relative;
+    /* top: 5px; */
+    background-color: green;
+    width: 95%;
+    height: 50px;
+    left: 2.5%;
+    border-top-right-radius: 3%;
+    border-top-left-radius: 3%;
+    margin-bottom: 5px;
+}
+
+.nobox {
+    position: relative;
+    /* top: 4%; */
+    width: 95%;
+    /* height: 90%; */
+    margin-left: 2.5%;
+    margin-top: -2%;
+    background-color: darkseagreen;
+}
+
+.nodottedbox {
+    position: relative;
+    width: 90%;
+    /* height: 100%; */
+    margin-left: 5%;
+    border-style: dashed;
+    border-color: darkseagreen;
+    border-width: initial;
+    padding-bottom: 1%;
+}
+
+.box {
+    position: relative;
+}
+
+.boxcolor2 {
+    background-color: orange;
+}
+
+.dottedbox2 {
+    background-color: rgba(247, 184, 123, 0.89);
+}
+
+.dottedboxborder2 {
+    border-color: rgba(247, 184, 123, 0.89);
+}
+
+.boxcolor3 {
+    background-color: #4d4f4d;
+}
+
+.dottedbox3 {
+    background-color: #cdd0cd;
+}
+
+.dottedboxborder3 {
+    border-color: #cdd0cd;
+}
+
+.heading {
+    position: relative;
+    padding: 12px 0px 0px 30px;
+    font-size: 18px;
+    color: white;
+    font-weight: 600;
+}
+
+.offertitle {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.offercontent {
+    margin-left: 10px;
+}
+</style>
+<ion-view>
+    <ion-header>
+        <div class="bar bar-header bar-dark no-top">
+            <div class="buttons">
+                <button class="button button-icon ion-ios-arrow-back" nav-direction="back" ng-click="$ionicGoBack(); "></button>
+            </div>
+            <h1 class="title">PROMOTIONS</h1>
+        </div>
+    </ion-header>
+    <ion-content class="has-header ak-bg" style="background-color: black;">
+        <div class="promocontainer">
+            <div class="nextoffer">
+                <div class="nextofferheader">
+                    <div class="heading"><i class="ion-arrow-right-b"></i> NEXT OFFERS</div>
+                </div>
+                <div ng-repeat="x in [1,2]" class="box" style="/*width: 100%; height: 72%; top: 25%; position: relative;*/">
+                    <div class="nodottedbox">
+                        <div class="nobox">
+                            <div class="offertitle">OFFER TITLE
+                            </div>
+                            <div class="offercontent">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nextoffer">
+                <div class="nextofferheader boxcolor2">
+                    <div class="heading"><i class="ion-arrow-right-b"></i> EARNED OFFERS</div>
+                </div>
+                <div ng-repeat="x in [1,2]" class="box" style="/*width: 100%; height: 72%; top: 25%; position: relative;*/">
+                    <div class="nodottedbox dottedboxborder2">
+                        <div class="nobox dottedbox2">
+                            <div class="offertitle">OFFER TITLE
+                            </div>
+                            <div class="offercontent">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nextoffer">
+                <div class="nextofferheader boxcolor3">
+                    <div class="heading"><i class="ion-arrow-right-b"></i> CONSUMED OFFERS</div>
+                </div>
+                <div ng-repeat="x in [1,2]" class="box" style="/*width: 100%; height: 72%; top: 25%; position: relative;*/">
+                    <div class="nodottedbox dottedboxborder3">
+                        <div class="nobox dottedbox3">
+                            <div class="offertitle">OFFER TITLE
+                            </div>
+                            <div class="offercontent">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('Cities', ['$http', 'localStorageService', function ($http, localStorageService) {
+.factory('Cities', ['$http', 'localStorageService', '$rootScope', function ($http, localStorageService, $rootScope) {
 	var city = {};
 	city.getCities = function() {
 		var params = "grant_type=client_credentials&client_id=Android01&client_secret=21B5F798-BE55-42BC-8AA8-0025B903DC3B&scope=app1"; 
@@ -10,6 +10,7 @@ angular.module('starter.services', [])
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
 		}).success(function(res){
 			console.log("res is", res)
+			$rootScope.clientAccessToken = res;
 			var cityUrl = 'http://autotecapi.azurewebsites.net/api/Cities'
 			$http.get(cityUrl , {
 				headers: {

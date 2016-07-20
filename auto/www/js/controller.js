@@ -2,13 +2,17 @@ angular.module('starter.controllers', [])
 
 .controller('LoginCtrl', function($scope, $state, User, localStorageService, $ionicLoading, $ionicPopup, Cities) {
     $scope.user = {};
+    //$scope.user.username = '0557613133';
+    //$scope.user.password = '123456';
 
     Cities.getCities();
 
     var params = {
         'grant_type': 'password',
-        'username': '0557613133',
-        'password': '123456',
+        //'username': '0557613133',
+        'username': $scope.user.username,
+        //'password': '123456',
+        'password': $scope.user.password,
         'client_id': 'Android02',
         'client_secret': '21B5F798-BE55-42BC-8AA8-0025B903DC3B',
         'scope': 'app1'
@@ -64,7 +68,16 @@ angular.module('starter.controllers', [])
 
 
 
+
+
 })
+
+.controller('NotificationCtrl', ['$scope', '$ionicSideMenuDelegate', function($scope, $ionicSideMenuDelegate) {
+    $scope.toggleLeft = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
+
+}])
 
 .controller('BookAppointmentCtrl', function($scope, $state, $http, CityBranchId, Appointment, ionicTimePicker, $stateParams, AppointmentDetail) {
     console.log(CityBranchId.get_cityid());
@@ -146,6 +159,121 @@ angular.module('starter.controllers', [])
 .controller('MainCtrl', ['$scope', 'localStorageService', function($scope, localStorageService) {
     $scope.user = localStorageService.get("loggedInUser").user;
     console.log(localStorageService.get("loggedInUser"));
+}])
+
+.controller('PromotionCtrl', ['$scope', function($scope) {
+
+}])
+
+.controller('SignupCtrl', ['$scope', '$rootScope', '$http', '$ionicPopup', '$state', function($scope, $rootScope, $http, $ionicPopup, $state) {
+    $scope.user = {};
+    $scope.user.MobileNumber = +966
+    $scope.user.User = {};
+    $scope.regex = '^[a-zA-Z]+[a-zA-Z0-9._-]+@[a-z]+\.[a-z.]{2,5}$';
+
+    $scope.register = function() {
+        console.log($scope.user)
+
+        var errors = [];
+        if ($scope.user.FirstName == null || $scope.user.FirstName == "") {
+            errors.push({ message: 'Name is required' })
+        }
+
+        if ($scope.user.MobileNumber == null || $scope.user.MobileNumber == "") {
+            errors.push({ message: 'Number is required' })
+        }
+
+        if ($scope.user.EmailAddress == null || $scope.user.EmailAddress == "") {
+            errors.push({ message: 'Email is required' });
+        } else {
+            var email = $scope.user.EmailAddress.match($scope.regex);
+            if (email == null) {
+                errors.push({ message: 'Not a valid email' });
+            }
+        }
+
+        if ($scope.user.User.Password == null || $scope.user.User.Password == "") {
+            errors.push({ message: 'Password is required' })
+        }
+
+
+
+
+        if (errors.length != 0) {
+            $scope.deactivate(errors)
+
+        } else {
+            var params = "grant_type=client_credentials&client_id=Android01&client_secret=21B5F798-BE55-42BC-8AA8-0025B903DC3B&scope=app1";
+            $scope.user.User.UserName = $scope.user.MobileNumber;
+            var url = "http://autotecauth.azurewebsites.net/identity/connect/token";
+            $ionicLoading.show({
+                content: '',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0
+            });
+            $http.post(url, params, {
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+                }).success(function(result) {
+                    $http.post('http://autotecapi.azurewebsites.net/api/CustomerRegistration', $scope.user, {
+                            headers: {
+                                'Authorization': "Bearer" + " " + result.access_token
+                            }
+                        }).success(function(res) {
+                            console.log(res);
+                            $ionicLoading.hide();
+                            var alertPopup = $ionicPopup.alert({
+                                title: 'Success!',
+                                template: 'A verication key is sent through SMS!'
+                            });
+
+                            alertPopup.then(function(res) {
+                                $state.go('home')
+                                    //console.log('Thank you for not eating my delicious ice cream cone');
+                            });
+                        })
+                        .error(function(err) {
+                            var error = [{ message: err.Message }]
+                            $scope.deactivate(error)
+                        })
+                })
+                .error(function(error) {
+
+                })
+                //$ionicSlideBoxDelegate.slide(index);
+
+        }
+    }
+
+    $scope.deactivate = function(err) {
+        $scope.data = {};
+        $scope.data.err = err;
+        var confirmPopup = $ionicPopup.confirm({
+            title: 'We cant sign you up! ',
+            templateUrl: 'templates/errorpopup.html',
+            scope: $scope
+        });
+
+        confirmPopup.then(function(res) {
+            if (res) {
+                //console.log('You are sure');
+            } else {
+                //console.log('You are not sure');
+            }
+        });
+    }
+
+}])
+
+.controller('AppointConfimedCtrl', ['$scope', '$ionicHistory', '$state', function($scope, $ionicHistory, $state) {
+    $scope.gohome = function() {
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
+
+        $state.go('main');
+    }
 }])
 
 .controller('HistoryCtrl', ['$scope', 'User', function($scope, User) {
@@ -230,7 +358,7 @@ angular.module('starter.controllers', [])
     $scope.next = function() {
         CityBranchId.set_cityid($scope.cities.selectedOption.CityId);
         CityBranchId.set_branchid($scope.branches.selectedOption);
-        $state.go('bookappointment', { branchid: $scope.branches.selectedOption.Id })
+        $state.go('app.bookappointment', { branchid: $scope.branches.selectedOption.Id })
 
         // $scope.cities = Cities.cities;
     }

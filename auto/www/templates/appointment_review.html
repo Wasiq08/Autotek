@@ -17,7 +17,7 @@
     width: 100px;
     height: 80px;
     top: 15%;
-    left: 15px;
+    left: 10%;
     position: absolute;
     background-color: black;
     -moz-border-radius: 8px;
@@ -94,8 +94,8 @@
     </ion-header>
     <ion-content class="has-header ak-bg" style="background-color: black;">
         <div id="bookingcontainer">
-            <div style="position: absolute;color: white; top: 10%; left: 5%; font-size: x-large;">
-                Please Review
+            <div style="position: absolute;color: white; top: 10%; left: 10%; font-size: large;">
+                PLEASE REVIEW
             </div>
             <div class="calender">
                 <div class="talkbubble">
@@ -113,6 +113,16 @@
                 <div class="locationappointment">
                     <img src="img/location_icon_red.png" width="15" height="15"> {{x.location}}
                 </div>
+            </div>
+            <div ui-sref="appointconfirmed" style="left: 10%; top: 33%; height: 6%; width: 80%; position:absolute; border-style: solid; border-color: white; border-width: thin; border-radius: 2%;">
+                <p style="text-align: center; color: white; font-size: 15px; margin-top: 2% ;">
+                    PAY DEPOSIT
+                </p>
+            </div>
+            <div style="position: absolute;color: white; top: 40%; left: 10%; width: 80%;">
+                <p style="text-align: center; color: white; font-size: 15px; margin-top: 2% ;">
+                    (60 SAR)
+                </p>
             </div>
         </div>
     </ion-content>
