@@ -7,21 +7,21 @@ angular.module('starter.controllers', [])
 
     Cities.getCities();
 
-    var params = {
-        'grant_type': 'password',
-        //'username': '0557613133',
-        'username': $scope.user.username,
-        //'password': '123456',
-        'password': $scope.user.password,
-        'client_id': 'Android02',
-        'client_secret': '21B5F798-BE55-42BC-8AA8-0025B903DC3B',
-        'scope': 'app1'
-    };
+
 
     //var params = "grant_type=password&username=0557613133&password=123456&client_id=Android02&client_secret=21B5F798-BE55-42BC-8AA8-0025B903DC3B&scope=app1"
 
     $scope.login = function(data) {
+        console.log(data)
         localStorageService.remove("access_token");
+        var params = {
+            'grant_type': 'password',
+            'username': $scope.user.username,
+            'password': $scope.user.password,
+            'client_id': 'Android02',
+            'client_secret': '21B5F798-BE55-42BC-8AA8-0025B903DC3B',
+            'scope': 'app1'
+        };
         $ionicLoading.show({
             content: '',
             animation: 'fade-in',
@@ -39,7 +39,12 @@ angular.module('starter.controllers', [])
                             $ionicLoading.hide();
                             loggedInUser = { user: res }
                             localStorageService.set("loggedInUser", loggedInUser);
-                            $state.go('main');
+                            if ($scope.user.username == "96698765") {
+                                $state.go('agentmain');
+                            } else {
+                                $state.go('main');
+                            }
+
                         })
                         .error(function(err) {
                             console.log(err);
@@ -64,11 +69,6 @@ angular.module('starter.controllers', [])
                 });
             })
     }
-
-
-
-
-
 
 })
 
@@ -165,7 +165,7 @@ angular.module('starter.controllers', [])
 
 }])
 
-.controller('SignupCtrl', ['$scope', '$rootScope', '$http', '$ionicPopup', '$state', function($scope, $rootScope, $http, $ionicPopup, $state) {
+.controller('SignupCtrl', ['$scope', '$rootScope', '$http', '$ionicPopup', '$state', '$ionicLoading', function($scope, $rootScope, $http, $ionicPopup, $state, $ionicLoading) {
     $scope.user = {};
     $scope.user.MobileNumber = +966
     $scope.user.User = {};
@@ -318,6 +318,43 @@ angular.module('starter.controllers', [])
             })
     }
 
+}])
+
+.controller('SaleStatCtrl', ['$scope', function($scope) {
+    $scope.opt = {
+        selectedOption: { 
+            Id: 1, 
+            Name: "February 2016" 
+        },
+        availableOptions: [{ 
+            Id: 1, 
+            Name: "February 2016" 
+        },
+        {
+            Id: 2,
+            Name: "March 2016"    
+        },
+        {
+            Id: 3,
+            Name: "April 2016"
+        },
+        {
+            Id: 4,
+            Name: "May 2016"
+        }, {
+            Id: 5,
+            Name: "June 2016"
+        }, {
+            Id : 6,
+            Name: "July 2016"
+        }, {
+            Id : 7,
+            Name : "August 2016"
+        }]
+    }
+
+    $scope.hasChanged = function() {
+    }
 }])
 
 .controller('AppointmentCtrl', ['$scope', 'Cities', 'Appointment', 'CityBranchId', '$state', 'localStorageService', function($scope, Cities, Appointment, CityBranchId, $state, localStorageService) {

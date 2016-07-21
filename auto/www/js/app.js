@@ -37,6 +37,12 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
         controller: 'MainCtrl'
     })
 
+    .state('agentmain', {
+        templateUrl: "templates/agenthome.html",
+        url: "/agentmain",
+        controller: 'MainCtrl'
+    })
+
     .state('about', {
         templateUrl: "templates/about.html",
         url: "/about"
@@ -109,44 +115,63 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
     })
 
     .state('app.notifications', {
-      url: "/notifications",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/notifications.html",
-          controller: 'NotificationCtrl'
+        url: "/notifications",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/notifications.html",
+                controller: 'NotificationCtrl'
+            }
         }
-      }
     })
 
     .state('app.booking', {
-      url: "/booking",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/booking.html",
-          controller: 'BookingCtrl'
+        url: "/booking",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/booking.html",
+                controller: 'BookingCtrl'
+            }
         }
-      }
     })
 
     .state('app.appointment', {
-      url: "/appointment",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/appointment.html",
-          controller: 'AppointmentCtrl'
+        url: "/appointment",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/appointment.html",
+                controller: 'AppointmentCtrl'
+            }
         }
-      }
     })
 
     .state('app.bookappointment', {
-      url: "/bookappointment/:branchid",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/bookappointment.html",
-          controller: 'BookAppointmentCtrl'
+        url: "/bookappointment/:branchid",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/bookappointment.html",
+                controller: 'BookAppointmentCtrl'
+            }
         }
-      }
     })
 
+    .state('app.salestat', {
+        url: "/salestats",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/salestat.html",
+                controller: 'SaleStatCtrl'
+            }
+        }
+    })
+
+    .state('app.earninghistory', {
+        url: "/earninghistory",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/earninghistory.html",
+                controller: 'SaleStatCtrl'
+            }
+        }
+    })
     $urlRouterProvider.otherwise('/home');
 });
