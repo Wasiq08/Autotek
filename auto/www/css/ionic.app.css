@@ -14056,7 +14056,7 @@ ion-infinite-scroll:not(.active) .icon:before {
  * --------------------------------------------------
  */
 p {
-  margin: 0 0 10px; }
+  margin: 0 0 0px; }
 
 small {
   font-size: 85%; }

@@ -1,5 +1,5 @@
 <ion-view>
-    <ion-header>
+    <!--     <ion-header>
         <div class="bar bar-header bar-dark no-top">
             <div class="buttons">
                 <button class="button button-icon ion-ios-arrow-back" nav-direction="back" ng-click="$ionicGoBack(); "></button>
@@ -21,5 +21,30 @@
       <option>Red</option>
     </select>  
       
-</ion-content>
+</ion-content> -->
+    <ion-header>
+        <div class="bar bar-header bar-dark no-top">
+            <div class="buttons">
+                <button class="button button-icon ion-ios-arrow-back" nav-direction="back" ng-click="$ionicGoBack(); "></button>
+            </div>
+            <h1 class="title">LOCATION</h1>
+        </div>
+    </ion-header>
+    <ion-content class="has-header ak-bg" style="background-color: black;">
+        <div style="width: 100%; height: 100%; position: relative;">
+            <div style=" z-index: 100;top: 60px;position: absolute;width: 80%;left: 10%;">
+                <select id="soflow" name="citySelect" ng-options="option.CityName for option in cities.availableOptions track by option.CityId" ng-model="cities.selectedOption" style="background-color: black;" ng-change="hasChanged()">
+                </select>
+            </div>
+            <div style=" z-index: 100;top: 85%;position: absolute;width: 100%; background-color: red; height: 15%;    color: white;
+    padding-left: 20%;
+    padding-top: 5%;">
+                <p>8080 AL MADINAH ROAD</p>
+                <p>DISTRICT RAWDAH JADDAH</p>
+            </div>
+            <div style="width: 100%; height: 85%; position: relative;">
+                <div id="map" data-tap-disabled="true" style="width: 100%; height: 100%; top: 0%; position: absolute;">
+                </div>
+            </div>
+    </ion-content>
 </ion-view>

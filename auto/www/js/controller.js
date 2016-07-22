@@ -2,8 +2,8 @@ angular.module('starter.controllers', [])
 
 .controller('LoginCtrl', function($scope, $state, User, localStorageService, $ionicLoading, $ionicPopup, Cities) {
     $scope.user = {};
-    //$scope.user.username = '0557613133';
-    //$scope.user.password = '123456';
+    $scope.user.username = '0557613133';
+    $scope.user.password = '123456';
 
     Cities.getCities();
 
@@ -71,6 +71,18 @@ angular.module('starter.controllers', [])
     }
 
 })
+
+.controller('SidemenuCtrl', ['$scope', 'localStorageService', '$ionicHistory', '$state', function($scope, localStorageService, $ionicHistory, $state) {
+    $scope.logout = function(data) {
+        localStorageService.remove("access_token");
+        localStorageService.remove("loggedInUser");
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
+
+        $state.go('home');
+    }
+}])
 
 .controller('NotificationCtrl', ['$scope', '$ionicSideMenuDelegate', function($scope, $ionicSideMenuDelegate) {
     $scope.toggleLeft = function() {
@@ -239,7 +251,7 @@ angular.module('starter.controllers', [])
                         })
                 })
                 .error(function(error) {
-
+                    $ionicLoading.hide();
                 })
                 //$ionicSlideBoxDelegate.slide(index);
 
@@ -274,6 +286,80 @@ angular.module('starter.controllers', [])
 
         $state.go('main');
     }
+}])
+
+.controller('MapCtrl', ['$scope', '$ionicLoading', '$compile', 'localStorageService', function($scope, $ionicLoading, $compile, localStorageService) {
+    var cities = localStorageService.get('cities')
+    $scope.cities = {
+        selectedOption: { CityId: 1, CityName: "Riyadh" },
+        availableOptions: cities
+    }
+    $scope
+
+    $scope.$on('$ionicView.beforeEnter', function() {
+        //google.maps.event.addDomListener(window, 'load', initialize);
+        initialize();
+    });
+
+    function initialize() {
+        var myLatlng = new google.maps.LatLng(21.5669776, 39.1346493);
+
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 18,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map"),
+            mapOptions);
+
+        //Marker + infowindow + angularjs compiled ng-click
+        var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
+        var compiled = $compile(contentString)($scope);
+
+        var infowindow = new google.maps.InfoWindow({
+            content: compiled[0]
+        });
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: 'Uluru (Ayers Rock)'
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map, marker);
+        });
+
+        $scope.map = map;
+    }
+
+
+    $scope.centerOnMe = function() {
+        if (!$scope.map) {
+            return;
+        }
+
+        $scope.loading = $ionicLoading.show({
+            content: 'Getting current location...',
+            showBackdrop: false
+        });
+
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+            $scope.loading.hide();
+        }, function(error) {
+            alert('Unable to get location: ' + error.message);
+        });
+    };
+
+    $scope.clickTest = function() {
+        alert('Example of infowindow with ng-click')
+    };
+
+    $scope.hasChanged = function() {
+        console.log($scope.cities.selectedOption)
+    }
+
 }])
 
 .controller('HistoryCtrl', ['$scope', 'User', function($scope, User) {
@@ -322,39 +408,35 @@ angular.module('starter.controllers', [])
 
 .controller('SaleStatCtrl', ['$scope', function($scope) {
     $scope.opt = {
-        selectedOption: { 
-            Id: 1, 
-            Name: "February 2016" 
+        selectedOption: {
+            Id: 1,
+            Name: "February 2016"
         },
-        availableOptions: [{ 
-            Id: 1, 
-            Name: "February 2016" 
-        },
-        {
+        availableOptions: [{
+            Id: 1,
+            Name: "February 2016"
+        }, {
             Id: 2,
-            Name: "March 2016"    
-        },
-        {
+            Name: "March 2016"
+        }, {
             Id: 3,
             Name: "April 2016"
-        },
-        {
+        }, {
             Id: 4,
             Name: "May 2016"
         }, {
             Id: 5,
             Name: "June 2016"
         }, {
-            Id : 6,
+            Id: 6,
             Name: "July 2016"
         }, {
-            Id : 7,
-            Name : "August 2016"
+            Id: 7,
+            Name: "August 2016"
         }]
     }
 
-    $scope.hasChanged = function() {
-    }
+    $scope.hasChanged = function() {}
 }])
 
 .controller('AppointmentCtrl', ['$scope', 'Cities', 'Appointment', 'CityBranchId', '$state', 'localStorageService', function($scope, Cities, Appointment, CityBranchId, $state, localStorageService) {
@@ -439,35 +521,36 @@ angular.module('starter.controllers', [])
 }])
 
 .controller('AppointReviewCtrl', ['$scope', 'AppointmentDetail', function($scope, AppointmentDetail) {
-        console.log(AppointmentDetail.get())
-        $scope.x = AppointmentDetail.get()
-    }])
-    .controller('MapController', function($scope, $ionicLoading) {
+    console.log(AppointmentDetail.get())
+    $scope.x = AppointmentDetail.get()
+}])
 
-        google.maps.event.addDomListener(window, 'load', function() {
-            var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
+.controller('MapController', function($scope, $ionicLoading) {
 
-            var mapOptions = {
-                center: myLatlng,
-                zoom: 16,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
+    google.maps.event.addDomListener(window, 'load', function() {
+        var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
 
-            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
 
-            navigator.geolocation.getCurrentPosition(function(pos) {
-                map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-                var myLocation = new google.maps.Marker({
-                    position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-                    map: map,
-                    title: "My Location"
-                });
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+            var myLocation = new google.maps.Marker({
+                position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+                map: map,
+                title: "My Location"
             });
-
-            $scope.map = map;
         });
 
+        $scope.map = map;
     });
+
+});
 
 
 function dayname(day) {

@@ -1,18 +1,50 @@
 <ion-side-menus>
-
-  <ion-pane ion-side-menu-content>
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button class="button-clear"><i class="icon ion-chevron-left"></i> Back</ion-nav-back-button>
-    </ion-nav-bar>
-    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
-  </ion-pane>
-
-  <ion-side-menu side="right">
-    <header class="bar bar-header bar-stable">
-      <h1 class="title">Left</h1>
-    </header>
-    <ion-content class="has-header">
-      <ion-list>
+    <ion-pane ion-side-menu-content>
+        <ion-nav-bar class="bar-stable">
+            <ion-nav-back-button class="button-clear"><i class="icon ion-chevron-left"></i> Back</ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+    </ion-pane>
+    <ion-side-menu side="right">
+        <ion-content style="background-color: black;">
+            <div style="width: 100%; height: 100%; position: relative; background-color: black;">
+                <div style="margin-top: 10%; margin-left:75px; height:125px; width: 125px;">
+                    <img src="img/profileicon.png" style="width: 100%; height:100%; ">
+                </div>
+                <div style="    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 75px;
+    margin-top: 5%;">MUSTAFA</div>
+                <div style="margin-top: 5%;">
+                    <div style="color: white;padding-top: 10px;padding-left: 10px;padding-bottom: 10px;font-size: 18px;border-top-color: white;border-top-style: solid;border-top-width: thin;margin-left: 5%;width: 90%;">
+                        <span style="padding-right: 10px;"><i class="ion-ios-home-outline"></i></span>Home<span><i class="ion-ios-arrow-right" style="float: right;"></i></span>
+                    </div>
+                    <div style="color: white;padding-top: 10px;padding-left: 10px;padding-bottom: 10px;font-size: 18px;border-top-color: white;border-top-style: solid;border-top-width: thin;margin-left: 5%;width: 90%;">
+                        <span style="padding-right: 10px;"><i class="ion-android-calendar"></i></span>Appointments<span><i class="ion-ios-arrow-right" style="float: right;"></i></span>
+                    </div>
+                    <div style="color: white;padding-top: 10px;padding-left: 10px;padding-bottom: 10px;font-size: 18px;border-top-color: white;border-top-style: solid;border-top-width: thin;margin-left: 5%;width: 90%;">
+                        <span style="padding-right: 10px;"><i class="ion-checkmark-circled"></i></span>Promotions<span><i class="ion-ios-arrow-right" style="float: right;"></i></span>
+                    </div>
+                                        <div style="color: white;padding-top: 10px;padding-left: 10px;padding-bottom: 10px;font-size: 18px;border-top-color: white;border-top-style: solid;border-top-width: thin;margin-left: 5%;width: 90%;">
+                        <span style="padding-right: 10px;"><i class="ion-ios-location-outline"></i></span>Our Location<span><i class="ion-ios-arrow-right" style="float: right;"></i></span>
+                    </div>
+                    <div style="color: white;padding-top: 10px;padding-left: 10px;padding-bottom: 10px;font-size: 18px;border-top-color: white;border-top-style: solid;border-top-width: thin;margin-left: 5%;width: 90%;">
+                        <span style="padding-right: 10px;"><i class="ion-android-contacts"></i></span>Free Services<span><i class="ion-ios-arrow-right" style="float: right;"></i></span>
+                    </div>
+                    <div style="color: white;padding-top: 10px;padding-left: 10px;padding-bottom: 10px;font-size: 18px;border-top-color: white;border-top-style: solid;border-top-width: thin;margin-left: 5%;width: 90%;">
+                        <span style="padding-right: 10px;"><i class="ion-checkmark-circled"></i></span>Services<span><i class="ion-ios-arrow-right" style="float: right;"></i></span>
+                    </div>
+                                        <div style="color: white;padding-top: 10px;padding-left: 10px;padding-bottom: 10px;font-size: 18px;border-top-color: white;border-top-style: solid;border-top-width: thin;margin-left: 5%;width: 90%;">
+                        <span style="padding-right: 10px;"><i class="ion-information-circled"></i></span>About Us<span><i class="ion-ios-arrow-right" style="float: right;"></i></span>
+                    </div>
+                    <div style="color: white;padding-top: 10px;padding-left: 10px;padding-bottom: 10px;font-size: 18px;border-top-color: white;border-top-style: solid;border-top-width: thin;margin-left: 5%;width: 90%;">
+                        <span style="padding-right: 10px;"><i class="ion-ios-telephone"></i></span>Contact<span><i class="ion-ios-arrow-right" style="float: right;"></i></span>
+                    </div>
+                    <div ng-click="logout()" style="color: white;padding-top: 10px;padding-left: 10px;padding-bottom: 10px;font-size: 18px;border-top-color: white;border-top-style: solid;border-top-width: thin;margin-left: 5%;width: 90%;">
+                        <span style="padding-right: 10px;"><i class="ion-power"></i></span>Log out<span><i class="ion-ios-arrow-right" style="float: right;"></i></span>
+                    </div>
+                    <!--       <ion-list>
         <ion-item nav-clear menu-close href="#/app/search">
           Search
         </ion-item>
@@ -22,7 +54,9 @@
         <ion-item nav-clear menu-close href="#/app/playlists">
           Playlists
         </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-side-menu>
+      </ion-list> -->
+                </div>
+            </div>
+        </ion-content>
+    </ion-side-menu>
 </ion-side-menus>

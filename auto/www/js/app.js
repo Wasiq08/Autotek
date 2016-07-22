@@ -66,6 +66,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
     .state('location', {
         templateUrl: "templates/location.html",
         url: "/location",
+        controller: 'MapCtrl'
     })
 
 
@@ -102,6 +103,11 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
         controller: 'SignupCtrl'
     })
 
+    .state('registercustomer', {
+        templateUrl: "templates/registercustomer.html",
+        url: "/registercustomer"
+    })
+
     // .state('notifications', {
     //     templateUrl: "templates/notifications.html",
     //     url: "/notifications",
@@ -112,6 +118,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
         url: "/app",
         abstract: true,
         templateUrl: "templates/sidemenu.html",
+        controller: "SidemenuCtrl"
     })
 
     .state('app.notifications', {
