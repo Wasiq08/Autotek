@@ -1,11 +1,17 @@
+<style type="text/css">
+  .container {
+    width:100%; float:left; padding-top:20px; padding-bottom:20px; margin-left:13px;margin-right:40px; padding-right:20px;
+  }
+</style>
+
 <ion-view title="APPOINTMENTS">
 
     <ion-nav-buttons side="right">
         <button menu-toggle="right" class="button button-icon icon ion-navicon" style="color: white;"></button>
     </ion-nav-buttons>
-<ion-content  class="has-header ak-bg" style="background-color: black;">
+<ion-content  class="has-header ak-bg ak-bg-black">
 <div>
-	<div style="width:100%; float:left; padding-top:20px; padding-bottom:20px; margin-left:13px;margin-right:40px; padding-right:20px;">
+	<div class="container">
 	<label style="color: #fff; width:70%; float:left;">SELECT CITY</label>
 		<div class="list">
     <select id="soflow" name="citySelect" ng-options="option.CityName for option in cities.availableOptions track by option.CityId" ng-model="cities.selectedOption" style="background-color: black;" ng-change="hasChanged()"> 

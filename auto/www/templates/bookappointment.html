@@ -4,6 +4,24 @@
     height: 100%;
     position: relative;
 }
+
+.time-container {
+    left: 5%; top: 80%; height: 8%; width: 90%; position:absolute; border-style: solid; border-color: white; border-width: medium;
+}
+
+.time-hour {position:absolute; width:33.333%; height: 100%; border-right-style: solid; border-right-color: white; border-right-width: medium; }
+
+.time-min {
+    position:absolute; width:33.333%; left:33.333%; height: 100%;  border-right-style: solid; border-right-color: white; border-right-width: medium;
+}
+
+.time-ampm {
+    position:absolute; width:33.333%; left:66.666%; height: 100%;
+}
+
+.book-btn {
+    left: 5%; top: 90%; height: 6%; width: 90%; position:absolute; border-style: solid; border-color: white; border-width: medium;
+}
 </style>
 <ion-view title="APPOINTMENTS">
 
@@ -21,24 +39,24 @@
             <div style="color: white; font-size: 16px;top: 75%; position: absolute; left: 5%;">
                 SELECT TIME
             </div>
-            <div ng-click="openTimePicker()" style="left: 5%; top: 80%; height: 8%; width: 90%; position:absolute; border-style: solid; border-color: white; border-width: medium;">
-                <div style="position:absolute; width:33.333%; height: 100%; border-right-style: solid; border-right-color: white; border-right-width: medium; ">
+            <div ng-click="openTimePicker()" class="time-container">
+                <div class="time-hour">
                     <p style="text-align: center; color: white; font-size: 25px;margin-top: 10%; ">
                         {{hours}}
                     </p>
                 </div>
-                <div style="position:absolute; width:33.333%; left:33.333%; height: 100%;  border-right-style: solid; border-right-color: white; border-right-width: medium;">
+                <div class="time-min">
                     <p style="text-align: center; color: white; font-size: 25px;margin-top: 10%; ">
                         {{minutes}}
                     </p>
                 </div>
-                <div style="position:absolute; width:33.333%; left:66.666%; height: 100%;">
+                <div class="time-ampm">
                     <p style="text-align: center; color: white; font-size: 25px;margin-top: 10%; ">
                         {{ampm}}
                     </p>
                 </div>
             </div>
-            <div ng-click="book();" style="left: 5%; top: 90%; height: 6%; width: 90%; position:absolute; border-style: solid; border-color: white; border-width: medium;">
+            <div ng-click="book();" class="book-btn">
                 <p style="text-align: center; color: white; font-size: 15px; margin-top: 2% ">
                     BOOK
                 </p>

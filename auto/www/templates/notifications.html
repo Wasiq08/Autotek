@@ -1,12 +1,17 @@
+<style type="text/css">
+    .not-main {
+        position: relative; color: white; border-bottom-style: solid; border-bottom-color: white; border-bottom-width: thin;
+    }
+
+    .not-text {
+        margin-top: 5px;
+    margin-left: 25px;
+    color: red;
+    font-weight: bolder;
+    }
+</style>
+
 <ion-view title="NOTIFICATIONS">
-    <!-- 	    <ion-header>
-        <div class="bar bar-header bar-dark no-top">
-            <div class="buttons">
-                <button class="button button-icon ion-ios-arrow-back" nav-direction="back" ng-click="$ionicGoBack(); "></button>
-            </div>
-            <h1 class="title">NOTIFICATIONS</h1>
-        </div>
-    </ion-header> -->
     <ion-nav-buttons side="left">
     <div class="buttons">
         <button class="button button-icon ion-ios-arrow-back" style="color: white;" nav-direction="back" ng-click="$ionicGoBack(); "></button>
@@ -16,14 +21,9 @@
     <ion-nav-buttons side="right">
         <button menu-toggle="right" class="button button-icon icon ion-navicon" style="color: white;"></button>
     </ion-nav-buttons>
-    <ion-content class="has-header ak-bg" style="background-color: black;">
-        <div ng-repeat="x in [1,2,3,4,5,6,7,8]" style="position: relative; color: white; border-bottom-style: solid; border-bottom-color: white; border-bottom-width: thin;">
-            <p style="
-    margin-top: 5px;
-    margin-left: 25px;
-    color: red;
-    font-weight: bolder;
-">SUMMER PROMOTIONS</p>
+    <ion-content class="has-header ak-bg ak-bg-black">
+        <div ng-repeat="x in [1,2,3,4,5,6,7,8]"  class="not-main">
+            <p class="not-text">SUMMER PROMOTIONS</p>
             <p style="margin-left: 25px;">Put the summer text here</p>
             <p style="margin-left: 25px;">Put the summer text here</p>
             <p style="margin-left: 25px;">Put the summer text here</p>

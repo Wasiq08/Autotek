@@ -1,3 +1,18 @@
+
+<style type="text/css">
+    .earn-main {
+        color: white;
+    /* margin-left: 10%; */
+    /* margin-top: 20px; */
+    font-size: large;
+    border-bottom-color: white;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    padding-bottom: 20px;
+    padding-left: 10%;
+    padding-top: 20px;
+    }
+</style>
 <ion-view title="History">
     <ion-nav-buttons side="left">
         <button class="button button-icon ion-ios-arrow-back" style="color: white;" nav-direction="back" ng-click="$ionicGoBack(); "></button>
@@ -7,18 +22,8 @@
     </ion-nav-buttons>
     <ion-content class="has-header ak-bg" style="background-color: black;">
     <div style="width: 100%; height: 100%; position: relative;">
-        <div ng-repeat="x in [1,2,3,4,5,6,7,8,9,10]" style="color: white;
-    /* margin-left: 10%; */
-    /* margin-top: 20px; */
-    font-size: large;
-    border-bottom-color: white;
-    border-bottom-style: solid;
-    border-bottom-width: thin;
-    padding-bottom: 20px;
-    padding-left: 10%;
-    padding-top: 20px;">
-            January 2016<span style="margin-left: 10%;
-">
+        <div ng-repeat="x in [1,2,3,4,5,6,7,8,9,10]" class="earn-main">
+            January 2016<span style="margin-left: 10%;">
     			<input type="button" name="SAR 120" value="SAR 1,200.00" style="    background-color: red;
     border-color: red;
     color: white;
