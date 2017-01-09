@@ -34,6 +34,28 @@ navigation history that also transitions its views in and out.
     margin-left: 0;
 }
 
+#innerContainer2 {
+    width: 100%;
+    height: 22.5%;
+    position: absolute;
+    top: 32%;
+}
+
+#innerContainer3 {
+    width: 100%;
+    height: 22.5%;
+    position: absolute;
+    top: 54.5%;
+}
+
+#innerContainer4 {
+    width: 100%;
+    height: 23%;
+    position: absolute;
+    top: 77%;
+}
+
+
 #sidecontainer1 {
     width: 49.6%;
     height: 16.8%;
@@ -142,11 +164,9 @@ navigation history that also transitions its views in and out.
     <ion-header>
         <div class="bar bar-header" style="background: transparent;">
             <button ui-sref="app.notifications" class="button icon ion-ios-bell"></button>
-            
-            <img src="img/autotek_logo.png" style="width: 40%; margin-left:25%;">
-            
+            <img src="img/autotek_logo.png" style="width: 20%; margin-left: 30%;">
             <!--  <h1>ABC</h1> -->
-            <button  class="button icon ion-gear-a" style="margin-left:30%;"></button>
+            <button class="button icon ion-gear-a" style="margin-left:30%;"></button>
         </div>
     </ion-header>
     <ion-content class="ak-bg" scroll="false">
@@ -162,84 +182,19 @@ navigation history that also transitions its views in and out.
                     </p>
                 </div>
             </div>
-            <div id="sidecontainer1">
-                <a ui-sref="app.booking">
-                    <img src="img/appointment2.png" style="width: 100%; height: 100%;">
-                    <div id="text">
-                        <p style="text-align: center; color: black; ">
-                            APPOINTMENT
-                        </p>
-                    </div>
+            <div id="innerContainer2">
+            <a>
+                <img src="img/registercustomer.png" style="width: 100%; max-height: 100%;">
                 </a>
             </div>
-            <div id="leftcontainer1">
-                <a ng-click="$root.navigate('promotions')">
-                    <img src="img/promotions2.png" style="width: 100%; height: 100%;">
-                    <div id="text">
-                        <p style="text-align: center; color: black;">
-                            PROMOTIONS
-                        </p>
-                    </div>
+            <div id="innerContainer3">
+            <a ui-sref="app.salestat">
+                <img src="img/salestat.png" style="width: 100%; max-height: 100%;">
                 </a>
             </div>
-            <div id="sidecontainer2">
-                <a ui-sref="location">
-                    <img src="img/location2.png" style="width: 100%; height: 100%;">
-                    <div id="text">
-                        <p style="text-align: center; color: black;">
-                            OUR LOCATION
-                        </p>
-                    </div>
-                </a>
-            </div>
-            <div id="leftcontainer2">
-                <a ui-sref="promotion">
-                    <img src="img/freeservice2.png" style="width: 100%; height: 100%;">
-                    <div id="text">
-                        <p style="text-align: center; color: black;">
-                            FREE SERVICES
-                        </p>
-                    </div>
-                </a>
-            </div>
-            <div id="sidecontainer3">
-                <a ui-sref="services">
-                    <img src="img/services2.png" style="width: 100%; height: 100%;">
-                    <div id="text">
-                        <p style="text-align: center; color: black;">
-                            SERVICES
-                        </p>
-                    </div>
-                </a>
-            </div>
-            <div id="leftcontainer3">
-                <a ui-sref="history">
-                    <img src="img/history2.png" style="width: 100%; height: 100%;">
-                    <div id="text">
-                        <p style="text-align: center; color: black;">
-                            HISTORY
-                        </p>
-                    </div>
-                </a>
-            </div>
-            <div id="sidecontainer4">
-                <a ui-sref="about">
-                    <img src="img/aboutus2.png" style="width: 100%; height: 100%;">
-                    <div id="text">
-                        <p style="text-align: center; color: black;">
-                            ABOUT US
-                        </p>
-                    </div>
-                </a>
-            </div>
-            <div id="leftcontainer4">
-                <a ui-sref="contact">
-                    <img src="img/contactus2.png" style="width: 100%; height: 100%;">
-                    <div id="text">
-                        <p style="text-align: center; color: black;">
-                            CONTACT
-                        </p>
-                    </div>
+            <div id="innerContainer4">
+            <a ui-sref="app.earninghistory">
+                <img src="img/earningshistory.png" style="width: 100%; max-height: 100%;">
                 </a>
             </div>
         </div>

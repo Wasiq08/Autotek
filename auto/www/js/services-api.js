@@ -31,6 +31,7 @@ angular.module('CoreApi', ['CoreApiUtilities'])
 .service('User', ['httpService', function(httpService) {
     this.login = function(param) {
         var params = httpService.Utils.getStringParams(param);
+        console.log(params);
         var config = httpService.Utils.getHeader();
         var url = httpService.Utils.buildUrl(new Array('identity', 'connect', 'token'), '', true);
         return httpService.$http.post(url, params, config);

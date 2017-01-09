@@ -80,16 +80,17 @@
 
 .heading {
     position: relative;
-    padding: 12px 0px 0px 30px;
+    padding: 12px 30px 0px 0px;
     font-size: 16px;
     color: white;
     font-weight: 600;
+    float: right;
 }
 
 .offertitle {
     margin-top: 10px;
     margin-left: 10px;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: bold;
 }
 
@@ -202,19 +203,19 @@
             <div class="buttons">
                 <button class="button button-icon ion-ios-arrow-back" nav-direction="back" ng-click="$ionicGoBack(); "></button>
             </div>
-            <h1 class="title">PROMOTIONS</h1>
+            <h1 class="title">الترقيات</h1>
         </div>
     </ion-header>
     <ion-content class="has-header ak-bg" style="background-color: black;">
         <div class="promocontainer">
             <div class="nextoffer">
                 <div class="nextofferheader">
-                    <div class="heading"><i class="ion-arrow-right-b"></i> NEXT OFFERS</div>
+                    <div class="heading"> العروض القادمة <i class="ion-arrow-left-b"></i></div>
                 </div>
                 <div ng-repeat="x in [1,2]" class="box" style="/*width: 100%; height: 72%; top: 25%; position: relative;*/">
                     <div class="nodottedbox">
                         <div class="nobox">
-                            <div class="offertitle">OFFER TITLE
+                            <div class="offertitle">لقبنا
                             </div>
                             <div class="offercontent">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -225,12 +226,12 @@
             </div>
             <div class="nextoffer">
                 <div class="nextofferheader boxcolor2">
-                    <div class="heading"><i class="ion-arrow-right-b"></i> EARNED OFFERS</div>
+                    <div class="heading"> العروض حصل <i class="ion-arrow-left-b"></i></div>
                 </div>
                 <div ng-repeat="x in [1,2]" class="box" style="/*width: 100%; height: 72%; top: 25%; position: relative;*/">
                     <div class="nodottedbox dottedboxborder2">
                         <div class="nobox dottedbox2">
-                            <div class="offertitle">OFFER TITLE
+                            <div class="offertitle">لقبنا
                             </div>
                             <div class="offercontent">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -242,12 +243,12 @@
             </div>
             <div class="nextoffer">
                 <div class="nextofferheader boxcolor3">
-                    <div class="heading"><i class="ion-arrow-right-b"></i> CONSUMED OFFERS</div>
+                    <div class="heading">العروض المستهلكة <i class="ion-arrow-left-b"></i></div>
                 </div>
                 <div ng-repeat="x in [1,2]" class="box" style="/*width: 100%; height: 72%; top: 25%; position: relative;*/">
                     <div class="nodottedbox dottedboxborder3">
                         <div class="nobox dottedbox3">
-                            <div class="offertitle">OFFER TITLE
+                            <div class="offertitle">لقبنا
                             </div>
                             <div class="offercontent">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. 

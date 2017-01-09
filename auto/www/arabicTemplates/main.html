@@ -111,6 +111,9 @@ navigation history that also transitions its views in and out.
     position: absolute;
     top: 80%;
     width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 0px;
 }
 
 #text2 {
@@ -163,11 +166,11 @@ navigation history that also transitions its views in and out.
                 </div>
             </div>
             <div id="sidecontainer1">
-                <a ui-sref="app.booking">
+                <a ng-click="$root.navigate('app.booking')">
                     <img src="img/appointment2.png" style="width: 100%; height: 100%;">
                     <div id="text">
-                        <p style="text-align: center; color: black; ">
-                            APPOINTMENT
+                        <p style="text-align: center; color: black;">
+                            موعد
                         </p>
                     </div>
                 </a>
@@ -177,67 +180,67 @@ navigation history that also transitions its views in and out.
                     <img src="img/promotions2.png" style="width: 100%; height: 100%;">
                     <div id="text">
                         <p style="text-align: center; color: black;">
-                            PROMOTIONS
+                            الترقيات
                         </p>
                     </div>
                 </a>
             </div>
             <div id="sidecontainer2">
-                <a ui-sref="location">
+                <a ng-click="$root.navigate('location')">
                     <img src="img/location2.png" style="width: 100%; height: 100%;">
                     <div id="text">
                         <p style="text-align: center; color: black;">
-                            OUR LOCATION
+                            موقعنا
                         </p>
                     </div>
                 </a>
             </div>
             <div id="leftcontainer2">
-                <a ui-sref="promotion">
+                <a ng-click="$root.navigate('promotion')">
                     <img src="img/freeservice2.png" style="width: 100%; height: 100%;">
                     <div id="text">
                         <p style="text-align: center; color: black;">
-                            FREE SERVICES
+                           خدمات مجانية
                         </p>
                     </div>
                 </a>
             </div>
             <div id="sidecontainer3">
-                <a ui-sref="services">
+                <a ng-click="$root.navigate('services')">
                     <img src="img/services2.png" style="width: 100%; height: 100%;">
                     <div id="text">
                         <p style="text-align: center; color: black;">
-                            SERVICES
+                            خدمات
                         </p>
                     </div>
                 </a>
             </div>
             <div id="leftcontainer3">
-                <a ui-sref="history">
+                <a ng-click="$root.navigate('history')">
                     <img src="img/history2.png" style="width: 100%; height: 100%;">
                     <div id="text">
                         <p style="text-align: center; color: black;">
-                            HISTORY
+                            التاريخ
                         </p>
                     </div>
                 </a>
             </div>
             <div id="sidecontainer4">
-                <a ui-sref="about">
+                <a ng-click="$root.navigate('about')">
                     <img src="img/aboutus2.png" style="width: 100%; height: 100%;">
                     <div id="text">
                         <p style="text-align: center; color: black;">
-                            ABOUT US
+                            معلومات عنا
                         </p>
                     </div>
                 </a>
             </div>
             <div id="leftcontainer4">
-                <a ui-sref="contact">
+                <a ng-click="$root.navigate('contact')">
                     <img src="img/contactus2.png" style="width: 100%; height: 100%;">
                     <div id="text">
                         <p style="text-align: center; color: black;">
-                            CONTACT
+                            اتصال
                         </p>
                     </div>
                 </a>

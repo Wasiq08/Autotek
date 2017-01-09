@@ -21144,7 +21144,7 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   background-image: url("../img/autotek_logo.png");
   background-size: contain;
   background-repeat: no-repeat;
-  margin: 120px 0px 5px 0px;
+  margin: 65px 0px 5px 0px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 50px;
@@ -21270,14 +21270,14 @@ select#soflow {
 .btn-save {
   background: transparent;
   color: white;
-  height: 40px; }
+  height: 40px;
+  }
 
 .social-icons {
-  margin: 0;
   padding: 0;
   border: 0;
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
   display: inline-block;
-  margin-left: 3em; }
+  }

@@ -10,10 +10,10 @@
                    <input type="text" ng-model="user.username"/>
                   </div>
               </div>
-
+                  
               <span class=input-label ak-ml-10>Password</span>
               <img src="../img/password_icon.png" class="lg-icons"/>
-              <input type="password" ng-model="user.password">
+              <input type="password" ng-model="user.password">     
             </div> -->
             <!--<label class="item item-input">
               <span class="input-label">Username</span>
@@ -28,11 +28,10 @@
                     <img src="img/profile_small_icon.png" class="lg-icons" />
                     <input type="text" ng-model="user.username" style=" color: #fff; width:70%; float:left;" placeholder="+966" />
                 </div>
-                 <div style="width:80%; float:left; padding-bottom:20px; margin-left:13px;margin-right:40px; padding-left:20px; padding-right:20px;">
-                    <img src="img/profile_small_icon.png" class="lg-icons" />
-                    <input type="password" ng-model="user.password" style=" color: #fff; width:70%; float:left;" placeholder="" />
+                <div style="width:80%; float:left; padding-bottom:20px; margin-left:13px; margin-right:40px; padding-left:20px; padding-right:20px;">
+                    <img src="img/password_icon.png" class="lg-icons" />
+                    <input type="password" ng-model="user.password" style="color: #fff;  width:70%;float:left;">
                 </div>
-
             </div>
             <div class="padding">
                 <button class="button button-block button-transparent" style="width:80%; border-radius:0px; float:left;  margin-left:40px;margin-right:40px; padding-left:20px; padding-right:20px;" ng-click="login(user)"> LOGIN </button>
@@ -42,24 +41,5 @@
         </div>
         <!--<h1>{{user}}</h1>
             <p>{{list}}</p>-->
-             <!--<div class="list" style="width:70%; margin: auto;">
-                    <label class="item item-input item-select" style="margin-top: 60px;">
-                        <div class="input-label">
-                        Language
-                        </div>
-                        <select>
-                        <option selected value="en">English</option>
-                        <option value="ar">Arabic</option>
-                        </select>
-                    </label>
-
-                </div>-->
-                <div style="text-align: center" ng-model="currentPage" ng-change="go(currentPage)">
-                <select ng-model="lng" ng-change="get_value(lng)" style="margin-top: 60px;padding: 10px 20px 10px 20px;">
-                    <option selected  value="ar">Arabic</option>
-                    <option value="en">English</option>
-                </select>
-                </div>
-
     </ion-content>
 </ion-view>

@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope, $state, User, localStorageService, $ionicLoading, $ionicPopup, Cities) {
+.controller('LoginCtrl', function($scope,$rootScope, $state, User, localStorageService, $ionicLoading, $ionicPopup, Cities) {
     $scope.user = {};
     //$scope.user.username = '0557613133';
     //$scope.user.password = '123456';
@@ -40,9 +40,11 @@ angular.module('starter.controllers', [])
                             loggedInUser = { user: res }
                             localStorageService.set("loggedInUser", loggedInUser);
                             if ($scope.user.username == "96698765") {
-                                $state.go('agentmain');
+                                //$state.go('agentmain');
+                                 $rootScope.navigate('agentmain')
                             } else {
-                                $state.go('main');
+                               // $state.go('main');
+                                $rootScope.navigate('main')
                             }
 
                         })
@@ -68,6 +70,19 @@ angular.module('starter.controllers', [])
                     }
                 });
             })
+    }
+          //$scope.get_value=function(lng){
+          //  console.log(lng);
+          $scope.get_value=function(value1){
+            console.log($scope.lng)
+
+          }
+          localStorageService.set('PageLangue',$scope.lng);
+        //  }
+
+        $scope.go=function(language) {
+        console.log(language)
+        localStorageService.set('PageLangue',language);
     }
 
 })
@@ -142,7 +157,7 @@ angular.module('starter.controllers', [])
 
     $scope.book = function() {
         console.log("scope.date", $scope.dateobj.date)
-        $state.go('appointmentreview');
+        $rootScope.navigate(' appointmentreview')
         var date = new Date($scope.dateobj.date);
         AppointmentDetail.set({
             startTime: $scope.hours + ":" + $scope.minutes + " " + $scope.ampm,
@@ -229,7 +244,7 @@ angular.module('starter.controllers', [])
                             });
 
                             alertPopup.then(function(res) {
-                                $state.go('home')
+                                $rootScope.navigate('home')
                                     //console.log('Thank you for not eating my delicious ice cream cone');
                             });
                         })
@@ -272,7 +287,7 @@ angular.module('starter.controllers', [])
             disableBack: true
         });
 
-        $state.go('main');
+        $rootScope.navigate('main')
     }
 }])
 
@@ -322,17 +337,17 @@ angular.module('starter.controllers', [])
 
 .controller('SaleStatCtrl', ['$scope', function($scope) {
     $scope.opt = {
-        selectedOption: { 
-            Id: 1, 
-            Name: "February 2016" 
+        selectedOption: {
+            Id: 1,
+            Name: "February 2016"
         },
-        availableOptions: [{ 
-            Id: 1, 
-            Name: "February 2016" 
+        availableOptions: [{
+            Id: 1,
+            Name: "February 2016"
         },
         {
             Id: 2,
-            Name: "March 2016"    
+            Name: "March 2016"
         },
         {
             Id: 3,
@@ -356,7 +371,42 @@ angular.module('starter.controllers', [])
     $scope.hasChanged = function() {
     }
 }])
+.controller('SaleStatArabicCtrl', ['$scope', function($scope) {
+    $scope.opt = {
+        selectedOption: {
+            Id: 1,
+            Name: " 2016 فبراير"
+        },
+        availableOptions: [{
+            Id: 1,
+            Name: " 2016 فبراير"
+        },
+        {
+            Id: 2,
+            Name: " 2016 مارس"
+        },
+        {
+            Id: 3,
+            Name: " 2016 أبريل"
+        },
+        {
+            Id: 4,
+            Name: " 2016 قد"
+        }, {
+            Id: 5,
+            Name: " 2016 يونيو"
+        }, {
+            Id : 6,
+            Name: "July 2016"
+        }, {
+            Id : 7,
+            Name : " 2016 أغسطس"
+        }]
+    }
 
+    $scope.hasChanged = function() {
+    }
+}])
 .controller('AppointmentCtrl', ['$scope', 'Cities', 'Appointment', 'CityBranchId', '$state', 'localStorageService', function($scope, Cities, Appointment, CityBranchId, $state, localStorageService) {
     console.log(Cities.cities)
     var cities = localStorageService.get('cities')
@@ -395,8 +445,8 @@ angular.module('starter.controllers', [])
     $scope.next = function() {
         CityBranchId.set_cityid($scope.cities.selectedOption.CityId);
         CityBranchId.set_branchid($scope.branches.selectedOption);
-        $state.go('app.bookappointment', { branchid: $scope.branches.selectedOption.Id })
-
+        $rootScope.navigate('app.bookappointment', { branchid: $scope.branches.selectedOption.Id })
+       // $state.go()
         // $scope.cities = Cities.cities;
     }
 
@@ -442,7 +492,7 @@ angular.module('starter.controllers', [])
         console.log(AppointmentDetail.get())
         $scope.x = AppointmentDetail.get()
     }])
-    .controller('MapController', function($scope, $ionicLoading) {
+.controller('MapController', function($scope, $ionicLoading) {
 
         google.maps.event.addDomListener(window, 'load', function() {
             var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
