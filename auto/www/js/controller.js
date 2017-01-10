@@ -74,12 +74,12 @@ angular.module('starter.controllers', [])
           //$scope.get_value=function(lng){
           //  console.log(lng);
           $scope.obj = {};
-          $scope.lng = "en";
+       
           $scope.get_value=function(value1){
             console.log($scope.obj.lng)
-
+            localStorageService.set('PageLangue',$scope.obj.lng);
           }
-          localStorageService.set('PageLangue',$scope.obj.lng);
+          
         //  }
 
         $scope.go=function(language) {
