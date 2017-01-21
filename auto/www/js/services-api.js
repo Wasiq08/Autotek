@@ -48,6 +48,10 @@ angular.module('CoreApi', ['CoreApiUtilities'])
         var url = httpService.Utils.buildUrl(new Array('api', 'CustomerOrder',pageNumber,pageSize));
         return httpService.$http.get(url, config);
     }
+
+   
+
+
 }])
 
 
@@ -76,7 +80,57 @@ angular.module('CoreApi', ['CoreApiUtilities'])
         return httpService.$http.get(url, config);
     }
 }])
+//Promotions Page Service(Earned offers, Next offers,Consumed offers)
+.service('PormotionsOffers',['httpService',function(httpService){
 
+    this.getNextOffers = function() {
+            var config = httpService.Utils.getHeader();
+            var url = httpService.Utils.buildUrl(new Array('api', 'availableoffers'));
+            console.log("FINAL URL",url);
+            return httpService.$http.get(url, config);
+
+        }
+        
+    this.getConsumedOffers = function() {
+            var config = httpService.Utils.getHeader();
+            var url = httpService.Utils.buildUrl(new Array('api', 'consumedoffers'));
+            console.log("FINAL URL",url);
+            return httpService.$http.get(url, config);
+        }
+    this.getNotifications = function(pageNumber, pageSize) {
+            var config = httpService.Utils.getHeader();
+            var url = httpService.Utils.buildUrl(new Array('api', 'notification',pageNumber, pageSize));
+            console.log("FINAL URL",url);
+            return httpService.$http.get(url, config);
+        }
+    this.getPromoCode = function() {
+            var config = httpService.Utils.getHeader();
+            var url = httpService.Utils.buildUrl(new Array('api', 'customerreferral'));
+            console.log("FINAL URL",url);
+            return httpService.$http.post(url, config);
+        }
+    this.getEarningHistory = function(year) {
+            var config = httpService.Utils.getHeader();
+            var url = httpService.Utils.buildUrl(new Array('api','earninghistory',year));
+            console.log("FINAL URL",url);
+            return httpService.$http.get(url, config);
+        }
+    this.getSaleStats = function(year,month) {
+            var config = httpService.Utils.getHeader();
+            var url = httpService.Utils.buildUrl(new Array('api', 'salesagentstats',year,month));
+            console.log("FINAL URL",url);
+            return httpService.$http.get(url, config);
+        }
+}])
+// .service('Notifications',['httpService',function(httpService){
+      
+// }])
+// .service('PromoCode',['httpService', function(){
+    
+// }])
+// .service('EarningHistory',['httpService',function(){
+   
+// }])
 angular.module('CoreApiUtilities', [])
 
 .factory('Utils', ['lagConfig', 'localStorageService', function(lagConfig, localStorageService) {

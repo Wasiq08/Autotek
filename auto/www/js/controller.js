@@ -1,12 +1,17 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope,$rootScope, $state, User, localStorageService, $ionicLoading, $ionicPopup, Cities) {
+.controller('LoginCtrl', function($scope,$rootScope, $state, User,PormotionsOffers, localStorageService, $ionicLoading, $ionicPopup, Cities) {
     $scope.user = {};
     //$scope.user.username = '0557613133';
     //$scope.user.password = '123456';
 
     Cities.getCities();
-
+    PormotionsOffers.getNextOffers().success(function(res){
+        console.log(res)
+    })
+     .error(function(err) {
+                            console.log(err);
+                        })
 
 
     //var params = "grant_type=password&username=0557613133&password=123456&client_id=Android02&client_secret=21B5F798-BE55-42BC-8AA8-0025B903DC3B&scope=app1"
@@ -89,10 +94,112 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('NotificationCtrl', ['$scope', '$ionicSideMenuDelegate', function($scope, $ionicSideMenuDelegate) {
+.controller('NotificationEnglishCtrl', ['$scope', '$ionicSideMenuDelegate','PormotionsOffers', function($scope, $ionicSideMenuDelegate,PormotionsOffers) {
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
+    //  PormotionsOffers.getNotifications().success(function(data){
+    //     console.log(data)
+    // })
+      $scope.notification = [];
+    var pageNumber = 0;
+    var pageSize = 4;
+
+    $scope.noMoreNotification = true;
+    $scope.getMoreNotification = function(start) {
+        var _start = start || false
+        PormotionsOffers.getNotifications(pageNumber, pageSize).success(function(res) {
+                console.log(res);
+                if (_start) {
+                    $scope.notification = [];
+                }
+                if (res.length < pageSize) {
+                    $scope.noMoreNotification = false;
+                }
+                for (var i = 0; i < res.length; i++) 
+                {
+                    var date = new Date(res[i].UpdatedOn);
+                    $scope.notification.push({
+                        year: date.getFullYear(),
+                        date: date.getDate(),
+                        month: monthname(date.getMonth()),
+                       Title_EN: res[i].Title_EN,
+                        Description_EN: res[i].Description_EN,
+                        
+                    })
+                    
+                }
+                
+                pageNumber = pageNumber + 1;
+                if (_start) {
+                    $scope.$broadcast('scroll.refreshComplete');
+                    //$scope.$apply()
+                } else {
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                }
+
+            })
+            .error(function(err) {
+                console.log(err);
+            })
+    }
+
+    $scope.getMoreNotification();
+
+}])
+
+
+
+.controller('NotificationArabicCtrl', ['$scope', '$ionicSideMenuDelegate','PormotionsOffers', function($scope, $ionicSideMenuDelegate,PormotionsOffers) {
+    $scope.toggleLeft = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
+    //  PormotionsOffers.getNotifications().success(function(data){
+    //     console.log(data)
+    // })
+      $scope.notification = [];
+    var pageNumber = 0;
+    var pageSize = 4;
+
+    $scope.noMoreNotification = true;
+    $scope.getMoreNotification = function(start) {
+        var _start = start || false
+        PormotionsOffers.getNotifications(pageNumber, pageSize).success(function(res) {
+                console.log(res);
+                if (_start) {
+                    $scope.notification = [];
+                }
+                if (res.length < pageSize) {
+                    $scope.noMoreNotification = false;
+                }
+                for (var i = 0; i < res.length; i++) 
+                {
+                    var date = new Date(res[i].UpdatedOn);
+                    $scope.notification.push({
+                        year: date.getFullYear(),
+                        date: date.getDate(),
+                        month: monthname(date.getMonth()),
+                       Title_AR: res[i].Title_AR,
+                        Description_AR: res[i].Description_AR
+                    })
+                    
+                }
+                
+                pageNumber = pageNumber + 1;
+                if (_start) {
+                    $scope.$broadcast('scroll.refreshComplete');
+                    //$scope.$apply()
+                } else {
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                }
+
+            })
+            .error(function(err) {
+                console.log(err);
+            })
+    }
+
+    $scope.getMoreNotification();
 
 }])
 
@@ -176,11 +283,163 @@ angular.module('starter.controllers', [])
 .controller('MainCtrl', ['$scope', 'localStorageService', function($scope, localStorageService) {
     $scope.user = localStorageService.get("loggedInUser").user;
     console.log(localStorageService.get("loggedInUser"));
+    
 }])
 
-.controller('PromotionCtrl', ['$scope', function($scope) {
+.controller('PromotionEnglishCtrl', ['$scope','PormotionsOffers', function($scope,PormotionsOffers) {
+    //promocode facaebook sharing functtion..
+    $scope.facebookshare=function(){
+        if(ionic.Platform.isIOS())
+        {
+            window.plugins.socialsharing.shareVia('com.apple.social.facebook', 'Message via FB', null, null, null, function(){console.log('share ok') 
+            PormotionsOffers.getPromoCode().success(function(res){
+                    console.log(res);
+            })
+            .error(function(err){
+        console.log(err)
+    })
+            }, function(msg) {alert('error: ' + msg)})
+        }    
+        else
+        {
+            window.plugins.socialsharing.shareVia('facebook', 'Message via FB', null, null, null, function(){console.log('share ok')
+                PormotionsOffers.getPromoCode().success(function(res){
+                    console.log(res);
+            })
+            .error(function(err){
+        console.log(err)
+    })
+                }, function(msg) {alert('error: ' + msg)})
+        }
+    }
+    //promocode facaebook sharing functtion end..
 
-}])
+    //promocode twitter sharing function start
+    $scope.twittershare=function(){
+        if(ionic.Platform.isIOS()){
+            window.plugins.socialsharing.shareVia('com.apple.social.twitter', 'Message via Twitter', null, null, 'http://www.x-services.nl',
+             function(){
+                    console.log('share ok')
+                    PormotionsOffers.getPromoCode().success(function(res){
+                        console.log(res);
+                    })
+                    .error(function(err){
+                        console.log(err)
+                    })
+                },
+                 function(msg)
+                  {
+                      alert('error: ' + msg)
+                    })
+        }
+        else{
+             window.plugins.socialsharing.shareVia('twitter', 'Message via Twitter', null, null, 'http://www.x-services.nl',
+             function(){
+                    console.log('share ok')
+                    PormotionsOffers.getPromoCode().success(function(res){
+                        console.log(res);
+                    })
+                    .error(function(err){
+                        console.log(err)
+                    })
+                },
+                 function(msg)
+                  {
+                      alert('error: ' + msg)
+                    })
+        }
+    }       //promocode twitter sharing function end..
+
+    //promocode pinterest & googlePlus sharing function start.. 
+        $scope.othershare=function(){
+            window.plugins.socialsharing.share('Message only',
+            function(res){
+                 PormotionsOffers.getPromoCode().success(function(res){
+                    console.log('sucess'+res);
+            })
+            .error(function(err){
+        console.log(err)
+    })
+            })
+        }       //promocode pinterest & googlePlus sharing function end..
+
+        
+        //calling consumed offers api
+        // PormotionsOffers.getConsumedOffers().success(function(data){
+        // console.log("OFFER DATA",data);
+        // })  //consumed api end..
+        //calling promocode api...
+    //     PormotionsOffers.getPromoCode().success(function(res){
+    //     console.log(res)
+    //     })
+    //     .error(function(err){
+    //     console.log(err)
+    // })
+        //promocode api end...
+ }])
+
+
+ .controller('PromotionArabicCtrl', ['$scope','PormotionsOffers', function($scope,PormotionsOffers) {
+    //promocode facaebook sharing functtion..
+    $scope.facebookshare=function(){
+        if(ionic.Platform.isIOS())
+        {
+            window.plugins.socialsharing.shareVia('com.apple.social.facebook', 'Message via FB', null, null, null, function(){console.log('share ok') 
+            PormotionsOffers.getPromoCode().success(function(res){
+                    console.log(res);
+            })
+            .error(function(err){
+        console.log(err)
+    })
+            }, function(msg) {alert('error: ' + msg)})
+        }    
+        else
+        {
+            window.plugins.socialsharing.shareVia('facebook', 'Message via FB', null, null, null, function(){console.log('share ok')
+                PormotionsOffers.getPromoCode().success(function(res){
+                    console.log(res);
+            })
+            .error(function(err){
+        console.log(err)
+    })
+                }, function(msg) {alert('error: ' + msg)})
+        }
+    }
+    //promocode facaebook sharing functtion end..
+
+    //promocode twitter sharing function start
+    $scope.twittershare=function(){
+        window.plugins.socialsharing.shareViaTwitter('Message via Twitter')
+    }       //promocode twitter sharing function end..
+
+    //promocode pinterest & googlePlus sharing function start.. 
+        $scope.othershare=function(){
+            window.plugins.socialsharing.share('Message only',
+            function(res){
+                 PormotionsOffers.getPromoCode().success(function(res){
+                    console.log('sucess'+res);
+            })
+            .error(function(err){
+        console.log(err)
+    })
+            })
+        }       //promocode pinterest & googlePlus sharing function end..
+
+        
+        //calling consumed offers api
+        // PormotionsOffers.getConsumedOffers().success(function(data){
+        // console.log("OFFER DATA",data);
+        // })  //consumed api end..
+        //calling promocode api...
+    //     PormotionsOffers.getPromoCode().success(function(res){
+    //     console.log(res)
+    //     })
+    //     .error(function(err){
+    //     console.log(err)
+    // })
+        //promocode api end...
+ }])
+
 
 .controller('SignupCtrl', ['$scope', '$rootScope', '$http', '$ionicPopup', '$state', '$ionicLoading', function($scope, $rootScope, $http, $ionicPopup, $state, $ionicLoading) {
     $scope.user = {};
@@ -337,77 +596,99 @@ angular.module('starter.controllers', [])
 
 }])
 
-.controller('SaleStatCtrl', ['$scope', function($scope) {
-    $scope.opt = {
-        selectedOption: {
-            Id: 1,
-            Name: "February 2016"
-        },
-        availableOptions: [{
-            Id: 1,
-            Name: "February 2016"
-        },
-        {
-            Id: 2,
-            Name: "March 2016"
-        },
-        {
-            Id: 3,
-            Name: "April 2016"
-        },
-        {
-            Id: 4,
-            Name: "May 2016"
-        }, {
-            Id: 5,
-            Name: "June 2016"
-        }, {
-            Id : 6,
-            Name: "July 2016"
-        }, {
-            Id : 7,
-            Name : "August 2016"
-        }]
-    }
+.controller('SaleStatEnglihCtrl', function($scope,ionicDatePicker, $ionicPlatform,PormotionsOffers) {
+    
+  var year;
+     var ipObj1 = {
+      callback: function (val) {  //Mandatory
+        console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+        var date= new Date(val);
+         year=date.getFullYear();
+        var month=monthname(date.getMonth());
+        $scope.showdate= month +', '+ year;
+        console.log(month)
+         PormotionsOffers.getSaleStats(year,date.getMonth()+1).success(function(res){
+            console.log(res)
+    })
+    .error(function(err){
+        console.log(err);
+    })
+      PormotionsOffers.getEarningHistory(year).success(function(res){
+            console.log(res)
+            console.log('hello')
+    })
+    .error(function(err){
+        console.log(err);
+    })
+      },
+      disabledDates: [            //Optional
+        new Date(2016, 2, 16),
+        new Date(2015, 3, 16),
+        new Date(2015, 4, 16),
+        new Date(2015, 5, 16),
+        new Date('Wednesday, August 12, 2015'),
+        new Date("08-16-2016"),
+        new Date(1439676000000)
+      ],
+      from: new Date(2012, 1, 1), //Optional
+      to: new Date(2050, 10, 30), //Optional
+      inputDate: new Date(),      //Optional
+      mondayFirst: true,          //Optional
+      disableWeekdays: [0],       //Optional
+      closeOnSelect: false,       //Optional
+      templateType: 'popup'       //Optional
+    };
 
-    $scope.hasChanged = function() {
-    }
-}])
+    $scope.openDatePicker = function(){
+      ionicDatePicker.openDatePicker(ipObj1);
+    };
+  
+})
 .controller('SaleStatArabicCtrl', ['$scope', function($scope) {
-    $scope.opt = {
-        selectedOption: {
-            Id: 1,
-            Name: " 2016 فبراير"
-        },
-        availableOptions: [{
-            Id: 1,
-            Name: " 2016 فبراير"
-        },
-        {
-            Id: 2,
-            Name: " 2016 مارس"
-        },
-        {
-            Id: 3,
-            Name: " 2016 أبريل"
-        },
-        {
-            Id: 4,
-            Name: " 2016 قد"
-        }, {
-            Id: 5,
-            Name: " 2016 يونيو"
-        }, {
-            Id : 6,
-            Name: "July 2016"
-        }, {
-            Id : 7,
-            Name : " 2016 أغسطس"
-        }]
-    }
+    var year;
+     var ipObj1 = {
+      callback: function (val) {  //Mandatory
+        console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+        var date= new Date(val);
+         year=date.getFullYear();
+        var month=monthname(date.getMonth());
+        $scope.showdate= month +', '+ year;
+        console.log(month)
+         PormotionsOffers.getSaleStats(year,date.getMonth()+1).success(function(res){
+            console.log(res)
+    })
+    .error(function(err){
+        console.log(err);
+    })
+      PormotionsOffers.getEarningHistory(year).success(function(res){
+            console.log(res)
+            console.log('hello')
+    })
+    .error(function(err){
+        console.log(err);
+    })
+      },
+      disabledDates: [            //Optional
+        new Date(2016, 2, 16),
+        new Date(2015, 3, 16),
+        new Date(2015, 4, 16),
+        new Date(2015, 5, 16),
+        new Date('Wednesday, August 12, 2015'),
+        new Date("08-16-2016"),
+        new Date(1439676000000)
+      ],
+      from: new Date(2012, 1, 1), //Optional
+      to: new Date(2050, 10, 30), //Optional
+      inputDate: new Date(),      //Optional
+      mondayFirst: true,          //Optional
+      disableWeekdays: [0],       //Optional
+      closeOnSelect: false,       //Optional
+      templateType: 'popup'       //Optional
+    };
 
-    $scope.hasChanged = function() {
-    }
+    $scope.openDatePicker = function(){
+      ionicDatePicker.openDatePicker(ipObj1);
+    }; 
 }])
 .controller('AppointmentCtrl', ['$scope', 'Cities', 'Appointment', 'CityBranchId', '$state', 'localStorageService', function($scope, Cities, Appointment, CityBranchId, $state, localStorageService) {
     console.log(Cities.cities)

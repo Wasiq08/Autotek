@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.directives', 'starter.services', '720kb.datepicker', 'LocalStorageModule', 'ionic-timepicker'])
+angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.directives', 'starter.services', '720kb.datepicker', 'LocalStorageModule', 'ionic-datepicker'])
 
 .run(function($ionicPlatform,localStorageService,$state,$rootScope) {
     $ionicPlatform.ready(function() {
@@ -62,6 +62,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
             }
 })
 .config(function($stateProvider, $urlRouterProvider) {
+  
 
     $stateProvider
     .state('home', {
@@ -99,7 +100,8 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
 
     .state('promotion', {
         templateUrl: "templates/promo_service.html",
-        url: "/promotion"
+        url: "/promotion",
+        controller: 'PromotionEnglishCtrl'
     })
 
     .state('location', {
@@ -132,7 +134,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
     .state('promotions', {
         templateUrl: "templates/promotions.html",
         url: "/promotions",
-        controller: "PromotionCtrl"
+        controller: "PromotionEnglishCtrl"
     })
 
     .state('register', {
@@ -146,6 +148,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
     //     url: "/notifications",
     //     controller: "NotificationCtrl"
     // })
+    // English Routes
 
     .state('app', {
         url: "/app",
@@ -158,7 +161,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
         views: {
             'menuContent': {
                 templateUrl: "templates/notifications.html",
-                controller: 'NotificationCtrl'
+                controller: 'NotificationEnglishCtrl'
             }
         }
     })
@@ -198,7 +201,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
         views: {
             'menuContent': {
                 templateUrl: "templates/salestat.html",
-                controller: 'SaleStatCtrl'
+                controller: 'SaleStatEnglihCtrl'
             }
         }
     })
@@ -208,7 +211,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
         views: {
             'menuContent': {
                 templateUrl: "templates/earninghistory.html",
-                controller: 'SaleStatCtrl'
+                controller: 'SaleStatEnglihCtrl'
             }
         }
     })
@@ -284,7 +287,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
     .state('promotionsa', {
         templateUrl: "arabicTemplates/promotions.html",
         url: "/promotionsa",
-        controller: "PromotionCtrl"
+        controller: "PromotionArabicCtrl"
     })
 
     .state('registera', {
@@ -310,7 +313,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
         views: {
             'menuContent': {
                 templateUrl: "arabicTemplates/notifications.html",
-                controller: 'NotificationCtrl'
+                controller: 'NotificationArabicCtrl'
             }
         }
     })

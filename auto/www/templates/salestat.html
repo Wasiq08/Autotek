@@ -7,8 +7,9 @@
     </ion-nav-buttons>
     <ion-content class="has-header ak-bg" style="background-color: black;">
         <div style="position: relative; margin-top: 0px;  padding-bottom: 3%;   background-color: rgba(255,255,255,0.1);     height: 260px; border-bottom-color: white; border-bottom-style: solid; border-bottom-width: thin;">
-            <select id="soflow" ng-options="option.Name for option in opt.availableOptions track by option.Id" ng-model="opt.selectedOption" style="background-color: white;color: black;width: 100%;" ng-change="hasChanged()">
-            </select>
+            <div style="width:100%; height: 40px;background-color: white;margin-top: 10px;" ng-model="date" ng-click="openDatePicker()" >
+                <div style="line-height:40px; font-weight:bold; font-size:18px;"><span style="margin-left:20px;">{{showdate}}</span></div>
+                </div>
             <div style="top: 60px; width: 40%; left: 5%; height:30px;background-color: black; position: absolute;">
                 <p style="color: white; text-align: center; font-size: 12px;     margin-top: 3%;">CUSTOMER REFERRED</p>
             </div>
@@ -29,8 +30,9 @@
             </div>
         </div>
         <div style="position: relative; margin-top: 0px;  padding-bottom: 3%;   background-color: rgba(255,255,255,0.1);  border-bottom-color: white; border-bottom-style: solid; border-bottom-width: thin;">
-            <select id="soflow" ng-options="option.Name for option in opt.availableOptions track by option.Id" ng-model="opt.selectedOption" style="background-color: white;color: black;width: 100%;" ng-change="hasChanged()">
-            </select>
+           <div style="width:100%; height: 40px;background-color: white;margin-top: 10px;" ng-model="date" ng-click="openDatePicker()" >
+                <div style="line-height:40px; font-weight:bold; font-size:18px;"><span style="margin-left:20px;">{{showdate}}</span></div>
+                </div>
             <div style="margin-top: 25px; width: 90%; left: 5%; height:40px;background-color: black; position: relative;">
                 <p style="color: white;text-align: center; font-size: 18px;padding-top: 3%; font-weight: bold;">LIFETIME REFERRALS</p>
             </div>
