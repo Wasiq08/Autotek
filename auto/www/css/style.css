@@ -269,7 +269,10 @@ input[type="password"]
   height: 800px;
      
 }
-
+.col{
+    text-align: right; 
+    margin-right: 10px;
+}
 .div1 {
     width: 95%;
     
@@ -314,9 +317,13 @@ input[type="password"]
 .lg-sv-icons{
 	 width:35%;
    float:left;
-   margin-right:10px;
+ 
 }
-
+.img-rit{
+     width:35%;
+   float:right;
+   margin-right: -10px;;
+}
 
 
 

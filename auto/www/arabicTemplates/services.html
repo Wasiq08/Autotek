@@ -1,6 +1,8 @@
+
 <style type="text/css">
 
-.main-card{
+/*@media only screen and(min-width:376px){*/
+/*.main-card{
     width:95%;
     height: 160px;
     background-color: white;
@@ -65,6 +67,75 @@
     line-height: 30px;
     font-size: 14px;
 }
+}
+@media only screen and (min-width:321px) and(max-width:375px){
+
+    .main-card{
+    width:95%;
+    height: 160px;
+    background-color: white;
+    border-radius: 08px;
+    margin-top: 10px !important;
+    margin: auto;
+}
+.card-header-red{
+    width: 100%;
+    height: 40px;
+    background: red;
+    border-top-left-radius: 08px;
+    border-top-right-radius: 08px;
+}
+.card-header-green{
+    width: 100%;
+    height: 40px;
+    background: green;
+    border-top-left-radius: 08px;
+    border-top-right-radius: 08px;
+}
+.card-header-blue{
+    width: 100%;
+    height: 40px;
+    background: blue;
+    border-top-left-radius: 08px;
+    border-top-right-radius: 08px;
+}
+.card-header-content{
+    float: right;
+    color: white;
+     margin-top: 05px;
+}
+.card-header-content label{
+    margin-right: 20px;
+    font-size: 18px;
+    font-weight: bold;  
+}
+.img-size{
+    width:110px;
+    height: 110px;
+    margin-left: 10px;
+    margin-top: -75px;
+    float: right;
+    margin-right: 5px;
+}
+.card-para{
+    width:60%;
+    float: left;
+    color:gray;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.card-btn{
+    width: 130px;
+    height: 35px;
+    background-color: #d6d7d7;
+    margin-top: 75px;
+    text-align: center;
+    border-radius: 5px;
+    margin-left:30px;
+    line-height: 30px;
+    font-size: 14px;
+}
+}*/
 </style>
 <ion-view>
     <ion-header>
@@ -72,56 +143,47 @@
             <div class="buttons">
                 <button class="button button-icon ion-ios-arrow-back" nav-direction="back" ng-click="$ionicGoBack(); "></button>
             </div>
-            <h1 class="title">خدمات</h1>
+            <h1 class="title">لخدمات</h1>
         </div>
     </ion-header>
     <ion-content class="has-header ak-bg" style="background-color: black;">
         <div class="d">
-          <div class="main-card">
-              <div class="card-header-red">
-                  <div class="card-header-content">
-                     <label>تلوين النافذة <i class="ion-arrow-left-b"></i></label>
-                  </div>
-              </div>
-              <div class="card-para">
-                <p>This is a basic Card which contains an item that has wrapping text.</p>
-              </div>
-                        <div class="card-img">
-                            <img src="img/settings_car_white.png" class="img-size">
-                         </div>
-                <div class="card-btn">اقرأ أكثر</div>
-         </div>
-          <div class="main-card">
-              <div class="card-header-green">
-                  <div class="card-header-content">
-                     <label>تلوين النافذة <i class="ion-arrow-left-b"></i></label>
-                  </div>
-              </div>
-              <div class="card-para">
-                <p>This is a basic Card which contains an item that has wrapping text.</p>
-                    </div>
-                        <div class="card-img">
-                            <img src="img/settings_car_golden.png" class="img-size">
-                         </div>
-                <div class="card-btn">اقرأ أكثر</div>
-         </div>
-          <div class="main-card">
-              <div class="card-header-blue">
-                  <div class="card-header-content">
-                     <label>تلوين النافذة <i class="ion-arrow-left-b"></i></label>
-                  </div>
-              </div>
-              <div class="card-para">
-                <p>This is a basic Card which contains an item that has wrapping text.</p>
-                    </div>
-                        <div class="card-img">
-                            <img src="img/settings_car_red.png" class="img-size">
-                         </div>
-                <div class="card-btn">اقرأ أكثر</div>
-         </div>
-            
-           
+            <div class="card" style="border-radius:8px;">
+                <div class="row " style="background-color:red; color:#fff; margin-top:-1px; position: relative;">
+                   <div class="col"> <i class="ion-arrow-left-b" style="position: absolute; right: 10px;"></i><span>WINDOW TINTING</span></div></div>
+                <div class="item item-text-wrap" style="padding-left:5px; padding-top:5px;">
+                    <img src="img/settings_car_white.png" class="img-rit" />
+                    <p style="margin-top: -3px;margin-left: 10px;display: rtl">هذه هي البطاقة الأساسية التي تحتوي على العنصر الذي قد التفاف النص.</p>
+                    <button class="button" style="box-shadow:0px 0px 1px #888888;font-size:12px; float:left;  margin-left:10px;min-height:25px ;margin-top: 02px; margin-bottom: 2px; line-height: 20px ; background-color:#d6d7d7; color: black;" ng-click="readMorePage()">
+                        < اقرأ أكثر
+                    </button>
+             
+                </div>
+            </div>
+            <div class="card" style="border-radius:8px;">
+                <div class="row " style="background-color:#333333; color:#fff; margin-top:-1px;position: relative;">
+                      <div class="col"> <i class="ion-arrow-left-b" style="position: absolute; right: 10px;"></i>WINDOW TINTING</div></div>
+                <div class="item item-text-wrap" style="padding-left:5px; padding-top:5px;">
+                    <img src="img/settings_car_golden.png" class="img-rit" />
+                    <p style="margin-top: -3px;margin-left: 10px;display: rtl">هذه هي البطاقة الأساسية التي تحتوي على العنصر الذي قد التفاف النص.</p>
+                    <button class="button" style=" box-shadow:0px 0px 1px #888888; font-size:12px;float:left; margin-left:10px;min-height:25px ;margin-top: 02px; margin-bottom: 2px; line-height: 20px ; background-color:#d6d7d7; color: black;"ng-click="readMorePage()">
+                        < اقرأ أكثر
+                    </button>
+                </div>
+            </div>
+            <div class="card" style="border-radius:8px;">
+                <div class="row " style="background-color:#0000ff; color:#fff; margin-top:-1px;position: relative;">
+                      <div class="col"> <i class="ion-arrow-left-b" style="position: absolute; right: 10px;"></i>WINDOW TINTING</div></div>
+                <div class="item item-text-wrap" style="padding-left:5px; padding-top:5px;">
+                    <img src="img/settings_car_red.png" class="img-rit" />
+                    <p style="margin-top: -3px;margin-left: 10px;display: rtl">هذه هي البطاقة الأساسية التي تحتوي على العنصر الذي قد التفاف النص.</p>
+                    <button class="button" style="box-shadow:0px 0px 1px #888888; font-size:12px;float:left; margin-left:10px;min-height:25px ;margin-top: 02px; margin-bottom: 2px; line-height: 20px ; background-color:#d6d7d7; color: black;"ng-click="readMorePage()">
+                       < اقرأ أكثر
+                    </button>
+                </div>
+            </div>
         </div>
         </div>
     </ion-content>
 </ion-view>
+
