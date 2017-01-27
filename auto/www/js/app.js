@@ -95,7 +95,8 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
 
     .state('services', {
         templateUrl: "templates/services.html",
-        url: "/services"
+        url: "/services",
+        controller:'ServicesCtrl'
     })
 
     .state('promotion', {
@@ -107,6 +108,11 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
     .state('location', {
         templateUrl: "templates/location.html",
         url: "/location",
+    })
+    .state('readMore', {
+        templateUrl: "templates/readmore.html",
+        url: "/readmore",
+         
     })
 
 

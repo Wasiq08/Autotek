@@ -96,106 +96,119 @@
 .offercontent {
     margin-left: 10px;
 }
-#demo {
-        margin: 30px 0 50px 0;
-        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    }
-#demo .wrapper {
-        display: inline-block;
-        width: 180px;
-        margin: 0 10px 0 0;
-        height: 20px;
-        position: relative;
-    }
-    
-#demo .parent {
-        height: 100%;
-        width: 100%;
-        display: block;
-        cursor: pointer;
-        line-height: 30px;
-        height: 30px;
-        
-        background: green;
-        border: 1px solid #AAA;
-        color: #282D31;
-        font-weight: bold;
-        z-index: 2;
-        position: relative;
-        -webkit-transition: border-radius .1s linear, background .1s linear, z-index 0s linear;
-        -webkit-transition-delay: .8s;
-        text-align: center;
-    }
-    
-#demo .parent:hover, 
-#demo .content:hover ~ .parent {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        z-index: 0;
-    }
-    
-#demo .content {
-        position: absolute;
-        top: 0;
-        display: block;
-        z-index: 1;
-        height: 0;
-        width: 180px;
-        padding-top: 30px;
-        -webkit-transition: height .5s ease;
-        -webkit-transition-delay: .4s;
-        border: 1px solid #777;
-        border-radius: 5px;
-        
-    }
-    
-#demo .wrapper:active .content {
-        height: 123px;
-        z-index: 3;
-        -webkit-transition-delay: 0s;
-    }
-    
-#demo .content:hover {
-        height: 123px;
-        z-index: 3;
-        -webkit-transition-delay: 0s;
-    }
-    
-    
-#demo .content ul {
-        background: #fff;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        height: 100%;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-    }
-    
-#demo .content ul a {
-        text-decoration: none;
-    }
-    
-#demo .content li:hover {
-        background: #eee;
-        color: #333;
-    }
-#demo .content li {
-        list-style: none;
-        text-align: left;
-        color: #888;
-        font-size: 14px;
-        line-height: 30px;
-        height: 30px;
-        padding-left: 10px;
-        border-top: 1px solid #ccc;
-    }
-    
-#demo .content li:last-of-type {
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-    }
+.dropdown {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+  width: 90%;
+}
+
+.dropdown-text {
+  cursor: pointer;
+  position: absolute;
+  text-indent: 10px;
+  line-height: 45px;
+  background-color: green;
+  /*border: 1px solid #ccc;*/
+  /*border-radius: 3px;*/
+  /*box-shadow: 0 1px 0 rgba(255,255,255, .9) inset, 0 1px 3px rgba(0,0,0, .1);*/
+  width: 100%;
+}
+
+.dropdown-text:after {
+  position: absolute;
+  right: 6px;
+  top: 15px;
+  content: '';
+  width: 0px;
+  height: 0px;
+  /*border-style: solid;
+  border-width: 5px 4px 0 4px;
+  border-color: #555 transparent transparent transparent;*/
+}
+
+.dropdown-text,
+.dropdown-content a {
+  color: white;
+  /*text-shadow: 0 1px #fff;*/
+}
+
+.dropdown-toggle {
+  font-size: 0;
+  z-index: 1;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  /*border: none;*/
+  padding: 0;
+  margin: 0 0 0 1px;
+  background: transparent;
+  text-indent: -10px;
+  height: 34px;
+  width: 100%;
+  border-bottom: none !important;
+}
+
+.dropdown-toggle:focus {
+  /*outline: 0;*/
+}
+
+.dropdown-content {
+  -webkit-transition: all .25s ease;
+  -moz-transition: all .25s ease;
+  -ms-transition: all .25s ease;
+  -o-transition: all .25s ease;
+  transition: all .25s ease;
+  list-style-type: none;
+  position: absolute;
+  top: 32px;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  visibility:hidden;
+  text-indent: 10px;
+  line-height: 32px;
+  background-color: #eee;
+  /*border: 1px solid #ccc;*/
+
+  width: 100%;
+}
+
+.dropdown-content a {
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background: #e8e8e8;
+}
+
+
+.dropdown-toggle:hover ~ .dropdown-text,
+.dropdown-toggle:focus ~ .dropdown-text {
+  background-color: green;
+}
+
+.dropdown-toggle:focus ~ .dropdown-text {
+  /*box-shadow: 0 1px 3px rgba(0,0,0, .2) inset, 0 1px 0 rgba(255,255,255, 0.8);*/
+  z-index: 2;
+}
+
+.dropdown-toggle:focus ~ .dropdown-text:after {
+  /*border-width: 0 4px 5px 4px;*/
+  /*border-color: transparent transparent #555 transparent;*/
+}
+
+.dropdown-content:hover,
+.dropdown-toggle:focus ~ .dropdown-content {
+  opacity: 1;
+  visibility:visible;
+  top: 42px;
+}
+a{
+    text-decoration: none;
+}
 </style>
+
 <ion-view>
     <ion-header>
         <div class="bar bar-header bar-dark no-top">
@@ -206,7 +219,7 @@
         </div>
     </ion-header>
     <ion-content class="has-header ak-bg" style="background-color: black;">
-        <div class="promocontainer">
+       <!--<div class="promocontainer">
             <div class="nextoffer">
                 <div class="nextofferheader">
                     <div class="heading"><i class="ion-arrow-right-b"></i> NEXT OFFERS</div>
@@ -237,7 +250,7 @@
                             </div>
                         </div>
                     </div>
-                </div>   <!--eidt-->
+                </div>   
              
             </div>
             <div class="nextoffer">
@@ -256,7 +269,90 @@
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-    </ion-content>
+</div> -->
+    <div style="text-align: center">    
+         <div class="dropdown">
+
+
+            <input class="dropdown-toggle" type="text">
+            <div class="dropdown-text">Next Offers</div>
+                <ul class="dropdown-content" style="z-index: 10;">
+                    <div class="nodottedbox">
+                        <div class="nobox">
+                            <div class="offertitle">OFFER TITLE
+                            </div>
+                            <div class="offercontent">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nodottedbox">
+                        <div class="nobox">
+                            <div class="offertitle">OFFER TITLE
+                            </div>
+                            <div class="offercontent">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+    </div>
+    <div style="text-align: center; margin-top:40px;">    
+         <div class="dropdown">
+
+
+            <input class="dropdown-toggle" type="text">
+            <div class="dropdown-text">Earned Offers</div>
+                <ul class="dropdown-content" style="z-index: 10;">
+                    <div class="nodottedbox">
+                        <div class="nobox">
+                            <div class="offertitle">OFFER TITLE
+                            </div>
+                            <div class="offercontent">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nodottedbox">
+                        <div class="nobox">
+                            <div class="offertitle">OFFER TITLE
+                            </div>
+                            <div class="offercontent">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+    </div>
+     <div style="text-align: center; margin-top:40px;">    
+         <div class="dropdown">
+
+
+            <input class="dropdown-toggle" type="text">
+            <div class="dropdown-text">Consumed Offers</div>
+                <ul class="dropdown-content">
+                    <div class="nodottedbox">
+                        <div class="nobox">
+                            <div class="offertitle">OFFER TITLE
+                            </div>
+                            <div class="offercontent">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nodottedbox">
+                        <div class="nobox">
+                            <div class="offertitle">OFFER TITLE
+                            </div>
+                            <div class="offercontent">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+    </div>
+   </ion-content>
 </ion-view>
