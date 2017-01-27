@@ -146,6 +146,9 @@
 .ak-pl-45 { margin: 45px; }
 .ak-pl-50 { margin: 50px; }
 /* End of Padding */
+/*drop down css start*/
+
+/*drop down css end*/
 .logo-header {
    width: 50%;
    height: 64px;
@@ -159,14 +162,62 @@
     padding-right: 50px;
 }
   
-   
-
+.at-form-outline{
+    border:2px solid white;
+    height: 570px;
+    width:95%;
+    margin: auto;
+}
+.at-user-info{
+   width:300px;
+   /*background-color: white;*/
+}
+.at-profile-img{
+    width:66px;
+    padding-top: 10px;
+    padding-left: 15px;
+ 
+}
+.at-address-title{
+    color: white;
+    font-size: 20px;
+    margin-top: -40px;
+    margin-left: 80px;
+    /*font-weight: bold;*/
+}
+.at-address-text{
+    color: white;
+    font-size: 16px;
+    line-height: 100%;
+    padding-top: 10px;
+    line-height: 20px;
+    padding-left: 10px;
+}
+hr{
+    width:280px;
+}
+.at-user-number{
+    color: white;
+    margin-left: 80px;
+    margin-top: -40px;
+    font-size: 16px;
+}
+.at-spacing{
+    margin-left: 40px;
+}
 .ak-bg{
 
     background-image: url('../img/background2.png');
     background-size: cover ;
 }
-
+at-pad{
+    margin-top: 15px !important;
+}
+.at-schedule p{
+color: white;
+margin-left: 20px;
+margin-top: 10px;
+}
 .lg-icons{
 
    width:15%;

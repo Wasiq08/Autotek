@@ -6,7 +6,7 @@ angular.module('starter.controllers', [])
     //$scope.user.password = '123456';
 
     Cities.getCities();
-    PormotionsOffers.getNextOffers().success(function(res){
+    PormotionsOffers.getConsumedOffers().success(function(res){
         console.log(res)
     })
      .error(function(err) {
@@ -91,7 +91,7 @@ angular.module('starter.controllers', [])
         console.log(language)
         localStorageService.set('PageLangue',language);
     }
-
+  
 })
 
 .controller('NotificationEnglishCtrl', ['$scope', '$ionicSideMenuDelegate','PormotionsOffers', function($scope, $ionicSideMenuDelegate,PormotionsOffers) {
@@ -289,65 +289,69 @@ angular.module('starter.controllers', [])
 .controller('PromotionEnglishCtrl', ['$scope','PormotionsOffers', function($scope,PormotionsOffers) {
     //promocode facaebook sharing functtion..
     $scope.facebookshare=function(){
-        if(ionic.Platform.isIOS())
-        {
-            window.plugins.socialsharing.shareVia('com.apple.social.facebook', 'Message via FB', null, null, null, function(){console.log('share ok') 
-            PormotionsOffers.getPromoCode().success(function(res){
-                    console.log(res);
-            })
-            .error(function(err){
-        console.log(err)
-    })
-            }, function(msg) {alert('error: ' + msg)})
-        }    
-        else
-        {
-            window.plugins.socialsharing.shareVia('facebook', 'Message via FB', null, null, null, function(){console.log('share ok')
-                PormotionsOffers.getPromoCode().success(function(res){
-                    console.log(res);
-            })
-            .error(function(err){
-        console.log(err)
-    })
-                }, function(msg) {alert('error: ' + msg)})
-        }
+    //     if(ionic.Platform.isIOS())
+    //     {
+    //         window.plugins.socialsharing.shareVia('com.apple.social.facebook', 'Message via FB', null, null, null, function(){console.log('share ok') 
+    //         PormotionsOffers.getPromoCode().success(function(res){
+    //                 console.log(res);
+    //         })
+    //         .error(function(err){
+    //     console.log(err)
+    // })
+    //         }, function(msg) {alert('error: ' + msg)})
+    //     }    
+    //     else
+    //     {
+    //         window.plugins.socialsharing.shareVia('facebook', 'Message via FB', null, null, null, function(){console.log('share ok')
+    //             PormotionsOffers.getPromoCode().success(function(res){
+    //                 console.log(res);
+    //         })
+    //         .error(function(err){
+    //     console.log(err)
+    // })
+    //             }, function(msg) {alert('error: ' + msg)})
+    //     }
+    window.plugins.socialsharing.shareViaFacebook('Message via Facebook', null /* img */, null /* url */, function() {console.log('share ok')}, function(errormsg){alert(errormsg)})
+
     }
     //promocode facaebook sharing functtion end..
 
     //promocode twitter sharing function start
     $scope.twittershare=function(){
-        if(ionic.Platform.isIOS()){
-            window.plugins.socialsharing.shareVia('com.apple.social.twitter', 'Message via Twitter', null, null, 'http://www.x-services.nl',
-             function(){
-                    console.log('share ok')
-                    PormotionsOffers.getPromoCode().success(function(res){
-                        console.log(res);
-                    })
-                    .error(function(err){
-                        console.log(err)
-                    })
-                },
-                 function(msg)
-                  {
-                      alert('error: ' + msg)
-                    })
-        }
-        else{
-             window.plugins.socialsharing.shareVia('twitter', 'Message via Twitter', null, null, 'http://www.x-services.nl',
-             function(){
-                    console.log('share ok')
-                    PormotionsOffers.getPromoCode().success(function(res){
-                        console.log(res);
-                    })
-                    .error(function(err){
-                        console.log(err)
-                    })
-                },
-                 function(msg)
-                  {
-                      alert('error: ' + msg)
-                    })
-        }
+        // if(ionic.Platform.isIOS()){
+        //     window.plugins.socialsharing.shareVia('com.apple.social.twitter', 'Message via Twitter', null, null, 'http://www.x-services.nl',
+        //      function(){
+        //             console.log('share ok')
+        //             PormotionsOffers.getPromoCode().success(function(res){
+        //                 console.log(res);
+        //             })
+        //             .error(function(err){
+        //                 console.log(err)
+        //             })
+        //         },
+        //          function(msg)
+        //           {
+        //               alert('error: ' + msg)
+        //             })
+        // }
+        // else{
+        //      window.plugins.socialsharing.shareVia('twitter', 'Message via Twitter', null, null, 'http://www.x-services.nl',
+        //      function(){
+        //             console.log('share ok')
+        //             PormotionsOffers.getPromoCode().success(function(res){
+        //                 console.log(res);
+        //             })
+        //             .error(function(err){
+        //                 console.log(err)
+        //             })
+        //         },
+        //          function(msg)
+        //           {
+        //               alert('error: ' + msg)
+        //             })
+        // }
+
+        window.plugins.socialsharing.shareVia('com.twitter.android', 'Message via Twitter', null, null, 'http://www.x-services.nl', function(){console.log('share ok')}, function(msg) {alert('error: ' + msg)})
     }       //promocode twitter sharing function end..
 
     //promocode pinterest & googlePlus sharing function start.. 
@@ -376,6 +380,8 @@ angular.module('starter.controllers', [])
     //     console.log(err)
     // })
         //promocode api end...
+
+
  }])
 
 
@@ -800,9 +806,13 @@ angular.module('starter.controllers', [])
             $scope.map = map;
         });
 
-    });
+    })
 
-
+.controller('ServicesCtrl',function($scope,$rootScope){
+    $scope.readMorePage=function(){
+        $rootScope.navigate('readMore')
+    }
+})
 function dayname(day) {
     if (day == 0) {
         return 'Sunday';
