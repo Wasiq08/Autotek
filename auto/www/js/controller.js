@@ -6,12 +6,7 @@ angular.module('starter.controllers', [])
     //$scope.user.password = '123456';
 
     Cities.getCities();
-    PormotionsOffers.getConsumedOffers().success(function(res){
-        console.log(res)
-    })
-     .error(function(err) {
-                            console.log(err);
-                        })
+ 
 
 
     //var params = "grant_type=password&username=0557613133&password=123456&client_id=Android02&client_secret=21B5F798-BE55-42BC-8AA8-0025B903DC3B&scope=app1"
@@ -380,7 +375,33 @@ angular.module('starter.controllers', [])
     //     console.log(err)
     // })
         //promocode api end...
-
+        $scope.nextOfferDate=[];
+          $scope.consumedOfferDate=[];
+           PormotionsOffers.getNextOffers().success(function(res){
+            console.log(res)
+            for (var i = 0; i < res.length; i++) 
+                {
+                    $scope.nextOfferDate.push({
+                        Description_EN: res[i].Description_EN
+                    })  
+                }
+            })
+         .error(function(err) {
+                     console.log(err);
+                })
+                PormotionsOffers.getConsumedOffers().success(function(res){
+            console.log(res)
+            if(res>0){
+                $scope.data=res;
+            }
+            else
+            {
+              $scope.data='no data';
+            }
+            })
+         .error(function(err) {
+                     console.log(err);
+                })
 
  }])
 
@@ -444,6 +465,36 @@ angular.module('starter.controllers', [])
     //     console.log(err)
     // })
         //promocode api end...
+              $scope.nextOfferDate=[];
+          $scope.consumedOfferDate=[];
+           PormotionsOffers.getNextOffers().success(function(res){
+            console.log(res)
+            for (var i = 0; i < res.length; i++) 
+                {
+                    $scope.nextOfferDate.push({
+                        Description_AR: res[i].Description_AR
+                    })  
+                }
+            })
+         .error(function(err) {
+                     console.log(err);
+                })
+                PormotionsOffers.getConsumedOffers().success(function(res){
+            console.log(res)
+            if(res>0){
+                $scope.data=res;
+            }
+            else
+            {
+              $scope.data='no data';
+            }
+            })
+         .error(function(err) {
+                     console.log(err);
+                })
+
+
+
  }])
 
 
