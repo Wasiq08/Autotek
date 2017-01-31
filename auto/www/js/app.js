@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.directives', 'starter.services', '720kb.datepicker', 'LocalStorageModule', 'ionic-datepicker'])
+angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.directives', 'starter.services', '720kb.datepicker', 'ionic-timepicker', 'LocalStorageModule', 'ionic-datepicker'])
 
 .run(function($ionicPlatform,localStorageService,$state,$rootScope) {
     $ionicPlatform.ready(function() {
@@ -289,6 +289,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
         url: "/appointconfirmeda",
         controller: 'AppointConfimedCtrl'
     })
+    
 
     .state('promotionsa', {
         templateUrl: "arabicTemplates/promotions.html",
@@ -339,13 +340,13 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
         views: {
             'menuContent': {
                 templateUrl: "arabicTemplates/appointment.html",
-                controller: 'AppointmentCtrl'
+                controller: 'AppointmentArabicCtrl'
             }
         }
     })
 
     .state('app.bookappointmenta', {
-        url: "/bookappointment/:branchida",
+        url: "/bookappointmenta/:branchid",
         views: {
             'menuContent': {
                 templateUrl: "arabicTemplates/bookappointment.html",

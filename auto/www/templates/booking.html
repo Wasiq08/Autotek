@@ -114,6 +114,10 @@
                     </div>
                 </div>
             </div>
+            <div style="text-align: center; margin-top: 40px;">
+                    <img src="img/noappointment.png" ng-if="isappoinment" style="width: 150px;">
+                    <p ng-if="isappoinment" style="color: white">There is no appointment</p>
+            </div>
             <ion-infinite-scroll on-infinite="getMoreAppointment()" distance="1%" ng-if="noMoreAppointment"></ion-infinite-scroll>
         </div>
     </ion-content>
