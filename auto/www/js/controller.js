@@ -275,6 +275,7 @@ angular.module('starter.controllers', [])
             month: monthname(date.getMonth())
         })
     }
+   
 
 
 })
@@ -927,6 +928,7 @@ angular.module('starter.controllers', [])
 
 })
 .controller('BookingCtrl', ['$scope', 'Appointment', '$ionicLoading', function($scope, Appointment, $ionicLoading) {
+    console.log('helo')
     $scope.appointments = [];
     var pageNumber = 0;
     var pageSize = 4;
@@ -962,10 +964,55 @@ angular.module('starter.controllers', [])
                     console.log(err)
                 })
         }
-        // $scope.getMoreAppointment();
+        $scope.getMoreAppointment();
+}])
+// arabic
+.controller('BookingArabicCtrl', ['$scope', 'Appointment', '$ionicLoading', function($scope, Appointment, $ionicLoading) {
+    console.log('helo')
+    $scope.appointments = [];
+    var pageNumber = 0;
+    var pageSize = 4;
+    $scope.isappoinment=true;
+    $scope.noMoreAppointment = true;
+    $scope.getMoreAppointment = function(start) {
+            console.log("hello")
+            var _start = start || false
+            Appointment.get(pageNumber, pageSize).success(function(res) {
+                if(res >0){
+                    $scope.isappoinment=false;
+                    console.log(res)
+                    if (_start) {
+                        $scope.appointments = [];
+                    }
+                    if (res.length < pageSize) {
+                        $scope.noMoreAppointment = false;
+                    }
+                    for (var i = 0; i < res.length; i++) {
+                        var date = new Date(res[i].AppointmentDate);
+                        $scope.appointments.push({ startTime: res[i].StartTimeStr, location: res[i].BranchName, day: dayname(date.getDay()), date: date.getDate(), month: monthname(date.getMonth()) })
+                    }
+                    pageNumber = pageNumber + 1;
+                    if (_start) {
+                        $scope.$broadcast('scroll.refreshComplete');
+                        //$scope.$apply()
+                    } else {
+                        $scope.$broadcast('scroll.infiniteScrollComplete');
+                    }
+                }
+                })
+                .error(function(err) {
+                    console.log(err)
+                })
+        }
+        $scope.getMoreAppointment();
 }])
 
 .controller('AppointReviewCtrl', ['$scope', 'AppointmentDetail', function($scope, AppointmentDetail) {
+        console.log(AppointmentDetail.get())
+        $scope.x = AppointmentDetail.get()
+    }])
+    //arabic
+    .controller('AppointReviewArabicCtrl', ['$scope', 'AppointmentDetail', function($scope, AppointmentDetail) {
         console.log(AppointmentDetail.get())
         $scope.x = AppointmentDetail.get()
     }])

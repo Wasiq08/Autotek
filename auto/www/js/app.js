@@ -281,7 +281,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
     .state('appointmentreviewa', {
         templateUrl: "arabicTemplates/appointment_review.html",
         url: "/appointreviewa",
-        controller: "AppointReviewCtrl"
+        controller: "AppointReviewArabicCtrl"
     })
 
     .state('appointconfirmeda', {
@@ -330,7 +330,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
         views: {
             'menuContent': {
                 templateUrl: "arabicTemplates/booking.html",
-                controller: 'BookingCtrl'
+                controller: 'BookingArabicCtrl'
             }
         }
     })

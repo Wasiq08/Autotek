@@ -106,6 +106,7 @@
                     <div class="talkbubble2">
                         <p style="text-align: center;">{{x.month}}</p>
                     </div>
+                    
                     <div class="timeappointment">
                         {{x.startTime}}
                     </div>
@@ -113,6 +114,10 @@
                         <img src="img/location_icon_red.png" width="15" height="15"> {{x.location}}
                     </div>
                 </div>
+            </div>
+               <div style="text-align: center; margin-top: 40px;">
+                    <img src="img/noappointment.png" ng-if="isappoinment" style="width: 150px;">
+                    <p ng-if="isappoinment" style="color: white" dir="rtl">لا يوجد موعد</p>
             </div>
             <ion-infinite-scroll on-infinite="getMoreAppointment()" distance="1%" ng-if="noMoreAppointment"></ion-infinite-scroll>
         </div>
