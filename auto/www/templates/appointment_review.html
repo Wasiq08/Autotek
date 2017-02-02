@@ -82,6 +82,17 @@
 .lg-icon-caret-left:before {
     content: "\e90a";
 }
+.payDepositBtn{
+    left: 10%;
+    top: 40%;
+    height: 6%;
+    width: 80%;
+    position:absolute;
+    border-style: solid; 
+    border-color: white;
+    border-width: thin;
+    border-radius: 2%;
+}
 </style>
 <ion-view>
     <ion-header>
@@ -94,10 +105,10 @@
     </ion-header>
     <ion-content class="has-header ak-bg" style="background-color: black;">
         <div id="bookingcontainer">
-            <div style="position: absolute;color: white; top: 10%; left: 10%; font-size: large;">
+            <div style="position: absolute;color: white;width: 200px; top: 7%; left: 10%; font-size: large;">
                 PLEASE REVIEW
             </div>
-            <div class="calender">
+            <div class="calender" style="margin-top: -13px;">
                 <div class="talkbubble">
                     <p style="text-align: center; color: white;">{{x.day}}</p>
                 </div>
@@ -120,7 +131,7 @@
                 </p>
             </div>
             <div style="position: absolute;color: white; top: 40%; left: 10%; width: 80%;">
-                <p style="text-align: center; color: white; font-size: 15px; margin-top: 2% ;">
+                <p style="text-align: center; color: white; font-size: 15px; margin-top: 15% ;">
                     (60 SAR)
                 </p>
             </div>

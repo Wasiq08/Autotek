@@ -164,7 +164,7 @@
   
 .at-form-outline{
     border:2px solid white;
-    height: 570px;
+    height: 600px;
     width:95%;
     margin: auto;
 }
@@ -299,7 +299,7 @@ input[type="password"]
 .c{
     margin-left: 10px;
     margin-right: 10px;
-    height: 85%;
+    height: 600px;
     border-style: solid;
     border-width: 2px;
     border-color: #fff;
@@ -338,7 +338,7 @@ select#soflow {
    font-size: inherit;
    overflow: hidden;
    padding: 7px 10px;
-   width: 100%;
+   width: 96%;
    margin:auto;
    margin-top: 8px;
    background: transparent;
@@ -393,7 +393,8 @@ background: transparent;
     font: inherit;
     vertical-align: baseline;
     display: inline-block;
-    margin-left: 3em;
+    width: 280px;
+    margin-top: -5px;
 }
 .main-card{
     width:100%;
