@@ -691,11 +691,14 @@ angular.module('starter.controllers', [])
                         })
                         .error(function(err) {
                             var error = [{ message: err.Message }]
+                            
+                            $ionicLoading.hide();
                             $scope.deactivate(error)
                         })
                 })
                 .error(function(error) {
-
+                    
+                            $ionicLoading.hide();
                 })
                 //$ionicSlideBoxDelegate.slide(index);
 
