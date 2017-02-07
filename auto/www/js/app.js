@@ -217,7 +217,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
         views: {
             'menuContent': {
                 templateUrl: "templates/earninghistory.html",
-                controller: 'SaleStatEnglihCtrl'
+                controller: 'EarnignHistory'
             }
         }
     })
@@ -370,7 +370,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
         views: {
             'menuContent': {
                 templateUrl: "arabicTemplates/earninghistory.html",
-                controller: 'SaleStatCtrl'
+                controller: 'EarnignHistoryArabic'
             }
         }
     })

@@ -402,3 +402,33 @@ background: transparent;
     background-color: green;
     border-radius: 15px;
 }
+.first_header{
+    margin-top: 35px !important;
+    width: 90%;
+    margin:auto;
+    height: 40px;
+    background-color: black;
+    position: relative;
+}
+.content{
+    margin:auto;
+    height: 90px;
+    background-color: white;
+    width: 90%;
+    position: relative;
+    text-align: center;
+}
+/*.content span{
+    color:black;
+    text-align: center !important;
+    font-size: 32px;
+    margin-top: 20px !important;
+}*/
+.second_header{
+    margin-top: 35px !important;
+    width: 90%;
+    margin:auto;
+    height: 40px;
+    background-color: red;
+    position: relative;
+}

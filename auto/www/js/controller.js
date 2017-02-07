@@ -52,8 +52,17 @@ angular.module('starter.controllers', [])
                         })
                         .error(function(err) {
                             console.log(err);
-                            $rootScope.navigate('agentmain')
-                            $ionicLoading.hide();
+                            PormotionsOffers.getSaleAgent().success(function(res){
+                                 loggedInUser = { user: res }
+                                localStorageService.set("loggedInUser", loggedInUser);
+                                console.log(res);
+                                 $ionicLoading.hide();
+                              $rootScope.navigate('agentmain')
+                            })
+                           .error(function(err){
+                                $ionicLoading.hide();
+                           })
+                           
                         })
                         //
                 }
@@ -360,7 +369,9 @@ angular.module('starter.controllers', [])
 .controller('MainCtrl', ['$scope', 'localStorageService', function($scope, localStorageService) {
     try{
     $scope.user = localStorageService.get("loggedInUser").user;
-    console.log(localStorageService.get("loggedInUser"));
+    
+            $scope.AgentData=localStorageService.get("loggedInUser").user
+            console.log("asdasdasd",$scope.AgentData);
     }
     catch(err) {
 
@@ -776,11 +787,20 @@ angular.module('starter.controllers', [])
                 console.log(err);
             })
     }
-
 }])
 
 .controller('SaleStatEnglihCtrl', function($scope,ionicDatePicker, $ionicPlatform,PormotionsOffers) {
+    $scope.finalObject={};
+        var month=monthname(1);
+        $scope.showdate= month +', '+ 2017;
     
+         PormotionsOffers.getSaleStats(2017,2).success(function(res){
+            $scope.finalObject.MonthlyConversion=res.MonthlyConversion;
+            $scope.finalObject.MonthlyReferrals=res.MonthlyReferrals;
+    })
+    .error(function(err){
+        console.log(err);
+    })
   var year;
      var ipObj1 = {
       callback: function (val) {  //Mandatory
@@ -791,7 +811,8 @@ angular.module('starter.controllers', [])
         $scope.showdate= month +', '+ year;
         console.log(month)
          PormotionsOffers.getSaleStats(year,date.getMonth()+1).success(function(res){
-            console.log(res)
+            $scope.finalObject.MonthlyConversion=res.MonthlyConversion;
+            $scope.finalObject.MonthlyReferrals=res.MonthlyReferrals;
     })
     .error(function(err){
         console.log(err);
@@ -825,10 +846,165 @@ angular.module('starter.controllers', [])
     $scope.openDatePicker = function(){
       ionicDatePicker.openDatePicker(ipObj1);
     };
+
+
+
+        var month=monthname(1);
+        $scope.showdate1= month +', '+ 2017;
+
+  PormotionsOffers.getSaleStats(2017,2).success(function(res){
+            $scope.finalObject.LifeTimeReferrals=res.LifeTimeReferrals;
+            $scope.finalObject.LifeTimeConversion=res.LifeTimeConversion;
+            console.log( $scope.finalObject.LifeTimeReferrals)
+    })
+    .error(function(err){
+        console.log(err);
+    })
+
+    //// second date picker function
+       var ipObj2 = {
+      callback: function (val) {  //Mandatory
+        console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+        var date= new Date(val);
+         year=date.getFullYear();
+        var month=monthname(date.getMonth());
+        $scope.showdate1= month +', '+ year;
+        console.log(month)
+         PormotionsOffers.getSaleStats(year,date.getMonth()+1).success(function(res){
+            $scope.finalObject.LifeTimeReferrals=res.LifeTimeReferrals;
+            $scope.finalObject.LifeTimeConversion=res.LifeTimeConversion;
+            console.log( $scope.finalObject.LifeTimeReferrals)
+    })
+    .error(function(err){
+        console.log(err);
+    })
+      PormotionsOffers.getEarningHistory(year).success(function(res){
+            console.log(res)
+            console.log('hello')
+    })
+    .error(function(err){
+        console.log(err);
+    })
+      },
+      disabledDates: [            //Optional
+        new Date(2016, 2, 16),
+        new Date(2015, 3, 16),
+        new Date(2015, 4, 16),
+        new Date(2015, 5, 16),
+        new Date('Wednesday, August 12, 2015'),
+        new Date("08-16-2016"),
+        new Date(1439676000000)
+      ],
+      from: new Date(2012, 1, 1), //Optional
+      to: new Date(2050, 10, 30), //Optional
+      inputDate: new Date(),      //Optional
+      mondayFirst: true,          //Optional
+      disableWeekdays: [0],       //Optional
+      closeOnSelect: false,       //Optional
+      templateType: 'popup'       //Optional
+    };
+
+    $scope.openDatePicker1 = function(){
+      ionicDatePicker.openDatePicker(ipObj2);
+    };
   
 })
-.controller('SaleStatArabicCtrl', ['$scope', function($scope) {
-    var year;
+.controller('EarnignHistory', function($scope, localStorageService,ionicDatePicker, $ionicPlatform,PormotionsOffers) {
+     var ipObj2 = {
+      callback: function (val) {  //Mandatory
+        console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+        var date= new Date(val);
+         year=date.getFullYear();
+        var month=monthname(date.getMonth());
+        $scope.showdate= month +', '+ year;
+        console.log(month)
+         PormotionsOffers.getEarningHistory(year).success(function(res){
+           console.log(res)
+    })
+    .error(function(err){
+        console.log(err);
+    })
+      PormotionsOffers.getEarningHistory(year).success(function(res){
+            console.log(res)
+            console.log('hello')
+    })
+    .error(function(err){
+        console.log(err);
+    })
+      },
+      disabledDates: [            //Optional
+        new Date(2016, 2, 16),
+        new Date(2015, 3, 16),
+        new Date(2015, 4, 16),
+        new Date(2015, 5, 16),
+        new Date('Wednesday, August 12, 2015'),
+        new Date("08-16-2016"),
+        new Date(1439676000000)
+      ],
+      from: new Date(2012, 1, 1), //Optional
+      to: new Date(2050, 10, 30), //Optional
+      inputDate: new Date(),      //Optional
+      mondayFirst: true,          //Optional
+      disableWeekdays: [0],       //Optional
+      closeOnSelect: false,       //Optional
+      templateType: 'popup'       //Optional
+    };
+
+    $scope.openDatePicker = function(){
+      ionicDatePicker.openDatePicker(ipObj2);
+    };
+    
+})
+// arabic 
+.controller('EarnignHistoryArabic', function($scope, localStorageService,ionicDatePicker, $ionicPlatform,PormotionsOffers) {
+     var ipObj2 = {
+      callback: function (val) {  //Mandatory
+        console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+        var date= new Date(val);
+         year=date.getFullYear();
+        var month=monthname(date.getMonth());
+        $scope.showdate= month +', '+ year;
+        console.log(month)
+         PormotionsOffers.getEarningHistory(year).success(function(res){
+           console.log(res)
+    })
+    .error(function(err){
+        console.log(err);
+    })
+      PormotionsOffers.getEarningHistory(year).success(function(res){
+            console.log(res)
+            console.log('hello')
+    })
+    .error(function(err){
+        console.log(err);
+    })
+      },
+      disabledDates: [            //Optional
+        new Date(2016, 2, 16),
+        new Date(2015, 3, 16),
+        new Date(2015, 4, 16),
+        new Date(2015, 5, 16),
+        new Date('Wednesday, August 12, 2015'),
+        new Date("08-16-2016"),
+        new Date(1439676000000)
+      ],
+      from: new Date(2012, 1, 1), //Optional
+      to: new Date(2050, 10, 30), //Optional
+      inputDate: new Date(),      //Optional
+      mondayFirst: true,          //Optional
+      disableWeekdays: [0],       //Optional
+      closeOnSelect: false,       //Optional
+      templateType: 'popup'       //Optional
+    };
+
+    $scope.openDatePicker = function(){
+      ionicDatePicker.openDatePicker(ipObj2);
+    };
+    
+})
+.controller('SaleStatArabicCtrl',function($scope,ionicDatePicker, $ionicPlatform,PormotionsOffers) {
+   $scope.finalObject=[];
+  var year;
      var ipObj1 = {
       callback: function (val) {  //Mandatory
         console.log('Return value from the datepicker popup is : ' + val, new Date(val));
@@ -838,7 +1014,8 @@ angular.module('starter.controllers', [])
         $scope.showdate= month +', '+ year;
         console.log(month)
          PormotionsOffers.getSaleStats(year,date.getMonth()+1).success(function(res){
-            console.log(res)
+            $scope.finalObject.MonthlyConversion=res.MonthlyConversion;
+            $scope.finalObject.MonthlyReferrals=res.MonthlyReferrals;
     })
     .error(function(err){
         console.log(err);
@@ -871,8 +1048,55 @@ angular.module('starter.controllers', [])
 
     $scope.openDatePicker = function(){
       ionicDatePicker.openDatePicker(ipObj1);
-    }; 
-}])
+    };
+
+    //// second date picker function
+       var ipObj2 = {
+      callback: function (val) {  //Mandatory
+        console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+        var date= new Date(val);
+         year=date.getFullYear();
+        var month=monthname(date.getMonth());
+        $scope.showdate1= month +', '+ year;
+        console.log(month)
+         PormotionsOffers.getSaleStats(year,date.getMonth()+1).success(function(res){
+            $scope.finalObject.LifeTimeReferrals=res.LifeTimeReferrals;
+            $scope.finalObject.LifeTimeConversion=res.LifeTimeConversion;
+            console.log( $scope.finalObject.LifeTimeReferrals)
+    })
+    .error(function(err){
+        console.log(err);
+    })
+      PormotionsOffers.getEarningHistory(year).success(function(res){
+            console.log(res)
+            console.log('hello')
+    })
+    .error(function(err){
+        console.log(err);
+    })
+      },
+      disabledDates: [            //Optional
+        new Date(2016, 2, 16),
+        new Date(2015, 3, 16),
+        new Date(2015, 4, 16),
+        new Date(2015, 5, 16),
+        new Date('Wednesday, August 12, 2015'),
+        new Date("08-16-2016"),
+        new Date(1439676000000)
+      ],
+      from: new Date(2012, 1, 1), //Optional
+      to: new Date(2050, 10, 30), //Optional
+      inputDate: new Date(),      //Optional
+      mondayFirst: true,          //Optional
+      disableWeekdays: [0],       //Optional
+      closeOnSelect: false,       //Optional
+      templateType: 'popup'       //Optional
+    };
+
+    $scope.openDatePicker1 = function(){
+      ionicDatePicker.openDatePicker(ipObj2);
+    };
+})
 .controller('AppointmentCtrl',  function($scope, Cities, Appointment, CityBranchId, $state, localStorageService,$rootScope) {
     console.log(Cities.cities)
     var cities = localStorageService.get('cities')
