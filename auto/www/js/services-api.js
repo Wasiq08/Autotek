@@ -121,6 +121,12 @@ angular.module('CoreApi', ['CoreApiUtilities'])
             console.log("FINAL URL",url);
             return httpService.$http.get(url, config);
         }
+    this.getSaleAgent = function() {
+            var config = httpService.Utils.getHeader();
+            var url = httpService.Utils.buildUrl(new Array('api', 'salesagent'));
+            console.log("FINAL URL",url);
+            return httpService.$http.get(url, config);
+        }
 }])
 // .service('Notifications',['httpService',function(httpService){
       
