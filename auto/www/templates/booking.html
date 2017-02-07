@@ -85,14 +85,14 @@
     content: "\e90a";
 }
 </style>
-<ion-view title="APPOINTMENTS">
-    <ion-nav-buttons side="left">
-        <button class="button button-icon ion-ios-arrow-back" style="color: white;" nav-direction="back" ng-click="$ionicGoBack(); "></button>
-    </ion-nav-buttons>
 
-    <ion-nav-buttons side="right">
-        <button menu-toggle="right" class="button button-icon icon ion-navicon" style="color: white;"></button>
-    </ion-nav-buttons>
+<ion-view hide-nav-bar="true">
+    <ion-header-bar style="background: #444444">
+        <div class="buttons">
+            <button class="button button-icon ion-ios-arrow-back" nav-direction="back" ng-click="$ionicGoBack(); "></button>
+        </div>
+        <h1 class="title" style="color: white;">APPOINTMENTS</h1>
+    </ion-header-bar>
     <ion-content class="has-header has-footer ak-bg" style="background-color: black;">
         <div id="bookingcontainer">
             <div class="listitem" ng-repeat="x in appointments">
