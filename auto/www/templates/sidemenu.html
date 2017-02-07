@@ -11,7 +11,7 @@
                 <div class="side-img">
                     <img src="img/profileicon.png" style="width: 100%; height:100%; ">
                 </div>
-                <div class="side-txt">MUSTAFA</div>
+                <div class="side-txt">{{$root.name}}</div>
                 <div style="margin-top: 5%;">
                     <div class="side-listitem" ng-click="$root.navigate('main')">
                         <span class="padding-right-10px"><i class="ion-ios-home-outline"></i></span>Home<span><i class="ion-ios-arrow-right ak-float-right"></i></span>
@@ -37,7 +37,7 @@
                     <div class="side-listitem" ng-click="$root.navigate('contact')">
                         <span class="padding-right-10px"><i class="ion-ios-telephone"></i></span>Contact<span><i class="ion-ios-arrow-right ak-float-right"></i></span>
                     </div>
-                    <div ng-click="logout()" class="side-listitem">
+                    <div ng-click="$root.logout()" class="side-listitem">
                         <span class="padding-right-10px"><i class="ion-power"></i></span>Log out<span><i class="ion-ios-arrow-right ak-float-right"></i></span>
                     </div>
                 </div>

@@ -40,6 +40,8 @@ angular.module('starter.controllers', [])
                             //console.log(res)
                             $ionicLoading.hide();
                             loggedInUser = { user: res }
+
+                            $rootScope.name = res.FirstName;
                             localStorageService.set("loggedInUser", loggedInUser);
                             if ($scope.user.username == "96698765") {
                                 //$state.go('agentmain');
@@ -54,6 +56,7 @@ angular.module('starter.controllers', [])
                             console.log(err);
                             PormotionsOffers.getSaleAgent().success(function(res){
                                  loggedInUser = { user: res }
+                                 $rootScope.name = res.FirstName;
                                 localStorageService.set("loggedInUser", loggedInUser);
                                 console.log(res);
                                  $ionicLoading.hide();

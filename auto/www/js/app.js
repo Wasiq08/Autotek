@@ -60,6 +60,10 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
                    }
               }
             }
+
+    $rootScope.logout = function() {
+        $state.go('home')
+    }
 })
 .config(function($stateProvider, $urlRouterProvider) {
   
