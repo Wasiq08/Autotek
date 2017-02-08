@@ -215,6 +215,15 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
             }
         }
     })
+     .state('app.agentRegister', {
+        url: "/agentRegister",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/saleAgentRegister.html",
+                controller: 'SignupCtrl'
+            }
+        }
+    })
 
     .state('app.earninghistory', {
         url: "/earninghistory",
@@ -369,7 +378,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
         }
     })
 
-    .state('app.earninghistoray', {
+    .state('app.earninghistoraya', {
         url: "/earninghistorya",
         views: {
             'menuContent': {

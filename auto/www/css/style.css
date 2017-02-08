@@ -459,3 +459,32 @@ background: transparent;
     background-color: red;
     position: relative;
 }
+.custombutton {
+    border-color: transparent;
+    background-color: transparent;
+    color: white;
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 0 12px;
+    min-width: 52px;
+    min-height: 47px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    vertical-align: top;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    line-height: 42px;
+    cursor: pointer;
+    text-transform: none;
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+#gear_icon{
+    float: right;
+    position: absolute;
+    right: 0px;
+}
