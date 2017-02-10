@@ -912,6 +912,14 @@ angular.module('starter.controllers', [])
     };
   
 })
+// setting Controller English
+.controller('settingsCtrl', function($scope,localStorageService) {
+  
+    $scope.user=localStorageService.get("loggedInUser").user;
+    console.log($scope.user)
+    $scope.user.ContactNumber=parseInt($scope.user.ContactNumber);
+    $scope.user.Password="*************";
+})
 .controller('EarnignHistory', function($scope, localStorageService,ionicDatePicker, $ionicPlatform,PormotionsOffers) {
      var ipObj2 = {
       callback: function (val) {  //Mandatory

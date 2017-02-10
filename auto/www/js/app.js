@@ -215,6 +215,25 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
             }
         }
     })
+      .state('app.settings', {
+        url: "/settings",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/settings.html",
+                controller: 'settingsCtrl'
+            }
+        }
+    })
+    //arabic
+       .state('app.settingsa', {
+        url: "/settingsa",
+        views: {
+            'menuContent': {
+                templateUrl: "arabicTemplates/settings.html",
+                controller: 'settingsCtrl'
+            }
+        }
+    })
      .state('app.agentRegister', {
         url: "/agentRegister",
         views: {
