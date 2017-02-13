@@ -62,6 +62,8 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
             }
 
     $rootScope.logout = function() {
+        localStorageService.remove("access_token");
+        localStorageService.remove("loggedInUser");
         $state.go('home')
     }
 })

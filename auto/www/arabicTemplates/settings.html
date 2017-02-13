@@ -29,6 +29,9 @@
     color: white;
      margin-top: -37px;
 }
+.abc{
+    text-align: center;
+}
 </style>
 <ion-view hide-nav-bar="true">
     
@@ -74,6 +77,12 @@
                   
                     <ion-toggle style="background-color: transparent; border:none;height: 50px;margin-right: 30px;" ></ion-toggle>
                     <p class="notifincation_label">Notification</p>
+                </div>
+                 <div class="abc">
+                <select ng-model="obj.lng" ng-change="get_value(lng)" style="border:#a82b2b;color:white; padding: 10px 35px 10px 35px; margin-top: 10px;background-color:#a82b2b">
+                    <option class="abc" value="en" selected>English</option>
+                    <option class="abc" value="ar">Arabic</option>
+                </select>
                 </div>
                 <div class="padding ak-pt-20">
                     <button type="submit" class="button button-block button-transparent" style="width:80%; border-radius:0px; float:left;  margin-left:40px;margin-right:40px; padding-left:20px; padding-right:20px;"> SUBMIT </button>

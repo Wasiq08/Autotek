@@ -7,6 +7,15 @@ angular.module('starter.controllers', [])
 
     Cities.getCities();
  
+    
+    $scope.$on("$ionicView.beforeEnter", function(event, data){
+   // handle event
+        console.log("local storage data", localStorageService.get("loggedInUser"));
+        if(localStorageService.get("loggedInUser") != null ) {
+            $rootScope.navigate("main")
+        }
+        
+    });
 
 
     //var params = "grant_type=password&username=0557613133&password=123456&client_id=Android02&client_secret=21B5F798-BE55-42BC-8AA8-0025B903DC3B&scope=app1"
@@ -369,7 +378,7 @@ angular.module('starter.controllers', [])
 
 
 })
-.controller('MainCtrl', ['$scope', 'localStorageService', function($scope, localStorageService) {
+.controller('MainCtrl', ['$scope', 'localStorageService', '$state', '$rootScope', '$ionicHistory', function($scope, localStorageService, $state, $rootScope, $ionicHistory) {
     try{
     $scope.user = localStorageService.get("loggedInUser").user;
     
@@ -379,8 +388,21 @@ angular.module('starter.controllers', [])
     catch(err) {
 
     }
+    $scope.$on("$ionicView.beforeEnter", function(event, data){
+   // handle event
+        if ($state.current.name == "main" && localStorageService.get("PageLangue")== "ar"){
+            console.log("in state arabic")
+            $ionicHistory.clearCache().then(function(){ $state.go('maina') })
+        }
 
+        
+        if ($state.current.name == "maina" && localStorageService.get("PageLangue")== "en"){
+            console.log("in state english")
+            $ionicHistory.clearCache().then(function(){ $state.go('main') })
+        }
+});
     
+
 }])
 
 .controller('PromotionEnglishCtrl', ['$scope','PormotionsOffers', function($scope,PormotionsOffers) {
@@ -919,6 +941,12 @@ angular.module('starter.controllers', [])
     console.log($scope.user)
     $scope.user.ContactNumber=parseInt($scope.user.ContactNumber);
     $scope.user.Password="*************";
+         $scope.obj = {};
+       
+          $scope.get_value=function(value1){
+            console.log($scope.obj.lng)
+            localStorageService.set('PageLangue',$scope.obj.lng);
+          }
 })
 .controller('EarnignHistory', function($scope, localStorageService,ionicDatePicker, $ionicPlatform,PormotionsOffers) {
      var ipObj2 = {
