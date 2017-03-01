@@ -150,29 +150,37 @@ navigation history that also transitions its views in and out.
             <button  class="button icon ion-gear-a" style="margin-left:30%;"></button>
         </div>
     </ion-header> -->
+      <ion-header-bar align-title="center" style="background-color: black;">
+        <div class="buttons">
+      <button class="custombutton icon ion-ios-bell" ui-sref="app.notifications"></button>
+ </div>
+
+ <h1 class="title"><img class="title-image" src="img/autotek_logo.png"  width="123" height="43" /></h1>
+  <div class="buttons">
+   <button ui-sref="app.settings" class="custombutton icon ion-gear-a" ></button>
+ </div>
+</ion-header-bar>
     <ion-content class="ak-bg" scroll="false">
         <div id="container" class="ak-bg">
             <div id="innerContainer">
-                <a ui-sref="app.settingsa"><button class="custombutton icon ion-gear-a" id="gear_icon"></button></a>
+              
                 <img src="img/background4.png" style="width: 100%; max-height: 100%;">
                 <div style="    width: 75px;
     height: 75px;
     position: relative;
     top: 0px;
     margin: auto;
-    margin-top: -35%;">
+    margin-top: -47%;">
                     <img src="img/profileicon.png" style="width: 100%; height: 100%;">
                 </div>
-                <div style="width: 40%;
+                <!--<div style="width: 40%;
     margin: auto;
     margin-top: -37%;">
-                    <img src="img/autotek_logo.png" style="    width: 100%;
-    height: 100%;
-}">
-                </div>
-                <button class="custombutton icon ion-ios-bell" ui-sref="app.notifications" style="    position: absolute;
-    top: 0px;"></button>
-                <div style="position: absolute; top: 80%; width: 100%; text-align: center; font-size: x-large; color: white;">
+                    <img src="img/autotek_logo.png" style="width: 100%; height: 100%;">
+                </div>-->
+                <!--<button class="custombutton icon ion-ios-bell" ui-sref="app.notifications" style="    position: absolute;
+    top: 0px;"></button>-->
+                <div style="position: absolute; top: 60%; width: 100%; text-align: center; font-size: x-large; color: white;">
                     {{user.FirstName}} {{user.LastName}}
                 </div>
             </div>

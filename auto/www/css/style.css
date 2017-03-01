@@ -163,7 +163,7 @@
 }
   
 .at-form-outline{
-    border:2px solid white;
+    /*border:2px solid white;*/
     height: 600px;
     width:95%;
     margin: auto;
@@ -301,9 +301,9 @@ input[type="password"]
     margin-right: 10px;
     height: 600px;
     border-style: solid;
-    border-width: 2px;
+    /*border-width: 2px;
     border-color: #fff;
-    position: absolute;
+    position: absolute;*/
    
 }
 
