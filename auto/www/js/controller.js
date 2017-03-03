@@ -23,6 +23,8 @@ angular.module('starter.controllers', [])
     $scope.login = function(data) {
         console.log(data)
         localStorageService.remove("access_token");
+        localStorageService.remove("loggedInUser");
+        localStorageService.remove("userimage");
         var params = {
             'grant_type': 'password',
             'username': $scope.user.username,
@@ -381,7 +383,7 @@ angular.module('starter.controllers', [])
 .controller('MainCtrl', ['$scope', 'localStorageService', '$state', '$rootScope', '$ionicHistory', function($scope, localStorageService, $state, $rootScope, $ionicHistory) {
     try{
     $scope.user = localStorageService.get("loggedInUser").user;
-    
+    console.log(localStorageService.get("loggedInUser"))
             $scope.AgentData=localStorageService.get("loggedInUser").user
             console.log("asdasdasd",$scope.AgentData);
     }
@@ -771,28 +773,6 @@ angular.module('starter.controllers', [])
     }
 })
 
-
-.controller('SettingsCtrl', function($scope,$cordovaCamera) {
-    document.addEventListener("deviceready", function () {
-
-    var options = {
-      destinationType: Camera.DestinationType.FILE_URI,
-      sourceType: Camera.PictureSourceType.CAMERA,
-    };
-
-    $cordovaCamera.getPicture(options).then(function(imageURI) {
-      var image = document.getElementById('myImage');
-      image.src = imageURI;
-    }, function(err) {
-      // error
-    });
-
-
-   // $cordovaCamera.cleanup().then(...); // only for FILE_URI
-
-  }, false);
-})
-
 .controller('HistoryCtrl', ['$scope', 'User', function($scope, User) {
     $scope.history = [];
     var pageNumber = 0;
@@ -957,18 +937,92 @@ angular.module('starter.controllers', [])
   
 })
 // setting Controller English
-.controller('settingsCtrl', function($scope,localStorageService) {
+.controller('settingsCtrl', function($scope,localStorageService,$cordovaCamera, $ionicActionSheet, $timeout) {
   
     $scope.user=localStorageService.get("loggedInUser").user;
     console.log($scope.user)
+     $scope.userImage=localStorageService.get("userimage");
+   //console.log(userImage)
     $scope.user.ContactNumber=parseInt($scope.user.ContactNumber);
     $scope.user.Password="*************";
          $scope.obj = {};
-       
+       $scope.obj1 = {};
           $scope.get_value=function(value1){
             console.log($scope.obj.lng)
             localStorageService.set('PageLangue',$scope.obj.lng);
           }
+          
+            $scope.imageClickCamera=function(){
+     
+
+        var options = {
+        destinationType: Camera.DestinationType.DATA_URL,
+        sourceType: Camera.PictureSourceType.CAMERA,
+        };
+
+        $cordovaCamera.getPicture(options).then(function(imageURI) {
+             var imgData = "data:image/jpeg;base64," +imageURI;
+        // var image = document.getElementById('myImage');
+        $scope.userImage = imgData;
+        localStorageService.set('userimage',$scope.userImage);
+        }, function(err) {
+        // error
+        });
+    }
+
+        $scope.imageClickGallery=function(){
+     
+
+        var options = {
+        destinationType: Camera.DestinationType.DATA_URL,
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        };
+        $cordovaCamera.getPicture(options).then(function(imageURI) {
+            var imgData = "data:image/jpeg;base64," +imageURI;
+            $scope.userImage = imgData;
+            localStorageService.set('userimage',$scope.userImage);
+        // var image = document.getElementById('myImage');
+    
+        }, function(err) {
+        // error
+    });
+ 
+    }
+
+
+    $scope.show = function() {
+       
+   // Show the action sheet
+   var hideSheet = $ionicActionSheet.show({
+     buttons: [
+       { text: 'Gallery' },
+       { text: 'Camera' }
+     ],
+    //  destructiveText: 'Delete',
+     titleText: 'Choos Picture Options',
+     cancelText: 'Cancel',
+     cancel: function() {
+          // add cancel code..
+        },
+     buttonClicked: function(index) {
+        if(index==0){
+            $scope.imageClickGallery();
+        }
+        else if(index==1){
+            $scope.imageClickCamera();
+        }
+       return true;
+     }
+   });
+
+   // For example's sake, hide the sheet after two seconds
+//    $timeout(function() {
+//      hideSheet();
+//    }, 2000);
+
+ };
+   //
+   
 })
 .controller('EarnignHistory', function($scope, localStorageService,ionicDatePicker, $ionicPlatform,PormotionsOffers) {
      var ipObj2 = {
