@@ -1,4 +1,10 @@
 <style type="text/css">
+.color-red {
+    color: red;
+}
+.color-white {
+    color:  white;
+}
 
 .main-card{
     width:95%;
@@ -72,13 +78,13 @@
             <div class="buttons">
                 <button class="button button-icon ion-ios-arrow-back" nav-direction="back" ng-click="$ionicGoBack(); "></button>
             </div>
-            <h1 class="title">Read More</h1>
+            <h1 class="title">{{title}}</h1>
         </div>
     </ion-header>
     <ion-content class="has-header ak-bg" style="background-color: black;">
         <div class="d">
-               <p style="color:white; margin-top: 20px;"> This is dummy text This is dummy text <br>
-               This is dummy textThis is dummy text
+               <p style="margin-top: 20px;" ng-bind-html="txt">
+              
                </p>
             
            

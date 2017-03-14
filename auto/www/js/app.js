@@ -98,7 +98,8 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
 
     .state('contact', {
         templateUrl: "templates/contact.html",
-        url: "/contact"
+        url: "/contact",
+        controller: "ContactCtrl"
     })
 
     .state('services', {
@@ -116,10 +117,19 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
     .state('location', {
         templateUrl: "templates/location.html",
         url: "/location",
+        controller: "LocationCtrl"
     })
     .state('readMore', {
         templateUrl: "templates/readmore.html",
-        url: "/readmore",
+        url: "/readmore/:id/:ln",
+        controller: "ReadMoreCtrl"
+         
+    })
+
+    .state('readMorea', {
+        templateUrl: "templates/readmore.html",
+        url: "/readmore/:id/:ln",
+        controller: "ReadMoreCtrl"
          
     })
 
@@ -286,12 +296,14 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
 
     .state('contacta', {
         templateUrl: "arabicTemplates/contact.html",
-        url: "/contacta"
+        url: "/contacta",
+        controller: "ContactCtrl"
     })
 
     .state('servicesa', {
         templateUrl: "arabicTemplates/services.html",
-        url: "/servicesa"
+        url: "/servicesa",
+        controller: "ServicesCtrl"
     })
 
     .state('promotiona', {
@@ -302,6 +314,7 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
     .state('locationa', {
         templateUrl: "arabicTemplates/location.html",
         url: "/locationa",
+        controller: "LocationArabicCtrl"
     })
 
 

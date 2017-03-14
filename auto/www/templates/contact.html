@@ -15,20 +15,20 @@
 	<div class="at-user-info">
 		<img src="img/profile_small_icon.png" class="at-profile-img"/>
 		<p class="at-address-title">ADDRESS</p>
-		<p class="at-address-text">AI-Madinah AI-Munawarah Rd, District<br>
+		<p class="at-address-text" ng-click="openMap()" style="text-decoration: underline;">AI-Madinah AI-Munawarah Rd, District<br>
 		Rawdah Jeddah 23434 4786</p>
 		<hr/>
 		<div style="margin-top: -10px;">
 			<img src="img/mobile_icon.png" class="at-profile-img"/><br>
-			<p class="at-user-number">9923423</p>
+			<a href="tel: +9923423"><p class="at-user-number" style="text-decoration: underline;">9923423</p></a>
 		</div>
 		<div>
 			<img src="img/email_icon.png" class="at-profile-img"/>
-			<p class="at-user-number">Sales@autotek.com</p>
+			<a  href="mailto:sales@autotek.com"><p class="at-user-number" style="text-decoration: underline;">Sales@autotek.com</p></a>
 		</div>
 		<div>
 			<img src="img/webAddress_icon.png" class="at-profile-img" style="padding-bottom: 10px;"/>
-			<p class="at-user-number" style="margin-top: -50px !important">https://autoksa.com</p>
+			<p  class="at-user-number" style="margin-top: -50px !important; text-decoration: underline;" ng-click="openWeb()" >http://autoksa.com</p>
 		</div>
 		<hr/ style="margin-top: 20px;">
 		<div class="at-schedule">

@@ -225,11 +225,11 @@ a{
                     <div class="heading"><i class="ion-arrow-right-b"></i> NEXT OFFERS</div>
                 </div>
                 <div ng-repeat="x in nextOfferDate" class="box" style="/*width: 100%; height: 72%; top: 25%; position: relative;*/">
-                    <div class="nodottedbox" ng-show="showDetails">
-                        <div class="nobox" ng-show="showDetails">
-                            <div class="offertitle" ng-show="showDetails" ng-hide="true">OFFER TITLE
+                    <div class="nodottedbox" ng-show="!showDetails">
+                        <div class="nobox" >
+                            <div class="offertitle" >OFFER TITLE
                             </div>
-                            <div class="offercontent" ng-show="showDetails">
+                            <div class="offercontent">
                                 {{x.Description_EN}} 
                             </div>
                         </div>
@@ -241,11 +241,11 @@ a{
                     <div class="heading"><i class="ion-arrow-right-b"></i> EARNED OFFERS</div>
                 </div>
                 <div ng-repeat="x in nextOfferDate" class="box" style="/*width: 100%; height: 72%; top: 25%; position: relative;*/">
-                    <div class="nodottedbox dottedboxborder2" ng-show="showDetails1">
-                        <div class="nobox dottedbox2" ng-show="showDetails1">
-                            <div class="offertitle" ng-show="showDetails1" ng-hide="true">OFFER TITLE
+                    <div class="nodottedbox dottedboxborder2" ng-show="!showDetails1">
+                        <div class="nobox dottedbox2" >
+                            <div class="offertitle" >OFFER TITLE
                             </div>
-                            <div class="offercontent" ng-show="showDetails1">
+                            <div class="offercontent" >
                                 {{x.Description_EN}}  
                             </div>
                         </div>
@@ -258,11 +258,11 @@ a{
                     <div class="heading"><i class="ion-arrow-right-b"></i> CONSUMED OFFERS</div>
                 </div>
                 <div ng-repeat="x in [1]" class="box" style="/*width: 100%; height: 72%; top: 25%; position: relative;*/">
-                    <div class="nodottedbox dottedboxborder3" ng-show="showDetails2">
-                        <div class="nobox dottedbox3" ng-show="showDetails2">
-                            <div class="offertitle" ng-show="showDetails2" ng-hide="true">OFFER TITLE
+                    <div class="nodottedbox dottedboxborder3" ng-show="!showDetails2">
+                        <div class="nobox dottedbox3">
+                            <div class="offertitle">OFFER TITLE
                             </div>
-                            <div class="offercontent" ng-show="showDetails2">
+                            <div class="offercontent" >
                                 {{data}} 
                             </div>
                         </div>

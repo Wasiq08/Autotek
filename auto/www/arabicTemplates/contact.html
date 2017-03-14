@@ -13,24 +13,26 @@
 <div class="c" style="margin-top: 10px;">
 	<div class="add-img"><img src="img/profile_small_icon.png" style="float: right;width: 15%;margin-top: -73px;margin-right: 10px;"></div>
 	<p style="color: white;float: right;margin-top: -56px;margin-right: 75px;">عنوان</p>
-
-	<div  class="ak-content" style="text-align: right;"><p  style="margin-top: 90px;">AI-Madinah AI-Munawarah Rd, District </p></div>
-	<p class="ak-content" style="text-align: right;">Rawdah Jeddah 23434 4786</p>
+	
+	<div ng-click="openMap()">
+	<div  class="ak-content" style="text-align: right;text-decoration: underline;"><p  style="margin-top: 90px;">AI-Madinah AI-Munawarah Rd, District </p></div>
+	<p class="ak-content" style="text-align: right;text-decoration: underline;">Rawdah Jeddah 23434 4786</p>
+	</div>
 	
 
 	<div class="blk-content">
 
 		<div style="width:90%; float:right; padding-top:10px; border-top:2px solid #FFF;">
 			  <img src="img/profile_small_icon.png" style="width:15%; float: right;"/>
-			<label style=" color: #fff;  float:right; padding-top:10px;margin-right: 10px;">920002108</label>
+			<a href="tel: +9923423"><label style=" color: #fff;  float:right; padding-top:10px;margin-right: 10px;text-decoration: underline;">920002108</label></a>
 		</div>
 		<div style="width:90%; float:right; padding-top:10px; ">
 			  <img src="img/profile_small_icon.png" style="width:15%; float: right;"/>
-			<label style=" color: #fff;  float:right; padding-top:10px;margin-right: 10px;">Sales@autotek.com</label>
-		</div>
+			<a  href="mailto:sales@autotek.com" ><label style=" color: #fff;  float:right; padding-top:10px;margin-right: 10px; text-decoration: underline;">Sales@autotek.com</label></a>
+		</div >
 			<div style="width:90%; float:right; padding-top:10px;border-bottom:2px solid #FFF; padding-bottom: 10px;">
 			  <img src="img/profile_small_icon.png" style="width:15%; float: right;"/>
-			<label style=" color: #fff;  float:right; padding-top:10px;margin-right: 10px;">http://www.autoksa.com</label>
+			<label ng-click="openWeb()" style=" color: #fff;  float:right; padding-top:10px;margin-right: 10px;text-decoration: underline;">http://www.autoksa.com</label>
 		</div>
 		
 	</div>
