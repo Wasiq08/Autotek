@@ -1104,9 +1104,20 @@ angular.module('starter.controllers', [])
         $scope.user.Password = "*************";
         $scope.obj = {};
         $scope.obj1 = {};
+        if (localStorageService.get("PageLangue") != null) {
+            $scope.obj.lng = localStorageService.get("PageLangue") == "ar" ? true : false;
+        } else {
+            localStorageService.set('PageLangue', 'en');
+        }
+
         $scope.get_value = function(value1) {
             console.log($scope.obj.lng)
-            localStorageService.set('PageLangue', $scope.obj.lng);
+            if ($scope.obj.lng) {
+                localStorageService.set('PageLangue', 'ar');
+            } else {
+                localStorageService.set('PageLangue', 'en');
+            }
+
         }
 
         $scope.imageClickCamera = function() {
@@ -1368,7 +1379,7 @@ angular.module('starter.controllers', [])
             ionicDatePicker.openDatePicker(ipObj2);
         };
     })
-    .controller('AppointmentCtrl', function($scope, Cities, Appointment, CityBranchId, $state, localStorageService, $rootScope) {
+    .controller('AppointmentCtrl', function($scope, Cities, Appointment, CityBranchId, $state, localStorageService, $rootScope, $ionicLoading) {
         console.log(Cities.cities)
         var cities = localStorageService.get('cities')
         $scope.cities = {
@@ -1376,9 +1387,10 @@ angular.module('starter.controllers', [])
             availableOptions: cities
         }
         $scope.branches = {};
-
+        $ionicLoading.show();
         Appointment.getBranches($scope.cities.selectedOption.CityId).success(function(res) {
                 console.log(res);
+                $ionicLoading.hide();
                 $scope.branches = {
                     selectedOption: { Id: res[0].Id, BranchName: res[0].BranchName },
                     availableOptions: res
@@ -1386,13 +1398,16 @@ angular.module('starter.controllers', [])
             })
             .error(function(err) {
                 console.log(err);
+                $ionicLoading.hide();
             })
 
 
         $scope.hasChanged = function() {
             console.log($scope.cities.selectedOption)
+            $ionicLoading.show();
             Appointment.getBranches($scope.cities.selectedOption.CityId).success(function(res) {
                     console.log(res);
+                    $ionicLoading.hide();
                     $scope.branches = {
                         selectedOption: { Id: res[0].Id, BranchName: res[0].BranchName },
                         availableOptions: res
@@ -1400,6 +1415,7 @@ angular.module('starter.controllers', [])
                 })
                 .error(function(err) {
                     console.log(err);
+                    $ionicLoading.hide();
                 })
         }
 
@@ -1583,7 +1599,7 @@ angular.module('starter.controllers', [])
     })
 
 .controller('ServicesCtrl', function($scope, $rootScope) {
-    $scope.readMorePage = function(id,ln) {
+    $scope.readMorePage = function(id, ln) {
         $rootScope.navigate('readMore', { id: id, ln: ln })
     }
 })
@@ -1597,9 +1613,9 @@ angular.module('starter.controllers', [])
 
 وتنحدر جذور تقنية النانو المتقدمة في السيراميك لدى “”أوتوتيك”” من جذور ألمانية. وتنتج “”أوتوتيك”” أفلام تبدو شفافة تقريبا، ولكنها في الوقت نفسه تحجب حرارة الأشعة فوق البنفسجية والأشعة تحت الحمراء الخطرة. وتصنع أفلام “أوتوتيك” بجودة عالية ويتم تمصميمها للتعامل مع الظروف القاسية. كذلك فإن أفلام “أوتوتيك” تمنع من حدوث الأضرار في المناطق المعرضة لحطام الطريق مثل الحصى والفضلات الطبيعية والبقع والغبار والكثير من الأضرار الأخرى. والأهم من ذلك فإن أفلام السيراميك من “أوتوتيك” بتقنية النانو مصممة خصيصا لتكون سهلة الاستعمال. وبعبارة أخرى، فإن السيارة التي يتم عليها تركيب فيلم السيراميك من “أوتوتيك” بتقنية النانو لن يكوون لديها أي مشكلة في استقبال أي نوع من أنواع الإشارات وبالتالي سيكون الإرسال الإذاعي واضح بنسبة مائة في المائة (100٪ ) وكذلك إشارات نظام تحديد المواقع الجغرافية (“جي.بيه.إس.”)، خلافا لمنتجات أفلام العزل من العلامات التجارية الأخرى.</div>`
         }
-        if ($stateParams.id == 2 ) {
+        if ($stateParams.id == 2) {
             $scope.title = "طلاء حماية الهيكل"
-            $scope.txt =`<div class="color-white">نحن نعرف أنك تحب سيارتك! ونعلم أيضا أنك تحب عائلتك، وبالتالي فإنك سوف تفعل كل ما في وسعك لحمايتهم في داخل السيارة وعلى الطريق. ونحن نقدر مشاعرك وبالتالي فإننا قمنا بعرض المنتج الذي يهدف إلى مساعدتك وجعل حياتك أكثر أمانا. وقد “
+            $scope.txt = `<div class="color-white">نحن نعرف أنك تحب سيارتك! ونعلم أيضا أنك تحب عائلتك، وبالتالي فإنك سوف تفعل كل ما في وسعك لحمايتهم في داخل السيارة وعلى الطريق. ونحن نقدر مشاعرك وبالتالي فإننا قمنا بعرض المنتج الذي يهدف إلى مساعدتك وجعل حياتك أكثر أمانا. وقد “
 
 أطلقنا على هذا المنتج  اسم “الحماية المضاعفة (أوكسي) بتقينة النانو ”
 وتمتلك حماية “أوكسي” بتقنية النانو مقاومة قوية حائزة على القبول حيث تمت عليها إجراءات اختبار صعبة. ويأخذ طلاء الحماية “أوكسي” بتقنية النانو تدبيرا إضافيا لحماية الجميع داخل السيارة في الوقت الذي يساعد فيه على الحفاظ على سيارتك لتبدو وكأنها جديدة من الخارج أيضا. وتدافع حماية “أوكسي” بتقنية النانو من “أوتوتيك” عن سيارتك ضد أي شيء يقذفه الطريق على سيارتك أثناء رحلتك، بما في ذلك الحصى الصغيرة على الطريق والرمل والطين ويحميها من الخدوش الرئيسية وذلك للمساعدة على الحفاظ على جعل السيارة تبدو جديدة ولامعة.</div>`
