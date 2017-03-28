@@ -79,6 +79,13 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
         controller: 'LoginCtrl'
     })
 
+    .state('mapoffer', {
+        templateUrl: "templates/mapoffer.html",
+        url: "/mapoffer",
+        controller: 'MapOfferCtrl'
+    })
+
+
     .state('main', {
         templateUrl: "templates/main.html",
         url: "/main",
@@ -199,7 +206,16 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
             }
         }
     })
-
+    .state('app.appointservice', {
+        url: "/appointservice",
+        views : {
+            'menuContent' : {
+                templateUrl: "templates/appointmentservice.html",
+                controller: 'AppointServiceCtrl' 
+            }
+        }
+        
+    })
     .state('app.appointment', {
         url: "/appointment",
         views: {
@@ -383,7 +399,17 @@ angular.module('Autotek', ['ionic', 'CoreApi', 'starter.controllers', 'starter.d
             }
         }
     })
-
+    
+    .state('app.appointservicea', {
+        url: "/appointservice",
+        views : {
+            'menuContent' : {
+                templateUrl: "arabicTemplates/appointmentservice.html",
+                controller: 'AppointServiceArabicCtrl' 
+            }
+        }
+        
+    })
     .state('app.appointmenta', {
         url: "/appointmenta",
         views: {

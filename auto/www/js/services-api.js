@@ -49,9 +49,29 @@ angular.module('CoreApi', ['CoreApiUtilities'])
         return httpService.$http.get(url, config);
     }
 
-   
+   this.getUnmapped = function() {
+        var config = httpService.Utils.getHeader();
+        var url = httpService.Utils.buildUrl(new Array('api', 'customer','offers','unmapped'));
+        return httpService.$http.get(url, config);   
+   }
 
+   this.customerVehicles = function() {
+        var config = httpService.Utils.getHeader();
+        var url = httpService.Utils.buildUrl(new Array('api', 'customer','vehicles'));
+        return httpService.$http.get(url, config);  
+   }
 
+   this.addVehicle = function(params) {
+        var config = httpService.Utils.getHeader();
+        var url = httpService.Utils.buildUrl(new Array('api', 'customer','vehicles', 'add'));
+        return httpService.$http.post(url, params, config);  
+   }
+
+   this.mapOffer = function(params) {
+        var config = httpService.Utils.getHeader();
+        var url = httpService.Utils.buildUrl(new Array('api', 'customer','offers', 'mapp'));
+        return httpService.$http.post(url, params, config);  
+   }
 }])
 
 
@@ -78,6 +98,12 @@ angular.module('CoreApi', ['CoreApiUtilities'])
         var config = httpService.Utils.getHeader();
         var url = httpService.Utils.buildUrl(new Array('api', 'AvailableAppointmentSlots', branchId, year, month,day));
         return httpService.$http.get(url, config);
+    }
+
+    this.schedule = function(params) {
+        var config = httpService.Utils.getHeader();
+        var url = httpService.Utils.buildUrl(new Array('api', 'ScheduleAppointment'));
+        return httpService.$http.post(url, params, config);
     }
 }])
 //Promotions Page Service(Earned offers, Next offers,Consumed offers)

@@ -51,14 +51,16 @@ angular.module('starter.controllers', [])
                                 //console.log(res)
                                 $ionicLoading.hide();
                                 loggedInUser = { user: res }
-
+                                console.log("result user is ", res)
                                 $rootScope.name = res.FirstName;
                                 localStorageService.set("loggedInUser", loggedInUser);
-                                if ($scope.user.username == "96698765") {
+                                if (res.UnMappedCouponCount > 0) {
                                     //$state.go('agentmain');
-                                    $rootScope.navigate('agentmain')
+                                    console.log("in if")
+                                    $rootScope.navigate('mapoffer')
                                 } else {
                                     // $state.go('main');
+                                    console.log("in else")
                                     $rootScope.navigate('main')
                                 }
 
@@ -124,6 +126,123 @@ angular.module('starter.controllers', [])
         localStorageService.set('PageLangue', language);
     }
 
+})
+
+.controller('MapOfferCtrl',function($scope, User, $ionicLoading) {
+
+    $ionicLoading.show();
+    User.getUnmapped().success(function(res) {
+        if(res.length>0) {
+                $scope.offers = {
+            selectedOption: { Id: res[0].Id, Description_EN: res[0].Description_EN },
+            availableOptions: res
+        }    
+        }
+        
+
+        User.customerVehicles().success(function(res) {
+            console.log("vahicels",res)
+            if (res.length > 0) {
+                $scope.vehicles = {
+                selectedOption: { Id: res[0].Id, ChassisNumber: res[0].ChassisNumber },
+                availableOptions: res
+            }
+            }
+            
+            $ionicLoading.hide();
+        })
+        .error(function(err) {
+            $ionicLoading.hide();
+
+        })
+    })
+    .error(function(err) {
+        console.log("Err")
+        $ionicLoading.hide();
+
+    })
+
+
+
+    $scope.final_obj = {};
+
+    $scope.registerVehicle = function() {
+         $ionicLoading.show();
+        User.addVehicle($scope.final_obj).success(function(res) {
+                User.getUnmapped().success(function(res) {
+            console.log("Res",res[0].Description_EN)
+        $scope.offers = {
+            selectedOption: { Id: res[0].Id, Description_EN: res[0].Description_EN },
+            availableOptions: res
+        }
+
+        User.customerVehicles().success(function(res) {
+            console.log("vahicels",res)
+            $scope.vehicles = {
+                selectedOption: { Id: res[0].Id, ChassisNumber: res[0].ChassisNumber },
+                availableOptions: res
+            }
+            $ionicLoading.hide();
+            $scope.final_obj = {};
+            $scope.showAlertVehicle(true);
+        })
+        .error(function(err) {
+            $ionicLoading.hide();
+            $scope.showAlertVehicle(false);
+        })
+    })
+    .error(function(err) {
+        console.log("Err")
+        $ionicLoading.hide();
+        $scope.showAlertVehicle(false);
+    })
+        })
+        .error(function(err) {
+             $scope.showAlertVehicle(false);
+        });
+    }
+
+    $scope.isShowing = false;
+    $scope.showForm = function() {
+        $scope.isShowing = !$scope.isShowing ;
+    }
+
+    $scope.mapOffer =function() {
+        var params = { Id: $scope.offers.selectedOption.Id, CustomerVehicleId: $scope.vehicles.selectedOption.Id};
+
+        User.mapOffer(params).success(function(res) {
+            console.log("succefully added",res)
+            $scope.showAlert(true);
+        })
+        .error(function(err) {
+            console.log("error added",err)
+            $scope.showAlert(error);
+        })
+    }
+
+            // An alert dialog
+ $scope.showAlert = function(check) {
+   var alertPopup = $ionicPopup.alert({
+     title: check == true ? 'success!' : 'error!',
+     template:  check == true ? 'offer mapped successfully!' : 'there is some error. please try again!'
+   });
+
+   alertPopup.then(function(res) {
+     console.log('Thank you for not eating my delicious ice cream cone');
+   });
+ };
+
+             // An alert dialog
+ $scope.showAlertVehicle = function(check) {
+   var alertPopup = $ionicPopup.alert({
+     title: check == true ? 'success!' : 'error!',
+     template:  check == true ? 'Vehicle is succuessfully added.' : 'there is some error. please try again!'
+   });
+
+   alertPopup.then(function(res) {
+     console.log('Thank you for not eating my delicious ice cream cone');
+   });
+ };
 })
 
 .controller('NotificationEnglishCtrl', ['$scope', '$ionicSideMenuDelegate', 'PormotionsOffers', function($scope, $ionicSideMenuDelegate, PormotionsOffers) {
@@ -365,32 +484,37 @@ angular.module('starter.controllers', [])
     //initMap({lat: 24.7136, lng: 46.6753});
 })
 
-.controller('BookAppointmentCtrl', function($scope, $state, $http, CityBranchId, Appointment, ionicTimePicker, $stateParams, AppointmentDetail, $rootScope) {
+.controller('BookAppointmentCtrl', function($scope, $state, $http, $ionicModal, CityBranchId, Appointment, ionicTimePicker, $stateParams, AppointmentDetail, $rootScope, localStorageService, $ionicLoading) {
         console.log(CityBranchId.get_cityid());
         console.log(CityBranchId.get_branchid());
         var current_date = new Date();
         console.log($stateParams.branchid);
         $scope.dateobj = {};
         $scope.dateobj.date = current_date;
-        $scope.hours = 09;
-        $scope.minutes = 30;
+        $scope.hours = 00;
+        $scope.minutes = 00;
         $scope.ampm = "AM";
         //console.log(date);
         var getdate = current_date.getDate()
         var month = current_date.getMonth();
         var year = current_date.getFullYear();
         var branchid = $stateParams.branchid;
+        $ionicLoading.show();
         Appointment.getAvailableDays(branchid, year, month + 1).success(function(res) {
                 console.log(res);
                 Appointment.getAvailableSlots(branchid, year, month + 1, getdate).success(function(result) {
                         console.log(result)
+                        $rootScope.$broadcast('AVAILABLEDAYS',{data: result}); 
+                        $ionicLoading.hide();
                     })
                     .error(function(error) {
                         console.log(error)
+                        $ionicLoading.hide();
                     })
             })
             .error(function(err) {
                 console.log(err)
+                $ionicLoading.hide();
             })
 
         var ipObj1 = {
@@ -423,53 +547,214 @@ angular.module('starter.controllers', [])
             setLabel: 'Set' //Optional
         };
         $scope.openTimePicker = function() {
-            ionicTimePicker.openTimePicker(ipObj1);
+           $scope.modal.show();
         }
 
+  $ionicModal.fromTemplateUrl('templates/timemodal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $rootScope.$on('AVAILABLEDAYS', function(event, args) {
+    console.log("args ", args)
+    $scope.timeslots = [];
+    if (args.data != "OffDay") {
+        for (var i=0; i<args.data.length; i++) {
+            $scope.timeslots.push(args.data[i]);
+            $scope.timeslots[i].isChecked = false;
+        }
+        $scope.timeslots[0].isChecked = true;
+        $scope.hours = $scope.timeslots[0].StartTimeStr.substr(0,2);
+        $scope.minutes =  $scope.timeslots[0].StartTimeStr.substr(3,2);
+        $scope.ampm =$scope.timeslots[0].StartTimeStr.substr(6,2);
+        $scope.appointdate = $scope.timeslots[0].AppointmentDate.substr(0,10);
+        $scope.starttime = $scope.timeslots[0].StartTime.substr(0,10) + " " +   $scope.timeslots[i].StartTimeStr;
+        $scope.endtime = $scope.timeslots[0].EndTime.substr(0,10) + " " +   $scope.timeslots[i].EndTimeStr;
+    }
+
+    
+  })
+
+  $scope.closemodal = function() {
+    $scope.modal.hide();
+        for (var i=0; i<$scope.timeslots.length; i++) {
+            if ($scope.timeslots[i].isChecked) {
+                $scope.hours = $scope.timeslots[i].StartTimeStr.substr(0,2);
+                $scope.minutes =  $scope.timeslots[i].StartTimeStr.substr(3,2);
+                $scope.ampm =$scope.timeslots[i].StartTimeStr.substr(6,2);
+                $scope.appointdate = $scope.timeslots[i].AppointmentDate.substr(0,10);
+                $scope.starttime = $scope.timeslots[i].StartTime.substr(0,10) + " " +   $scope.timeslots[i].StartTimeStr;
+                $scope.endtime = $scope.timeslots[i].EndTime.substr(0,10) + " " +   $scope.timeslots[i].EndTimeStr;
+            }
+        }
+  }
+
+  $scope.selectTime= function(index) {
+        for (var i=0; i<$scope.timeslots.length; i++) {
+            if (i == index) {
+                $scope.timeslots[i].isChecked = true;
+            }
+            else {
+                $scope.timeslots[i].isChecked = false;
+            }
+            
+        }
+
+  }
         $scope.book = function() {
             console.log("scope.date", $scope.dateobj.date)
-            $rootScope.navigate('appointmentreview')
-            var date = new Date($scope.dateobj.date);
-            AppointmentDetail.set({
-                startTime: $scope.hours + ":" + $scope.minutes + " " + $scope.ampm,
-                location: CityBranchId.get_branchid().BranchName,
-                day: dayname(date.getDay()),
-                date: date.getDate(),
-                month: monthname(date.getMonth())
+            $rootScope.navigate('app.appointservice')
+            localStorageService.set("AppointmentSlot", {
+                BranchId: $stateParams.branchid,
+                AppointmentDate : $scope.appointdate,
+                StartTime: $scope.starttime,
+                EndTime: $scope.endtime
             })
+            // var date = new Date($scope.dateobj.date);
+            // AppointmentDetail.set({
+            //     startTime: $scope.hours + ":" + $scope.minutes + " " + $scope.ampm,
+            //     location: CityBranchId.get_branchid().BranchName,
+            //     day: dayname(date.getDay()),
+            //     date: date.getDate(),
+            //     month: monthname(date.getMonth())
+            // })
         }
 
 
 
     })
-    ///arabic
-    .controller('BookAppointmentArabicCtrl', function($scope, $state, $http, CityBranchId, Appointment, ionicTimePicker, $stateParams, AppointmentDetail, $rootScope) {
+
+    .controller('AppointServiceCtrl', function($scope, User, $ionicLoading, localStorageService, Appointment,  $ionicPopup, $rootScope) {
+        $ionicLoading.show();
+        $scope.final_obj = {};
+        $scope.final_obj.AppointmentSlot = localStorageService.get('AppointmentSlot');
+        User.customerVehicles().success(function(res) {
+            console.log("vahicels",res)
+            if (res.length > 0) {
+                $scope.vehicles = {
+                selectedOption: { Id: res[0].Id, ChassisNumber: res[0].ChassisNumber },
+                availableOptions: res
+            }
+            }
+            
+            $ionicLoading.hide();
+        })
+        .error(function(err) {
+            $ionicLoading.hide();
+
+        })
+
+        $scope.book = function() {
+            $scope.final_obj.CustomerVehicleId = $scope.vehicles.selectedOption.Id;
+            $ionicLoading.show();
+            Appointment.schedule($scope.final_obj).success(function(res) {
+                $ionicLoading.hide();
+                $scope.showAlert(true);
+            })
+            .error(function(err) {
+                $ionicLoading.hide();
+                $scope.showAlert(false);
+            })
+        }
+
+        // An alert dialog
+ $scope.showAlert = function(check) {
+   var alertPopup = $ionicPopup.alert({
+     title: check == true ? 'Success!' : 'Error!',
+     template: check == true ? 'Your appointment is in process and will receive a confirmation message shortly!' : 'Appointment slot is not available.'
+   });
+
+   alertPopup.then(function(res) {
+     console.log('Thank you for not eating my delicious ice cream cone');
+     if (check) {
+        $rootScope.navigate('main')  
+     }
+   });
+ };
+    })
+
+        .controller('AppointServiceArabicCtrl', function($scope, User, $ionicLoading, localStorageService, Appointment,  $ionicPopup, $rootScope) {
+        $ionicLoading.show();
+        $scope.final_obj = {};
+        $scope.final_obj.AppointmentSlot = localStorageService.get('AppointmentSlot');
+        User.customerVehicles().success(function(res) {
+            console.log("vahicels",res)
+            if (res.length > 0) {
+                $scope.vehicles = {
+                selectedOption: { Id: res[0].Id, ChassisNumber: res[0].ChassisNumber },
+                availableOptions: res
+            }
+            }
+            
+            $ionicLoading.hide();
+        })
+        .error(function(err) {
+            $ionicLoading.hide();
+
+        })
+
+        $scope.book = function() {
+            $scope.final_obj.CustomerVehicleId = $scope.vehicles.selectedOption.Id;
+            $ionicLoading.show();
+            Appointment.schedule($scope.final_obj).success(function(res) {
+                $ionicLoading.hide();
+                $scope.showAlert(true);
+            })
+            .error(function(err) {
+                $ionicLoading.hide();
+                $scope.showAlert(false);
+            })
+        }
+
+        // An alert dialog
+ $scope.showAlert = function(check) {
+   var alertPopup = $ionicPopup.alert({
+     title: check == true ? 'نجاح!' : 'خطأ!',
+     template: check == true ? 'موعدك قيد المعالجة وسوف تتلقى رسالة تأكيد قريبا!' : 'موعد التعيين غير متاح.'
+   });
+
+   alertPopup.then(function(res) {
+     console.log('Thank you for not eating my delicious ice cream cone');
+     if (check) {
+        $rootScope.navigate('main')  
+     }
+   });
+ };
+    })
+    ///arabic BookAppointmentArabicCtrl
+.controller('BookAppointmentArabicCtrl', function($scope, $state, $http, $ionicModal, CityBranchId, Appointment, ionicTimePicker, $stateParams, AppointmentDetail, $rootScope, localStorageService, $ionicLoading) {
         console.log(CityBranchId.get_cityid());
         console.log(CityBranchId.get_branchid());
         var current_date = new Date();
         console.log($stateParams.branchid);
         $scope.dateobj = {};
         $scope.dateobj.date = current_date;
-        $scope.hours = 09;
-        $scope.minutes = 30;
+        $scope.hours = 00;
+        $scope.minutes = 00;
         $scope.ampm = "AM";
         //console.log(date);
         var getdate = current_date.getDate()
         var month = current_date.getMonth();
         var year = current_date.getFullYear();
         var branchid = $stateParams.branchid;
-
+        $ionicLoading.show();
         Appointment.getAvailableDays(branchid, year, month + 1).success(function(res) {
                 console.log(res);
                 Appointment.getAvailableSlots(branchid, year, month + 1, getdate).success(function(result) {
                         console.log(result)
+                        $rootScope.$broadcast('AVAILABLEDAYS',{data: result}); 
+                        $ionicLoading.hide();
                     })
                     .error(function(error) {
                         console.log(error)
+                        $ionicLoading.hide();
                     })
             })
             .error(function(err) {
                 console.log(err)
+                $ionicLoading.hide();
             })
 
         var ipObj1 = {
@@ -502,21 +787,82 @@ angular.module('starter.controllers', [])
             setLabel: 'Set' //Optional
         };
         $scope.openTimePicker = function() {
-            ionicTimePicker.openTimePicker(ipObj1);
+           $scope.modal.show();
         }
 
+  $ionicModal.fromTemplateUrl('templates/timemodal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $rootScope.$on('AVAILABLEDAYS', function(event, args) {
+    console.log("args ", args)
+    $scope.timeslots = [];
+    if (args.data != "OffDay") {
+        for (var i=0; i<args.data.length; i++) {
+            $scope.timeslots.push(args.data[i]);
+            $scope.timeslots[i].isChecked = false;
+        }
+        $scope.timeslots[0].isChecked = true;
+        $scope.hours = $scope.timeslots[0].StartTimeStr.substr(0,2);
+        $scope.minutes =  $scope.timeslots[0].StartTimeStr.substr(3,2);
+        $scope.ampm =$scope.timeslots[0].StartTimeStr.substr(6,2);
+
+        $scope.appointdate = $scope.timeslots[0].AppointmentDate.substr(0,10);
+        $scope.starttime = $scope.timeslots[0].StartTime.substr(0,10) + " " +   $scope.timeslots[i].StartTimeStr;
+        $scope.endtime = $scope.timeslots[0].EndTime.substr(0,10) + " " +   $scope.timeslots[i].EndTimeStr;
+    }
+
+    
+  })
+
+  $scope.closemodal = function() {
+    $scope.modal.hide();
+        for (var i=0; i<$scope.timeslots.length; i++) {
+            if ($scope.timeslots[i].isChecked) {
+                $scope.hours = $scope.timeslots[i].StartTimeStr.substr(0,2);
+                $scope.minutes =  $scope.timeslots[i].StartTimeStr.substr(3,2);
+                $scope.ampm =$scope.timeslots[i].StartTimeStr.substr(6,2);
+                $scope.appointdate = $scope.timeslots[i].AppointmentDate.substr(0,10);
+                $scope.starttime = $scope.timeslots[i].StartTime.substr(0,10) + " " +   $scope.timeslots[i].StartTimeStr;
+                $scope.endtime = $scope.timeslots[i].EndTime.substr(0,10) + " " +   $scope.timeslots[i].EndTimeStr;
+            }
+        }
+  }
+
+  $scope.selectTime= function(index) {
+        for (var i=0; i<$scope.timeslots.length; i++) {
+            if (i == index) {
+                $scope.timeslots[i].isChecked = true;
+            }
+            else {
+                $scope.timeslots[i].isChecked = false;
+            }
+            
+        }
+
+  }
         $scope.book = function() {
             console.log("scope.date", $scope.dateobj.date)
-            $rootScope.navigate('appointmentreview')
-            var date = new Date($scope.dateobj.date);
-            AppointmentDetail.set({
-                startTime: $scope.hours + ":" + $scope.minutes + " " + $scope.ampm,
-                location: CityBranchId.get_branchid().BranchName,
-                day: dayname(date.getDay()),
-                date: date.getDate(),
-                month: monthname(date.getMonth())
+            $rootScope.navigate('app.appointservice')
+            localStorageService.set("AppointmentSlot", {
+                BranchId: $stateParams.branchid,
+                AppointmentDate : $scope.appointdate,
+                StartTime: $scope.starttime,
+                EndTime: $scope.endtime
             })
+            // var date = new Date($scope.dateobj.date);
+            // AppointmentDetail.set({
+            //     startTime: $scope.hours + ":" + $scope.minutes + " " + $scope.ampm,
+            //     location: CityBranchId.get_branchid().BranchName,
+            //     day: dayname(date.getDay()),
+            //     date: date.getDate(),
+            //     month: monthname(date.getMonth())
+            // })
         }
+
 
 
     })
@@ -1429,9 +1775,9 @@ angular.module('starter.controllers', [])
 
 
     })
-    /// arabic
+    /// arabic AppointmentArabicCtrl
 
-.controller('AppointmentArabicCtrl', function($scope, Cities, Appointment, CityBranchId, $state, localStorageService, $rootScope) {
+    .controller('AppointmentArabicCtrl', function($scope, Cities, Appointment, CityBranchId, $state, localStorageService, $rootScope, $ionicLoading) {
         console.log(Cities.cities)
         var cities = localStorageService.get('cities')
         $scope.cities = {
@@ -1439,9 +1785,10 @@ angular.module('starter.controllers', [])
             availableOptions: cities
         }
         $scope.branches = {};
-
+        $ionicLoading.show();
         Appointment.getBranches($scope.cities.selectedOption.CityId).success(function(res) {
                 console.log(res);
+                $ionicLoading.hide();
                 $scope.branches = {
                     selectedOption: { Id: res[0].Id, BranchName: res[0].BranchName },
                     availableOptions: res
@@ -1449,13 +1796,16 @@ angular.module('starter.controllers', [])
             })
             .error(function(err) {
                 console.log(err);
+                $ionicLoading.hide();
             })
 
 
         $scope.hasChanged = function() {
             console.log($scope.cities.selectedOption)
+            $ionicLoading.show();
             Appointment.getBranches($scope.cities.selectedOption.CityId).success(function(res) {
                     console.log(res);
+                    $ionicLoading.hide();
                     $scope.branches = {
                         selectedOption: { Id: res[0].Id, BranchName: res[0].BranchName },
                         availableOptions: res
@@ -1463,13 +1813,14 @@ angular.module('starter.controllers', [])
                 })
                 .error(function(err) {
                     console.log(err);
+                    $ionicLoading.hide();
                 })
         }
 
         $scope.next = function() {
             CityBranchId.set_cityid($scope.cities.selectedOption.CityId);
             CityBranchId.set_branchid($scope.branches.selectedOption);
-            $rootScope.navigate('app.bookappointment', { branchid: $scope.branches.selectedOption.Ida })
+            $rootScope.navigate('app.bookappointment', { branchid: $scope.branches.selectedOption.Id })
                 // $state.go()
                 // $scope.cities = Cities.cities;
         }
@@ -1487,9 +1838,11 @@ angular.module('starter.controllers', [])
             console.log("hello")
             var _start = start || false
             Appointment.get(pageNumber, pageSize).success(function(res) {
-                    if (res > 0) {
+
+                    if (res.length > 0) {
                         $scope.isappoinment = false;
                         console.log(res)
+                        console.log("app",res)
                         if (_start) {
                             $scope.appointments = [];
                         }
@@ -1527,7 +1880,7 @@ angular.module('starter.controllers', [])
             console.log("hello")
             var _start = start || false
             Appointment.get(pageNumber, pageSize).success(function(res) {
-                    if (res > 0) {
+                    if (res.length > 0) {
                         $scope.isappoinment = false;
                         console.log(res)
                         if (_start) {

@@ -135,7 +135,7 @@
 
       return toReturn.join('');
     }
-    , datepickerDirective = function datepickerDirective($window, $compile, $locale, $filter, $interpolate, Appointment, CityBranchId, $ionicLoading) {
+    , datepickerDirective = function datepickerDirective($window, $compile, $locale, $filter, $interpolate, Appointment, CityBranchId, $ionicLoading, $rootScope) {
 
       var linkingFunction = function linkingFunction($scope, element, attr) {
 
@@ -537,7 +537,8 @@
             Appointment.getAvailableDays(branchid,year,month+1).success(function(res){
                 console.log(res);
                 Appointment.getAvailableSlots(branchid,year,month+1,getdate).success(function(result){
-                    console.log(result)
+                    
+                    $rootScope.$broadcast('AVAILABLEDAYS',{data: result}); 
                     $ionicLoading.hide();
                 })
                 .error(function(error){
@@ -854,5 +855,5 @@
     };
 
   angular.module('720kb.datepicker', [])
-               .directive('datepicker', ['$window', '$compile', '$locale', '$filter', '$interpolate', 'Appointment', 'CityBranchId', '$ionicLoading', datepickerDirective]);
+               .directive('datepicker', ['$window', '$compile', '$locale', '$filter', '$interpolate', 'Appointment', 'CityBranchId', '$ionicLoading', '$rootScope', datepickerDirective]);
 }(angular, navigator));
